@@ -7,7 +7,9 @@ const ChatCard = () => {
 			backgroundColor : 'red', 
 			flex : 1 , 
 			height : '80px' , 
-			cursor : 'pointer'}}>
+			cursor : 'pointer',
+			overflow : 'hidden'
+		}}>
 
 				<pic className = 'br2' style = {{ 
 					backgroundColor : 'orange', 
@@ -29,21 +31,15 @@ const ChatCard = () => {
 						marginBottom : '4px',
 						justifyContent : 'space-between'
 					}}>
-						<name style = {{
+						<name className = 'clipped' style = {{
 							fontSize : '18px' , 
-							backgroundColor : 'gold',
-							whiteSpace: 'nowrap',
-  							overflow: 'hidden',
-  							textOverflow: 'ellipsis',
-  							flex : '1 1 auto',
-  							maxWidth : '100%',
-  							minWidth : '1px'
+							backgroundColor : 'gold'
 						}}>Nameoverflowwwwwwwwwwwwwwwwwwwwwwwwwwa
 						</name>
 						<date style = {{ fontSize : '13px', backgroundColor:'silver', marginLeft : '5px'}}>
 						yesterday</date>
 					</nameBar>
-					<messageBar style = {{
+					<messageBar className = 'clipped' style = {{
 						display : 'flex',
 						backgroundColor : 'violet', 
 						paddingTop : '4px'}}>

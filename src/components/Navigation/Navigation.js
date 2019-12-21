@@ -5,8 +5,14 @@ import NewChat from './NewChat/NewChat';
 
 const Navigation = () => {
 	return (
-		<nav style = {{ display : 'flex', justifyContent: 'space-between', backgroundColor : 'orange', flex : '0 0 auto', 
-		height : '65px'}}>
+		<nav style = {{ 
+			display : 'flex', 
+			justifyContent: 'space-between', 
+			backgroundColor : 'orange', 
+			flex : '0 0 auto', 
+			height : '65px',
+			overflow : 'hidden'
+		}}>
 		<Profile />
 		<div style = {{ display : 'flex'}}>
 		<NewChat />

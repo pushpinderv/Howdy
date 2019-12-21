@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import ContactsWindow from './components/ContactsWindow/ContactsWindow';
 import ChatWindow from './components/ChatWindow/ChatWindow';
@@ -6,18 +6,12 @@ import ChatWindow from './components/ChatWindow/ChatWindow';
 
 
 function App() {
+  const [mode, setMode] = useState('web');
   return (
     <div className="App">
           <ContactsWindow />
           <ChatWindow />
-          
-          {/*<ChatSearch />
-          <Navigation />
-          <ChatsList />'
-          '
-          <ContactDetailBar />
-          <ContactConversationList />
-          <SendMessageBar />*/}
+
     </div>
   );
 }
