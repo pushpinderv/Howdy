@@ -13,7 +13,7 @@ const SendMessageBar = () => {
 			overflow : 'hidden'
 		}}>
 
-		<input placeHolder = 'Type a message' className = 'br-pill bn ph3' 
+		<input placeholder = 'Type a message' className = 'br-pill bn ph3' 
 		style = {{flex : '1 1 auto', minWidth : '0px', outline : 'none', lineHeight : 1}} 
 		type = 'text' />
 
