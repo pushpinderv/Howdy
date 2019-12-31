@@ -28,7 +28,7 @@ const SendMessageBar = () => {
             width : '40px', 
 		    height : 'auto',
 		    flex : '0 0 auto'}}>
-		<img src = {sendButtonImage} />
+		<img src = {sendButtonImage} alt = 'Send Message' />
 		</button>
 
 		</nav>

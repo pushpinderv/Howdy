@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChatCard = () => {
 	return(
-		<chatCard style = {{
+		<chat-card style = {{
 			display : 'flex', 
 			backgroundColor : 'red', 
 			flex : 1 , 
@@ -11,46 +11,46 @@ const ChatCard = () => {
 			overflow : 'hidden'
 		}}>
 
-				<pic className = 'br2' style = {{ 
+				<div className = 'br2' style = {{ 
 					backgroundColor : 'orange', 
 					height : '55px', 
 					width : '55px', 
 					margin : 'auto 0 auto 20px',
 					flex : '0 0 auto', 
 					alignSelf : 'flex-start'}}>
-				</pic>
+				</div>
 
-				<cardData style = 
+				<card-data style = 
 					{{backgroundColor : 'grey', display : 'flex', 
 					flexDirection : 'column', padding : '0px 12px', 
 					alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',
 					flex : '1 1 auto', maxWidth : '100%', minWidth : '1px'}}>
-					<nameBar style = {{
+					<name-bar style = {{
 						backgroundColor : 'orange',
 						display : 'flex', 
 						marginBottom : '4px',
 						justifyContent : 'space-between'
 					}}>
-						<name className = 'clipped' style = {{
+						<div className = 'clipped' style = {{
 							fontSize : '18px' , 
 							backgroundColor : 'gold'
 						}}>Nameoverflowwwwwwwwwwwwwwwwwwwwwwwwwwa
-						</name>
-						<date style = {{ fontSize : '13px', backgroundColor:'silver', marginLeft : '5px'}}>
-						yesterday</date>
-					</nameBar>
-					<messageBar className = 'clipped' style = {{
+						</div>
+						<message-date style = {{ fontSize : '13px', backgroundColor:'silver', marginLeft : '5px'}}>
+						yesterday</message-date>
+					</name-bar>
+					<message-bar className = 'clipped' style = {{
 						display : 'flex',
 						backgroundColor : 'violet', 
 						paddingTop : '4px'}}>
-						<message style = {{
+						<message-text style = {{
 							fontSize : '15px', 
 							backgroundColor : 'silver'}}>Latest Message
-							</message>
-					</messageBar>
-				</cardData>
+							</message-text>
+					</message-bar>
+				</card-data>
 
-		</chatCard>
+		</chat-card>
 	);
 }
 

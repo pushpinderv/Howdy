@@ -6,7 +6,7 @@ const ContactVideoCallButton = () => {
 		<button style = {{display: 'flex', background : 'none', backgroundColor : 'yellow', border : 'none', 
 		outline : 'none', width : '45px', height : 'auto', 
 		cursor : 'pointer', marginLeft : '30px', marginRight : '10px', flex : '0 0 auto'}}>
-		<img src = {videoCallButton} />
+		<img src = {videoCallButton} alt = 'Video Call' />
 		</button>
 	);
 }

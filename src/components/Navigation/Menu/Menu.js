@@ -5,7 +5,7 @@ const Menu = () => {
 	return (
 		<button style = {{display: 'flex', background : 'none', backgroundColor : 'yellow', border : 'none', 
 		outline : 'none', width : '40px', height : 'auto', cursor : 'pointer', marginRight : '10px'}}>
-		<img src = {menuButtonImage} />
+		<img src = {menuButtonImage} alt = 'Menu' />
 		</button>
 	);
 }

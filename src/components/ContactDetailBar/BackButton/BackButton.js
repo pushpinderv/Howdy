@@ -4,7 +4,7 @@ import {ModeContext} from '../../../Store';
 
 const BackButton = () => {
 
-	const [mode, setMode] = useContext(ModeContext);
+	const [mode] = useContext(ModeContext);
 	var display = "none";
 	if(mode === "Mobile")
 	{
@@ -21,7 +21,7 @@ const BackButton = () => {
 			height : 'auto', 
 			cursor : 'pointer', 
 			flex : '0 0 auto'}}>
-		<img src = {backButtonImage} />
+		<img src = {backButtonImage} alt = 'Go Back' />
 		</button>
 	);
 }

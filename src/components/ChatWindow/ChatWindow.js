@@ -4,7 +4,7 @@ import SendMessageBar from '../SendMessageBar/SendMessageBar';
 import ContactConversationList from '../ContactConversationList/ContactConversationList';
 
 const ChatWindow = (props) => {
-	console.log('ChatWindow', props.mode);
+	// console.log('ChatWindow', props.mode);
 	var flexWidth = '70%';
 	if(props.mode === 'Mobile')
 	{

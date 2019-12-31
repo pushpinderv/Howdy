@@ -7,7 +7,7 @@ import BackButton from './BackButton/BackButton';
 
 const ContactDetailBar = () => {
 	return (
-		<contactBarDiv style = {{
+		<contact-bar style = {{
 			display : 'flex', 
 			backgroundColor : 'brown', 
 			flex : '0 0 auto', 
@@ -16,16 +16,16 @@ const ContactDetailBar = () => {
 		}}>
 		<BackButton />
 		<ContactProfilePicture />
-		<contactinfo style = 
+		<contact-info style = 
 		{{backgroundColor : 'black', display : 'flex', 
 		flexDirection : 'column', padding : '0px 20px', 
 		alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',
 		flex : '1 1 auto', maxWidth : '100%', minWidth : '1px'}}>
 		<ContactName />
 		<ContactLastOnline />
-		</contactinfo>
+		</contact-info>
 		<ContactVideoCallButton />
-		</contactBarDiv>
+		</contact-bar>
 	);
 }
 
