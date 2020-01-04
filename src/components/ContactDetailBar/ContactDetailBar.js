@@ -11,14 +11,14 @@ const ContactDetailBar = () => {
 			display : 'flex', 
 			backgroundColor : 'brown', 
 			flex : '0 0 auto', 
-			height : '65px',
+			height : '4em',
 			overflow : 'hidden'
 		}}>
 		<BackButton />
 		<ContactProfilePicture />
 		<contact-info style = 
 		{{backgroundColor : 'black', display : 'flex', 
-		flexDirection : 'column', padding : '0px 20px', 
+		flexDirection : 'column', padding : '0px 1em', 
 		alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',
 		flex : '1 1 auto', maxWidth : '100%', minWidth : '1px'}}>
 		<ContactName />

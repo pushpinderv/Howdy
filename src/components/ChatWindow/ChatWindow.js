@@ -2,10 +2,12 @@ import React from 'react';
 import ContactDetailBar from '../ContactDetailBar/ContactDetailBar';
 import SendMessageBar from '../SendMessageBar/SendMessageBar';
 import ContactConversationList from '../ContactConversationList/ContactConversationList';
+import {useMediaPredicate} from 'react-media-hook';
 
 const ChatWindow = (props) => {
-	// console.log('ChatWindow', props.mode);
-	var flexWidth = '70%';
+	const isMaxed = useMediaPredicate('(min-width: 900px)');
+	var flexWidth = isMaxed ? '65%' : '60%';
+	
 	if(props.mode === 'Mobile')
 	{
 		flexWidth = '100%'
