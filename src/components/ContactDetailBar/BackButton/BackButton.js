@@ -17,8 +17,9 @@ const BackButton = () => {
 			backgroundColor : 'yellow', 
 			border : 'none', 
 			outline : 'none', 
-			width : '40px', 
-			height : 'auto', 
+			width : '2.5em', 
+			height : 'auto',
+			padding : '0.3em', 
 			cursor : 'pointer', 
 			flex : '0 0 auto'}}>
 		<img src = {backButtonImage} alt = 'Go Back' />

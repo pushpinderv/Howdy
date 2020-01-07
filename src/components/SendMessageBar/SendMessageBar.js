@@ -6,7 +6,7 @@ const SendMessageBar = () => {
 
 		<nav style = {{
 			display : 'flex', 
-			padding : '10px', 
+			padding : '0.7em', 
 			backgroundColor : 'purple', 
 			flex : '0 0 auto', 
 			height : '4.25em',
@@ -18,21 +18,25 @@ const SendMessageBar = () => {
 			flex : '1 1 auto', 
 			minWidth : '0px', 
 			outline : 'none',
-			fontSize : '1em', 
-			lineHeight : 1}} 
+			fontSize : '1em',
+			lineHeight : '1.4em'
+		}} 
 		type = 'text' />
 
 		<button style = {{ 
-			marginLeft : '13px', 
+			marginLeft : '0.9em', 
 			cursor : 'pointer' , 
 			display: 'flex', 
 			background : 'none',
 			backgroundColor : 'yellow', 
 			border : 'none', 
 		    outline : 'none',
-            width : '40px', 
+            width : '2.65em', 
 		    height : 'auto',
-		    flex : '0 0 auto'}}>
+		    padding : '0.3em',
+		    flex : '0 0 auto',
+		    justifyContent : 'center'
+		}}>
 		<img src = {sendButtonImage} alt = 'Send Message' />
 		</button>
 

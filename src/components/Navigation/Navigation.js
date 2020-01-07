@@ -10,7 +10,7 @@ const Navigation = () => {
 			justifyContent: 'space-between', 
 			backgroundColor : 'orange', 
 			flex : '0 0 auto', 
-			height : '65px',
+			height : '4em',
 			overflow : 'hidden'
 		}}>
 		<Profile />

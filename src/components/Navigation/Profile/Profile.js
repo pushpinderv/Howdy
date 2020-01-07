@@ -4,9 +4,9 @@ const Profile = () => {
 	return (
 		<nav className = 'br2' style = {{ 
 			backgroundColor : 'lightgreen', 
-			height : '50px', 
-			width : '50px', 
-			margin : 'auto 0 auto 20px', 
+			height : '3em', 
+			width : '3em', 
+			margin : 'auto 0 auto 1.25em', 
 			alignSelf : 'flex-start',
 			cursor : 'pointer',
 			flex : '0 0 auto'

@@ -6,15 +6,15 @@ const ChatCard = () => {
 			display : 'flex', 
 			backgroundColor : 'red', 
 			flex : 1 , 
-			height : '80px' , 
+			height : '5em' , 
 			cursor : 'pointer',
 			overflow : 'hidden'
 		}}>
 
 				<div id = 'profile-pic' className = 'br2' style = {{ 
 					backgroundColor : 'orange', 
-					height : '55px', 
-					width : '55px', 
+					height : '3.7em', 
+					width : '3.7em', 
 					margin : 'auto 0 auto 1.15em',
 					flex : '0 0 auto', 
 					alignSelf : 'flex-start'}}>
@@ -22,7 +22,7 @@ const ChatCard = () => {
 
 				<div id = 'userdata-container' style = 
 					{{backgroundColor : 'grey', display : 'flex', 
-					flexDirection : 'column', padding : '0px 12px', 
+					flexDirection : 'column', padding : '0px 0.9em', 
 					alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',
 					flex : '1 1 auto', 
 					maxWidth : '100%', minWidth : '1px'}}>
