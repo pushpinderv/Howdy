@@ -1,7 +1,7 @@
 import React from 'react';
-import Navigation from '../Navigation/Navigation';
-import ChatSearch from '../ChatSearch/ChatSearch';
-import ChatsList from '../ChatsList/ChatsList';
+import Navigation from './Navigation/Navigation';
+import ChatSearch from './ChatSearch/ChatSearch';
+import ChatsList from './ChatsList/ChatsList';
 import {useMediaPredicate} from 'react-media-hook';
 
 const ContactsWindow = () => {

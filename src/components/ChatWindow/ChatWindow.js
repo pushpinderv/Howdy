@@ -1,7 +1,7 @@
 import React from 'react';
-import ContactDetailBar from '../ContactDetailBar/ContactDetailBar';
-import SendMessageBar from '../SendMessageBar/SendMessageBar';
-import ContactConversationList from '../ContactConversationList/ContactConversationList';
+import ContactDetailBar from './ContactDetailBar/ContactDetailBar';
+import SendMessageBar from './SendMessageBar/SendMessageBar';
+import ContactConversationList from './ContactConversationList/ContactConversationList';
 import {useMediaPredicate} from 'react-media-hook';
 
 const ChatWindow = (props) => {

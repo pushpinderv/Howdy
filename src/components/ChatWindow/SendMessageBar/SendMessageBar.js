@@ -31,7 +31,7 @@ const SendMessageBar = () => {
 			backgroundColor : 'yellow', 
 			border : 'none', 
 		    outline : 'none',
-            width : '2.65em', 
+            width : '2.4em', 
 		    height : 'auto',
 		    padding : '0.3em',
 		    flex : '0 0 auto',

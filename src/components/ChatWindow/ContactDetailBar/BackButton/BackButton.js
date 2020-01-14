@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import backButtonImage from './_ionicons_svg_md-arrow-back.svg';
-import {ModeContext} from '../../../Store';
+import {ModeContext} from '../../../../Store';
 
 const BackButton = () => {
 
