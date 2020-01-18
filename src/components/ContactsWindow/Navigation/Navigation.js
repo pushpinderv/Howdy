@@ -5,7 +5,7 @@ import NewChat from './NewChat/NewChat';
 import {ProfileDrawerContext} from 'Store';
 
 const Navigation = () => {
-	const [,setDrawerState] = useContext(ProfileDrawerContext);
+	const [,setProfileDrawerOpen] = useContext(ProfileDrawerContext);
 	return (
 		<nav style = {{ 
 			display : 'flex', 
@@ -15,7 +15,7 @@ const Navigation = () => {
 			height : '4em',
 			overflow : 'hidden'
 		}}>
-		<ProfileButton onClick = {()=>setDrawerState('opening')} />	
+		<ProfileButton onClick = {()=>setProfileDrawerOpen(true)} />	
 		<div style = {{ display : 'flex'}}>
 		<NewChat />
 		<Menu />

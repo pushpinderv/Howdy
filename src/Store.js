@@ -8,11 +8,11 @@ const Store = ({children}) => {
 	// console.log('initializing Store.js ..')
 	
 	const [mode, setMode] = useState('Desktop');
-	const [profileDrawerState, setProfileDrawerState] = useState('default');
+	const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
 
 	return (
 		<ModeContext.Provider value = {[mode, setMode]}>
-		<ProfileDrawerContext.Provider value = {[profileDrawerState, setProfileDrawerState]}>
+		<ProfileDrawerContext.Provider value = {[profileDrawerOpen, setProfileDrawerOpen]}>
 			{children}
 		</ProfileDrawerContext.Provider>	
 		</ModeContext.Provider>

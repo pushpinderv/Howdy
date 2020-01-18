@@ -9,6 +9,13 @@ const ContactsWindow = () => {
 	const isMaxed = useMediaPredicate('(min-width: 900px)');
 	var flexWidth = isMaxed ? '35%' : '40%';
 
+	// const [profileDrawerOpen,] = useContext(ProfileDrawerContext);
+	// let profileDrawer;
+	// if(profileDrawerOpen)
+	// {
+	// 	profileDrawer = <ProfileDrawer />;
+	// }
+
 	return (
 		<nav style = {
 			{display : 'flex' , backgroundColor : 'green', flex : flexWidth, 
