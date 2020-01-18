@@ -1,18 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import backButtonImage from './_ionicons_svg_md-arrow-back.svg';
-import {ModeContext} from '../../../../Store';
 
-const BackButton = () => {
+const BackButton = (props) => {
 
-	const [mode] = useContext(ModeContext);
-	var display = "none";
-	if(mode === "Mobile")
-	{
-		display = "flex";
-	}
 	return (
-		<button style = {{
-			display: display, 
+		<button onClick = {props.onClick} style = {{
+			display: props.display, 
 			background : 'none', 
 			backgroundColor : 'yellow', 
 			border : 'none', 
@@ -21,7 +14,8 @@ const BackButton = () => {
 			height : 'auto',
 			padding : '0.3em', 
 			cursor : 'pointer', 
-			flex : '0 0 auto'}}>
+			flex : '0 0 auto'
+		}}>
 		<img src = {backButtonImage} alt = 'Go Back' />
 		</button>
 	);

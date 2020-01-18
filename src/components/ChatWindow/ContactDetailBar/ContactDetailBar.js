@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ContactProfilePicture from './ContactProfilePicture/ContactProfilePicture';
 import ContactName from './ContactName/ContactName';
 import ContactLastOnline from './ContactLastOnline/ContactLastOnline';
 import ContactVideoCallButton from './ContactVideoCallButton/ContactVideoCallButton';
-import BackButton from './BackButton/BackButton';
+import BackButton from '../../Common/BackButton/BackButton';
+import {ModeContext} from '../../../Store';
 
 const ContactDetailBar = () => {
+
+	const [mode] = useContext(ModeContext);
+	var backButtonDisplay = "none";
+	if(mode === "Mobile")
+	{
+		backButtonDisplay = "flex";
+	}
+
 	return (
 		<contact-bar style = {{
 			display : 'flex', 
@@ -14,7 +23,7 @@ const ContactDetailBar = () => {
 			height : '4em',
 			overflow : 'hidden'
 		}}>
-		<BackButton />
+		<BackButton display = {backButtonDisplay} />
 		<ContactProfilePicture />
 		<contact-info style = 
 		{{backgroundColor : 'black', display : 'flex', 

@@ -11,8 +11,11 @@ const [mode, setMode] = useContext(ModeContext);
 
 const isDesktop = useMediaPredicate('(min-width: 600px)');
 const state = isDesktop ? 'Desktop' : 'Mobile';
-console.log('Setting Mode in App.js to', state);
-setMode(state);
+console.log('App.js rendering..');
+
+if(!(mode===state)){
+	console.log('Setting Mode in App.js to', state);
+	setMode(state);}
 
 	if(mode === "Desktop")
 	{

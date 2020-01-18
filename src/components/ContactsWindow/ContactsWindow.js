@@ -3,6 +3,7 @@ import Navigation from './Navigation/Navigation';
 import ChatSearch from './ChatSearch/ChatSearch';
 import ChatsList from './ChatsList/ChatsList';
 import {useMediaPredicate} from 'react-media-hook';
+import ProfileDrawer from './Navigation/Profile/ProfileDrawer/ProfileDrawer';
 
 const ContactsWindow = () => {
 	const isMaxed = useMediaPredicate('(min-width: 900px)');
@@ -11,9 +12,10 @@ const ContactsWindow = () => {
 	return (
 		<nav style = {
 			{display : 'flex' , backgroundColor : 'green', flex : flexWidth, 
-			flexDirection : 'column', maxWidth : flexWidth}
+			flexDirection : 'column', maxWidth : flexWidth, position : 'relative'}
 	    }
 		>
+		<ProfileDrawer />
 		<Navigation />
 		<ChatSearch />
 		<ChatsList />

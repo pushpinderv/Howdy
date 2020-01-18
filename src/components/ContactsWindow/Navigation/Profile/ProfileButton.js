@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Profile = () => {
+const ProfileButton = (props) => {
+
 	return (
-		<nav className = 'br2' style = {{ 
+		<nav onClick = {props.onClick} className = 'br2' style = {{ 
 			backgroundColor : 'lightgreen', 
 			height : '3em', 
 			width : '3em', 
@@ -15,4 +16,4 @@ const Profile = () => {
 	);
 }
 
-export default Profile;
+export default ProfileButton;

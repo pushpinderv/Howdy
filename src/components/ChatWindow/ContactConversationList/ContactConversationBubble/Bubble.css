@@ -7,7 +7,10 @@
 
 /* CSS talk bubble */
 .talk-bubble {
-	margin: 30px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-bottom: 0px;
+	margin-top: 4px;
     display: flex;
     position: relative;
 	max-width: 70%;
@@ -265,7 +268,7 @@
   	padding: 0.6em 0.6em;
 	text-align: left;
 	font-size: 0.9em;
-  	line-height: 1.2em;
+  	line-height: 1.4em;
   	max-width: 100%;
   	white-space: initial;
   	overflow-wrap: break-word;
@@ -293,8 +296,3 @@
 	margin-top: 15px;
 }
 
-/* middle messages */
-.middle{
-	margin-bottom: 0px;
-	margin-top: 4px;
-}
