@@ -1,4 +1,5 @@
-.ProfileDrawer {
+/* The Drawer opens from the left by default. Use the directional classes for another opening direction  */
+.Drawer {
   position: absolute; /* Sit on top of the page content */
   display: flex;
   width: 100%; /* Full width (cover the whole page) */
@@ -9,25 +10,23 @@
   bottom: 0;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   transform: translateX(-100%);
-  transition: transform 0.6s cubic-bezier(1.000, 0.005, 0.405, 1.650);
+  transition: transform 0.6s cubic-bezier(1.000, 0.005, 0.405, 2.000);
  }
 
-.ProfileDrawer.open 
+.Drawer.open 
 {
   transform: translateX(0);
   transition: transform 0.2s ease-out;
 }
-/*
-.ProfileDrawer.close 
+
+.Drawer.right
 {
-  left: 0;
-  animation: slide-close 0.3s forwards;
+  transform: translateX(0);
+  left: 100%;
 }
 
-@keyframes slide-close{
-  100% { left: -100% }
+.Drawer.right.open 
+{
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-out;
 }
-
-@keyframes slide-open{
-  100% { left: 0 }
-}*/

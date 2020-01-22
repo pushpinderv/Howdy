@@ -1,11 +1,16 @@
 import React, {useContext} from 'react';
 import ProfileButton from './Profile/ProfileButton';
-import Menu from './Menu/Menu';
-import NewChat from './NewChat/NewChat';
+import MenuButton from './Menu/MenuButton';
+import NewChatButton from './NewChat/NewChatButton';
 import {ProfileDrawerContext} from 'Store';
+import {NewChatDrawerContext} from 'Store';
+import {MenuDrawerContext} from 'Store';
 
 const Navigation = () => {
 	const [,setProfileDrawerOpen] = useContext(ProfileDrawerContext);
+	const [,setNewChatDrawerOpen] = useContext(NewChatDrawerContext);
+	const [,setMenuDrawerOpen] = useContext(MenuDrawerContext);
+
 	return (
 		<nav style = {{ 
 			display : 'flex', 
@@ -17,8 +22,8 @@ const Navigation = () => {
 		}}>
 		<ProfileButton onClick = {()=>setProfileDrawerOpen(true)} />	
 		<div style = {{ display : 'flex'}}>
-		<NewChat />
-		<Menu />
+		<NewChatButton onClick = {()=>setNewChatDrawerOpen(true)} />
+		<MenuButton onClick = {()=>setMenuDrawerOpen(true)} />
 		</div>
 		</nav>
 	);

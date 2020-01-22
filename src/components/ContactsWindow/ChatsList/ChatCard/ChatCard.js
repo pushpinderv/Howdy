@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {ChatSelectedContext} from 'Store';
 
 const ChatCard = () => {
+	const [,setChatSelected] = useContext(ChatSelectedContext);
+
 	return(
-		<div id = 'container' style = {{
+		<div onClick = {()=>setChatSelected(true)} id = 'container' style = {{
 			display : 'flex', 
 			backgroundColor : 'red', 
 			flex : 1 , 

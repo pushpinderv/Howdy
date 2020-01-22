@@ -1,9 +1,10 @@
 import React from 'react';
 import menuButtonImage from './_ionicons_svg_md-menu.svg';
 
-const Menu = () => {
+const MenuButton = (props) => {
 	return (
-		<button style = {{
+		<button onClick = {props.onClick}
+		 style = {{
 			display: 'flex', 
 			background : 'none', 
 			backgroundColor : 'yellow', 
@@ -13,12 +14,11 @@ const Menu = () => {
 			height : 'auto', 
 			cursor : 'pointer', 
 			marginRight : '0.5em',
-			justifyContent : 'center',
-			alignItems : 'stretch'
+			padding : '0.3em'
 		}}>
 		<img src = {menuButtonImage} alt = 'Menu'/>
 		</button>
 	);
 }
 
-export default Menu;
+export default MenuButton;

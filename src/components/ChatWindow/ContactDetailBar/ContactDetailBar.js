@@ -5,6 +5,8 @@ import ContactLastOnline from './ContactLastOnline/ContactLastOnline';
 import ContactVideoCallButton from './ContactVideoCallButton/ContactVideoCallButton';
 import BackButton from '../../Common/BackButton/BackButton';
 import {ModeContext} from '../../../Store';
+import {ContactProfileDrawerContext} from 'Store';
+import {ChatSelectedContext} from 'Store';
 
 const ContactDetailBar = () => {
 
@@ -15,6 +17,9 @@ const ContactDetailBar = () => {
 		backButtonDisplay = "flex";
 	}
 
+	const [,setContactProfileDrawerOpen] = useContext(ContactProfileDrawerContext);
+	const [,setChatSelected] = useContext(ChatSelectedContext);
+
 	return (
 		<contact-bar style = {{
 			display : 'flex', 
@@ -23,9 +28,9 @@ const ContactDetailBar = () => {
 			height : '4em',
 			overflow : 'hidden'
 		}}>
-		<BackButton display = {backButtonDisplay} />
-		<ContactProfilePicture />
-		<contact-info style = 
+		<BackButton display = {backButtonDisplay} onClick = {()=>{setChatSelected(false)}}/>
+		<ContactProfilePicture onClick = {()=>setContactProfileDrawerOpen(true)}/>
+		<contact-info onClick = {()=>setContactProfileDrawerOpen(true)} style = 
 		{{backgroundColor : 'black', display : 'flex', 
 		flexDirection : 'column', padding : '0px 1em', 
 		alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',

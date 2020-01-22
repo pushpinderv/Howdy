@@ -1,7 +1,12 @@
 import React from 'react';
 import backButtonImage from './_ionicons_svg_md-arrow-back.svg';
+import cancelButtonImage from './_ionicons_svg_md-close.svg';
 
 const BackButton = (props) => {
+
+	let image = backButtonImage;
+	if(props.look === 'cancel')
+		image = cancelButtonImage;
 
 	return (
 		<button onClick = {props.onClick} style = {{
@@ -16,7 +21,7 @@ const BackButton = (props) => {
 			cursor : 'pointer', 
 			flex : '0 0 auto'
 		}}>
-		<img src = {backButtonImage} alt = 'Go Back' />
+		<img src = {image} alt = 'Go Back' />
 		</button>
 	);
 }

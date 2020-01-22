@@ -1,18 +1,14 @@
 import React, {useContext} from 'react';
-import './ProfileDrawer.css';
-import BackButton from '../../../../Common/BackButton/BackButton';
+// import './ProfileDrawer.css';
+// import BackButton from 'components/Common/BackButton/BackButton';
 import {ProfileDrawerContext} from 'Store';
+import Drawer from 'components/Common/Drawer/Drawer';
 
-const ProfileDrawer = () => {
+const ProfileDrawer = (props) => {
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
 
 	return (
-		<div className = {profileDrawerOpen ? 'ProfileDrawer open' : 'ProfileDrawer'} 
-		style = {{
-			backgroundColor : 'white'
-		}}>
-		<BackButton onClick = {()=>setProfileDrawerOpen(false)}/>
-		</div>
+		<Drawer state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'/>
 	);
 }
 

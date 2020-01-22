@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ContactProfilePicture = () => {
+const ContactProfilePicture = (props) => {
 	return (
-		<nav className = 'br2' style = {{ 
+		<nav onClick = {props.onClick} className = 'br2' style = {{ 
 			backgroundColor : 'lightblue', 
 			height : '3em', 
 			width : '3em', 
