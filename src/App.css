@@ -1,11 +1,11 @@
 .App {
   display: flex;
-  height: 100vh;
   background-color: black;
-  font-size: calc(15px + (22 - 15) * ((100vw - 300px) / (3000 - 300)));
+  font-size: calc(16px + (22 - 15) * ((100vw - 300px) / (3000 - 300)));
   line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(3000 - 300)));
   min-width: 300px;
   min-height: 225px;
+  touch-action:manipulation;
 }
 
 .clipped

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import Navigation from './Navigation/Navigation';
 import ChatSearch from './ChatSearch/ChatSearch';
 import ChatsList from './ChatsList/ChatsList';
@@ -9,19 +9,20 @@ import MenuDrawer from './Navigation/Menu/MenuDrawer/MenuDrawer';
 import {ProfileDrawerContext} from 'Store';
 import {NewChatDrawerContext} from 'Store';
 import {MenuDrawerContext} from 'Store';
-import {ChatSelectedContext} from 'Store';
-import {ModeContext} from 'Store';
+import ChatWindow from '../ChatWindow/ChatWindow';
 
-const ContactsWindow = () => {
-
-	const [chatSelected,] = useContext(ChatSelectedContext);
-	const [mode,] = useContext(ModeContext);
+const ContactsWindow = (props) => {
 
 	const isMaxed = useMediaPredicate('(min-width: 900px)');
 	var flexWidth = isMaxed ? '35%' : '40%';
+	let chatWindow;
 
-	if((!chatSelected)&&(mode === 'Mobile'))
+	if(props.mode === 'Mobile')
+	{
+		console.log('ContactsWindow: Stretch to 100%!')
 		flexWidth = '100%';
+		chatWindow = <ChatWindow mode = {props.mode} />;
+	}
 
 	const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
 	const [newChatDrawerOpen, setNewChatDrawerOpen] = useState(false);
@@ -33,6 +34,7 @@ const ContactsWindow = () => {
 			flexDirection : 'column', maxWidth : flexWidth, position : 'relative', overflow : 'hidden'}
 	    }
 		>
+		{chatWindow}
 		<ProfileDrawerContext.Provider value = {[profileDrawerOpen, setProfileDrawerOpen]}>
 		<ProfileDrawer />
 

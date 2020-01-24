@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
 export const ModeContext = React.createContext('mode');
-export const ChatSelectedContext = React.createContext('chat-selected');
 
+export const ChatDrawerContext = React.createContext('chat-drawer');
 export const ProfileDrawerContext = React.createContext('profile-drawer');
 export const ContactProfileDrawerContext = React.createContext('contact-profile-drawer');
 export const NewChatDrawerContext = React.createContext('new-chat-drawer');
@@ -13,13 +13,13 @@ const Store = ({children}) => {
 	// console.log('initializing Store.js ..')
 	
 	const [mode, setMode] = useState('Desktop');
-	const [chatSelected, setChatSelected] = useState(true);
+	const [chatDrawerOpen, setChatDrawerOpen] = useState(false);
 
 	return (
 		<ModeContext.Provider value = {[mode, setMode]}>
-		<ChatSelectedContext.Provider value = {[chatSelected, setChatSelected]}>
+		<ChatDrawerContext.Provider value = {[chatDrawerOpen, setChatDrawerOpen]}>
 			{children}
-		</ChatSelectedContext.Provider>	
+		</ChatDrawerContext.Provider>	
 		</ModeContext.Provider>
 		);
 

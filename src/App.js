@@ -4,12 +4,14 @@ import ContactsWindow from './components/ContactsWindow/ContactsWindow';
 import ChatWindow from './components/ChatWindow/ChatWindow';
 import {useMediaPredicate} from 'react-media-hook';
 import {ModeContext} from './Store';
-import {ChatSelectedContext} from 'Store';
+import Div100vh from 'react-div-100vh';
+import useScrollLock from 'react-use-scroll-lock';
 
 function App() {
 
+	useScrollLock(true);
+
 	const [mode, setMode] = useContext(ModeContext);
-	const [chatSelected,] = useContext(ChatSelectedContext);
 
 	const isDesktop = useMediaPredicate('(min-width: 600px)');
 	const state = isDesktop ? 'Desktop' : 'Mobile';
@@ -21,38 +23,23 @@ function App() {
 		setMode(state);
 	}
 
-
-		if((mode === 'Desktop'))
-		{
+	if(state === 'Desktop')
+	{
+	return (
+	    <div style = {{height: '100vh'}} className="App" onClick = {()=>console.log('App Clicked')}>
+	          <ContactsWindow mode = {mode}/>
+	          <ChatWindow mode = {mode} />
+	    </div>
+			);
+	}
+	else
+	{
 		return (
-		    <div className="App">
-		          <ContactsWindow />
-		          <ChatWindow mode = {mode} />
-		    </div>
-				);
-		}
-		else if(mode === 'Mobile')
-		{
-			if(chatSelected)
-			{
-				return (
-				    <div className="App">
-				          <ChatWindow mode = {mode} />
-				    </div>
-				);
-			}
-			else
-			{
-				return (
-				    <div className="App">
-				          <ContactsWindow />
-				    </div>
-				);
-			}
-
-		}
-
-
+	    <Div100vh className="App" onClick = {()=>console.log('App Clicked')}>
+	          <ContactsWindow mode = {mode} />
+	    </Div100vh>
+			);
+	}
 
 }
 
