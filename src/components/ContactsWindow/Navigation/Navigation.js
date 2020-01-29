@@ -18,7 +18,7 @@ const Navigation = () => {
 			backgroundColor : 'orange', 
 			flex : '0 0 auto', 
 			height : '4em',
-			overflow : 'hidden'
+			overflow : 'visible'
 		}}>
 		<ProfileButton onClick = {()=>setProfileDrawerOpen(true)} />	
 		<div style = {{ display : 'flex'}}>

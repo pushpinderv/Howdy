@@ -1,0 +1,105 @@
+
+.register-form{
+  min-width: 200px;
+  max-width: 400px;
+  height: auto;
+  background: #edeff1;
+  margin: 0px auto;
+  padding-top: 20px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.register-form.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+.register-text {
+  width: auto;
+  height: 35px;
+  margin: 0.5em 1.5em;
+  background: #fff;
+  border: 0px;
+  padding: 5px;
+  font-size: 1em;
+  border: 2px solid #fff;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.register-text:focus{
+  border: 2px solid #1abc9d
+}
+
+.register-submit {
+  background: #1abc9d;
+  width: auto;
+  padding: 12px;
+  cursor: pointer;
+  color: #fff;
+  border: 0px;
+  margin: 1.8em 1.5em 1em 1.5em;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 1em;
+  line-height: 1.5em;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+}
+
+.register-submit:hover{
+  background: #09cca6
+}
+
+.login-div{
+  text-align: center;
+  font-family: Arial;
+  color: gray;
+  display: block;
+  margin: 15px auto;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+
+.login-div:hover{
+  color: #1abc9d;
+}
+
+
+::-webkit-input-placeholder {
+   color: gray;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: gray;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: gray;  
+}
+
+:-ms-input-placeholder {  
+   color: gray;  
+}

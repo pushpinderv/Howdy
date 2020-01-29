@@ -1,0 +1,26 @@
+.menuItem
+{
+	padding: 0.5em 1em;
+	display: inline-flex;
+	align-items: center;
+	flex: 1;
+	cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: #e6e6e6;
+}
+
+.icon
+{
+	width: 1.5em;
+	height: auto;
+	fill: red;
+}
+
+.text
+{
+	font-size: 1.1em;
+	line-height: 1.3em;
+	margin-left: 0.5em;
+}

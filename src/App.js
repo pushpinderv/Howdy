@@ -6,12 +6,16 @@ import {useMediaPredicate} from 'react-media-hook';
 import {ModeContext} from './Store';
 import Div100vh from 'react-div-100vh';
 import useScrollLock from 'react-use-scroll-lock';
+import GlobalOverlay from 'components/GlobalOverlay/GlobalOverlay';
+import Login from 'components/Login/Login';
+import {LogInContext} from 'Store';
 
 function App() {
 
 	useScrollLock(true);
 
 	const [mode, setMode] = useContext(ModeContext);
+	const [login, ] = useContext(LogInContext);
 
 	const isDesktop = useMediaPredicate('(min-width: 600px)');
 	const state = isDesktop ? 'Desktop' : 'Mobile';
@@ -23,23 +27,28 @@ function App() {
 		setMode(state);
 	}
 
+	let chatWindow;
+
 	if(state === 'Desktop')
 	{
-	return (
-	    <div style = {{height: '100vh'}} className="App" onClick = {()=>console.log('App Clicked')}>
-	          <ContactsWindow mode = {mode}/>
-	          <ChatWindow mode = {mode} />
-	    </div>
-			);
+		chatWindow = <ChatWindow mode = {mode} />
 	}
-	else
-	{
-		return (
-	    <Div100vh className="App" onClick = {()=>console.log('App Clicked')}>
-	          <ContactsWindow mode = {mode} />
+
+	if(!login)
+		return (<Div100vh className="App" 
+	    onClick = {()=>console.log('App.js: Consuming touch to prevent zooming')}>
+			<Login />		
+	    </Div100vh>);
+
+	return (
+	    <Div100vh className="App" 
+	    onClick = {()=>console.log('App.js: Consuming touch to prevent zooming')}>
+			<GlobalOverlay />
+			<ContactsWindow mode = {mode}/>
+			{chatWindow}		
 	    </Div100vh>
 			);
-	}
+
 
 }
 
