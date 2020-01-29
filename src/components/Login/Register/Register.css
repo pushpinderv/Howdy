@@ -43,11 +43,11 @@
 }
 
 .register-text:focus{
-  border: 2px solid #1abc9d
+  border: 2px solid #7580f3
 }
 
 .register-submit {
-  background: #1abc9d;
+  background: #754fff;
   width: auto;
   padding: 12px;
   cursor: pointer;
@@ -68,7 +68,7 @@
 }
 
 .register-submit:hover{
-  background: #09cca6
+  background: #848ffd
 }
 
 .login-div{
@@ -84,7 +84,7 @@
 }
 
 .login-div:hover{
-  color: #1abc9d;
+  color: #754fff;
 }
 
 
