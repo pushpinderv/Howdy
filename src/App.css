@@ -8,6 +8,26 @@
   touch-action:manipulation;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cccccc; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
 .clipped
 {
 	white-space: nowrap;
@@ -16,4 +36,44 @@
 	flex : 1 1 auto;
 	max-width : 100%;
 	min-width : 1px;
+}
+
+.app-gradient-color
+{
+	background: rgb(50,39,136);
+	background: linear-gradient(0deg, rgba(50,39,136,1) 0%, rgba(139,107,255,1) 100%);
+}
+
+.app-theme-color
+{
+	background: #754fff;
+}
+
+.app-theme-color-light
+{
+	background: #9b80ff;
+}
+
+.app-theme-color-lighter
+{
+	background: #c3b3ff;
+}
+
+.app-theme-color-lightest
+{
+	background: #ebe6ff;
+}
+
+.svg-default
+{
+	width: 100%;
+	height: 100%;
+}
+
+.svg-path-default
+{
+	stroke : #754fff; 
+	fill : white; 
+	vector-effect : non-scaling-stroke; 
+	shape-rendering : crisp-edges; 
 }

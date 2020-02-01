@@ -15,11 +15,11 @@ const Navigation = () => {
 		<nav style = {{ 
 			display : 'flex', 
 			justifyContent: 'space-between', 
-			backgroundColor : 'orange', 
+			// backgroundColor : 'orange', 
 			flex : '0 0 auto', 
 			height : '4em',
 			overflow : 'visible'
-		}}>
+		}} className = 'app-theme-color'>
 		<ProfileButton onClick = {()=>setProfileDrawerOpen(true)} />	
 		<div style = {{ display : 'flex'}}>
 		<NewChatButton onClick = {()=>setNewChatDrawerOpen(true)} />

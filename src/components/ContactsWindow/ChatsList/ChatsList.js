@@ -3,7 +3,7 @@ import ChatCard from './ChatCard/ChatCard';
 
 const ChatList = () => {
 	return (
-		<nav style = {{ backgroundColor : 'lightblue', flex : 1, overflowY : 'scroll'}}>
+		<nav style = {{ backgroundColor : 'white', flex : 1, overflowY : 'scroll', paddingTop : '0.2em'}}>
 		<ChatCard />
 		<ChatCard />
 		<ChatCard />

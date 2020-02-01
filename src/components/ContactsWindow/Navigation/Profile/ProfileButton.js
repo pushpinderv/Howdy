@@ -4,7 +4,7 @@ const ProfileButton = (props) => {
 
 	return (
 		<nav onClick = {props.onClick} className = 'br2' style = {{ 
-			backgroundColor : 'lightgreen', 
+			backgroundColor : '#dfe5e7', 
 			height : '3em', 
 			width : '3em', 
 			margin : 'auto 0 auto 1.25em', 

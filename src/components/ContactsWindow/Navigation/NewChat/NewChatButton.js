@@ -5,19 +5,19 @@ const NewChatButton = (props) => {
 		<button onClick = {props.onClick} style = {{
 			display: 'flex', 
 			background : 'none', 
-			backgroundColor : 'yellow', 
+			// backgroundColor : 'yellow', 
 			border : 'none', 
 			outline : 'none', 
-			width : '2.5em', 
+			width : '2.2em', 
 			height : 'auto', 
 			cursor : 'pointer', 
 			marginRight : '0.5em',
-			padding : '0.3em'
+			padding : '0.3em 0em'
 		}}>
-		<svg  width = '100%' height = '100%' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-		<path d="M416 
+		<svg  className = 'svg-default' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+		<path className = 'svg-path-default' d="M416 
 		277.333H277.333V416h-42.666V277.333H96v-42.666h138.667V96h42.666v138.667H416v42.666z" 
-		stroke = 'yellow' strokeWidth = '2%'/>
+		strokeWidth = '1px'/>
 		</svg>
 		</button>
 	);
