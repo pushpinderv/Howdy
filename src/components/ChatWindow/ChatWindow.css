@@ -1,6 +1,8 @@
 /* The Drawer opens from the left by default. Use the directional classes for another opening direction  */
 .ChatWindow {
 position: relative;
+box-shadow: 2px 0px 0.15em rgba(0, 0, 0, 1);
+z-index: 3;
 }
 
 .ChatWindow.drawer {

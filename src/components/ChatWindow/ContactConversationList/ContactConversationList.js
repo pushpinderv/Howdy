@@ -11,8 +11,9 @@ const ContactConversationList = () => {
 	var first = " tri-right first";
 
 	return (
-		<div style = {{display : 'flex', flexDirection : 'column', 
-		backgroundColor : 'pink', flex : 1, overflowY : 'scroll', 
+		<div className = 'app-theme-color-lightest' style = {{display : 'flex', flexDirection : 'column', 
+		// backgroundColor : 'white', 
+		flex : 1, overflowY : 'scroll', 
 		paddingBottom : '20px'}}>
 		<Bubble design = {left + first} text = "Hello"/>
 		<Bubble design = {left} text = "A!"/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import menuButtonImage from './_ionicons_svg_md-menu.svg';
+// import menuButtonImage from './_ionicons_svg_md-menu.svg';
 import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 import logOutIcon from 'components/Common/Icons/_ionicons_svg_ios-log-out.svg';

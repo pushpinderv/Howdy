@@ -21,17 +21,21 @@ const ContactDetailBar = () => {
 	const [,setChatDrawerOpen] = useContext(ChatDrawerContext);
 
 	return (
-		<contact-bar style = {{
+		<div className = 'app-theme-color' style = {{
 			display : 'flex', 
-			backgroundColor : 'brown', 
+			// backgroundColor : 'green', 
 			flex : '0 0 auto', 
 			height : '4em',
-			overflow : 'hidden'
+			zIndex : 3,
+			overflow : 'hidden',
+			boxShadow: '0px 2px 0.3em rgba(0, 0, 0, 0.15)'
 		}}>
 		<BackButton display = {backButtonDisplay} onClick = {()=>{setChatDrawerOpen(false)}}/>
 		<ContactProfilePicture onClick = {()=>setContactProfileDrawerOpen(true)}/>
 		<contact-info onClick = {()=>setContactProfileDrawerOpen(true)} style = 
-		{{backgroundColor : 'black', display : 'flex', 
+		{{
+		// backgroundColor : 'black', 
+		display : 'flex', 
 		flexDirection : 'column', padding : '0px 1em', 
 		alignContent : 'center', margin : 'auto 0px', cursor : 'pointer',
 		flex : '1 1 auto', maxWidth : '100%', minWidth : '1px'}}>
@@ -39,7 +43,7 @@ const ContactDetailBar = () => {
 		<ContactLastOnline />
 		</contact-info>
 		<ContactVideoCallButton />
-		</contact-bar>
+		</div>
 	);
 }
 

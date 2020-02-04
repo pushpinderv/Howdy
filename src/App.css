@@ -75,5 +75,5 @@
 	stroke : #754fff; 
 	fill : white; 
 	vector-effect : non-scaling-stroke; 
-	shape-rendering : crisp-edges; 
+	shape-rendering : geometricPrecision; 
 }

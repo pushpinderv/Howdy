@@ -34,7 +34,9 @@ const Drawer = (props) => {
 		style = {{
 			backgroundColor : 'white'
 		}}>
-		<nav style = {{display : 'flex', height : '4em', backgroundColor : 'grey', flex : 1}}>
+		<nav className = 'app-theme-color' style = {{display : 'flex', height : '4em', 
+		// backgroundColor : 'grey', 
+		flex : 1}}>
 		<BackButton style = {{width : '5em'}} look = {backButtonStyle} onClick = {closeDrawer}/>
 		</nav>
 		</div>
