@@ -6,7 +6,7 @@ const ProfileDrawer = (props) => {
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
 
 	return (
-		<Drawer state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'/>
+		<Drawer heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'/>
 	);
 }
 

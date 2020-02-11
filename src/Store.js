@@ -17,7 +17,7 @@ const Store = ({children}) => {
 	const [mode, setMode] = useState('Desktop');
 	const [chatDrawerOpen, setChatDrawerOpen] = useState(false);
 	const [overlayOpen, setOverlayOpen] = useState(false);
-	const [login, setLogin] = useState(false);
+	const [login, setLogin] = useState(true);
 
 	return (
 		<ModeContext.Provider value = {[mode, setMode]}>

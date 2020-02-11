@@ -35,10 +35,29 @@ const Drawer = (props) => {
 			backgroundColor : 'white'
 		}}>
 		<nav className = 'app-theme-color' style = {{display : 'flex', height : '4em', 
-		// backgroundColor : 'grey', 
-		flex : 1}}>
-		<BackButton style = {{width : '5em'}} look = {backButtonStyle} onClick = {closeDrawer}/>
+		// backgroundColor : 'grey',
+		paddingLeft : '0.5em'}}>
+		<BackButton 
+			display = 'flex' 
+			look = {backButtonStyle} 
+			onClick = {closeDrawer}/>
+		<div style = {{color : 'white',
+			marginTop : 'auto',
+			marginBottom : 'auto',
+			marginLeft : '0.5em',
+			fontSize : '1.3em',
+			fontWeight : '450',
+			// lineHeight : '1.3em',
+			height : 'auto',
+			display: 'flex',
+  			justifyContent: 'center',
+  			alignContent: 'center',
+  			flexDirection: 'column'
+		}}>{props.heading}</div>
 		</nav>
+		<div>
+		{props.children}
+		</div>
 		</div>
 	);
 }

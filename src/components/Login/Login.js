@@ -6,12 +6,39 @@ import Register from './Register/Register';
 
 const Login = () =>
 {
+
+	const [email, setEmail] = useState('');
+ 	const onEmailChange = (event) => 
+	{
+		setEmail(event.target.value);
+	}
+
+	const [password, setPassword] = useState('');
+ 	const onPasswordChange = (event) => 
+	{
+		setPassword(event.target.value);
+	}
+
 	const [state, setState] = useState('login'); 
 	const [, setLogin] = useContext(LogInContext);
 	const handleLogin = () =>
 	{
-		console.log('Log In!');
-		setLogin(true);
+		console.log('Login.js : '+email + ' ' + password);
+		fetch('http://localhost:3001/signin', {
+			method : 'post',
+			headers : {'Content-Type': 'application/json'},
+			body : JSON.stringify({
+				email: email,
+				password : password
+			})
+			})
+			.then(res => res.json())
+			.then(user => {
+				if(user.id){
+					setLogin(true);
+				}
+			})
+		
 	}
 
 	const toggleForm = () =>
@@ -27,8 +54,8 @@ const Login = () =>
 		return(
 			  <div className = {className} >
 			    <input className = 'login-text' 
-			    placeholder = 'Enter your email' />
-			    <input className = 'login-text' placeholder = 'Password' />
+			    placeholder = 'Enter your email' onChange = {onEmailChange} />
+			    <input type = 'password' className = 'login-text' placeholder = 'Password' onChange = {onPasswordChange} />
 			    <div className = 'login-submit disable-select' onClick = {handleLogin} >Log In</div>
 			    <div className = 'register-div disable-select' onClick = {toggleForm} >New to Howdy? Create an account</div>
 			  </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'components/Common/UserIcon/UserIcon.css';
 
 const ProfileButton = (props) => {
 
@@ -10,8 +11,14 @@ const ProfileButton = (props) => {
 			margin : 'auto 0 auto 1.25em', 
 			alignSelf : 'flex-start',
 			cursor : 'pointer',
-			flex : '0 0 auto'
+			flex : '0 0 auto',
+			flexDirection : 'column',
+			overflow : 'hidden',
+			position : 'relative'
 		}}>
+		<div className = 'userHead' />
+		<div className = 'userBody' />
+		<div className = 'bottomLine' />
 		</nav>
 	);
 }

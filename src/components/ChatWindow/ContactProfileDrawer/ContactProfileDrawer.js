@@ -6,7 +6,7 @@ const ContactProfileDrawer = (props) => {
 	const [drawerOpen, setDrawerOpen] = useContext(ContactProfileDrawerContext);
 
 	return (
-		<Drawer state = {[drawerOpen, setDrawerOpen]} openFrom = 'right'/>
+		<Drawer heading = 'Contact info' state = {[drawerOpen, setDrawerOpen]} openFrom = 'right'/>
 	);
 }
 

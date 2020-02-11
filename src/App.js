@@ -21,6 +21,10 @@ function App() {
 	const state = isDesktop ? 'Desktop' : 'Mobile';
 	console.log('App.js rendering..');
 
+	// fetch('http://localhost:3001/')
+	// .then(response => response.json())
+	// .then(console.log)
+
 	if(!(mode===state))
 	{
 		console.log('Mode (App.js) is', state);

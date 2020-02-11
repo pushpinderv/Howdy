@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {ChatDrawerContext} from 'Store';
+import 'components/Common/UserIcon/UserIcon.css';
 
 const ChatCard = () => {
 	const [,setChatDrawerOpen] = useContext(ChatDrawerContext);
@@ -20,8 +21,15 @@ const ChatCard = () => {
 					height : '3.3em', 
 					width : '3.3em', 
 					margin : 'auto 0 auto 1.15em',
-					flex : '0 0 auto', 
-					alignSelf : 'flex-start'}}>
+					flex : '0 0 auto',
+					flexDirection : 'column', 
+					alignSelf : 'flex-start',
+					overflow : 'hidden',
+					position : 'relative'
+				}}>
+					<div className = 'userHead' />
+					<div className = 'userBody' />
+					<div className = 'bottomLine' />
 				</div>
 
 				<div id = 'userdata-container' style = 
