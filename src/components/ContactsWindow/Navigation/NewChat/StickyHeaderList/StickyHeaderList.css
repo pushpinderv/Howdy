@@ -1,0 +1,43 @@
+.stickyHeaderList
+{
+	background-color : white; 
+	flex : 1;
+	overflow-y : scroll;
+	padding-top : 0.2em;
+}
+
+.header{
+	background-color: #9b80ff;
+	border-bottom: 1px solid white;
+	height: 1.8em;
+	line-height: 1.8em;
+	font-size: 1.2em;
+	font-weight: 460;
+	padding-left: 0.8em;
+	color: white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+.contactInfoCard{
+	display: flex;
+}
+
+.contactDetailContainer{
+	margin-left: 1em;
+	flex: 1;
+	align-items: center;
+	display: flex;
+}
+
+.contactDetailContainer.divider
+{
+	border-bottom: 1px solid lightgrey;
+}
+
+.contactDisplayIdentifier{
+	font-size: 1.1em;
+}

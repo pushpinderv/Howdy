@@ -77,3 +77,10 @@
 	vector-effect : non-scaling-stroke; 
 	shape-rendering : geometricPrecision; 
 }
+
+.shadow-below 
+{
+	box-shadow: 0 2px 0.2em rgba(0, 0, 0, 0.15);
+	z-index: 6;
+	/*box-shadow: 2px 0px 0.3em rgba(0, 0, 0, 1);*/
+}

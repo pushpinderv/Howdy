@@ -1,5 +1,5 @@
 .newContactDiv{
-	height: 4.6em;
+	height: 4em;
 	display: flex;
 	border-bottom : 1px solid #f2f2f2;
 }
@@ -11,20 +11,20 @@
 	line-height: 1.4em;
 	width: auto;
 	flex: 0 0 auto;
-	margin-left: 0.8em;
+	margin-left: 0.5em;
 	margin-top: auto;
 	margin-bottom: auto;
 }
 
 .newContactIcon{
 
-	background-color : #dfe5e7;
+	background-color : none;
 	height : 3em; 
 	width : 3em;
-	margin : auto 0 auto 1em;
+	margin : auto 0 auto 0.5em;
 	padding: 0.5em;
-/*	alignSelf : flex-start',
-*/	cursor : pointer;
+/*	alignSelf : flex-start',*/
+	cursor : pointer;
 	flex : 0 0 auto;
 	flex-direction : column;
 	overflow : hidden;
@@ -34,7 +34,7 @@
 
 .svg-path-newContact
 {
-	stroke : #dfe5e7; 
+	stroke : white; 
 	fill : #6639ff; 
 	vector-effect : non-scaling-stroke; 
 	shape-rendering : geometricPrecision; 

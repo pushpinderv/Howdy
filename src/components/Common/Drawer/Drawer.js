@@ -30,34 +30,28 @@ const Drawer = (props) => {
 	}
 	
 	return (
-		<div className = {drawerOpen ? drawerOpenClass : drawerClass} 
-		style = {{
-			backgroundColor : 'white'
-		}}>
-		<nav className = 'app-theme-color' style = {{display : 'flex', height : '4em', 
-		// backgroundColor : 'grey',
-		paddingLeft : '0.5em'}}>
-		<BackButton 
-			display = 'flex' 
-			look = {backButtonStyle} 
-			onClick = {closeDrawer}/>
-		<div style = {{color : 'white',
-			marginTop : 'auto',
-			marginBottom : 'auto',
-			marginLeft : '0.5em',
-			fontSize : '1.3em',
-			fontWeight : '450',
-			// lineHeight : '1.3em',
-			height : 'auto',
-			display: 'flex',
-  			justifyContent: 'center',
-  			alignContent: 'center',
-  			flexDirection: 'column'
-		}}>{props.heading}</div>
-		</nav>
-		<div>
-		{props.children}
-		</div>
+		<div className = {drawerOpen ? drawerOpenClass : drawerClass}>
+			<nav className = 'app-theme-color' style = {{display : 'flex', height : '4em', 
+			paddingLeft : '0.5em'}}>
+			<BackButton 
+				display = 'flex' 
+				look = {backButtonStyle} 
+				onClick = {closeDrawer}/>
+			<div style = {{color : 'white',
+				marginTop : 'auto',
+				marginBottom : 'auto',
+				marginLeft : '0.5em',
+				fontSize : '1.3em',
+				fontWeight : '450',
+				// lineHeight : '1.3em',
+				height : 'auto',
+				display: 'flex',
+	  			justifyContent: 'center',
+	  			alignContent: 'center',
+	  			flexDirection: 'column'
+			}}>{props.heading}</div>
+			</nav>
+			{props.children}
 		</div>
 	);
 }
