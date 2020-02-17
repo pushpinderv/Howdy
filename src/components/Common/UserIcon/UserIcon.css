@@ -1,3 +1,7 @@
+.userIcon{
+	border-radius: 0.5em;
+}
+
 .userHead {
   height: 40%;
   width: 40%;

@@ -1,12 +1,13 @@
 .newContactDiv{
-	height: 4em;
+	height: 3.6em;
 	display: flex;
 	border-bottom : 1px solid #f2f2f2;
+	cursor: pointer;
 }
 
 .newContactText{
 	color: #6639ff;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 400;
 	line-height: 1.4em;
 	width: auto;
@@ -38,4 +39,43 @@
 	fill : #6639ff; 
 	vector-effect : non-scaling-stroke; 
 	shape-rendering : geometricPrecision; 
+}
+
+/*Input Styles*/
+input[type="text"].textInput
+{
+	margin-left : 0.7em; 
+	flex : 1 1 auto;
+	min-width : 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+    border-bottom: 0.03em solid #ccc;
+}
+
+input[type="text"].textInput
+{
+	margin-left : 0.7em; 
+	flex : 1 1 auto;
+	min-width : 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+    border-bottom: 0.03em solid #ccc;
+    border-radius: 0;
+}
+
+input[type=text].textInput:focus {
+	border-bottom: 0.08em solid #754fff;
+}
+
+.createButton {
+	align-self: center;
+	background-color: #754fff;
+	text-align: center;
+	color: white;
+	padding: 0.5em 1em;
+	width: auto;
+	flex: 0 1 auto;
+	margin-top: 3em;
 }

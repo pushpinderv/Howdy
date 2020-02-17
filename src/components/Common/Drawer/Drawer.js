@@ -22,6 +22,9 @@ const Drawer = (props) => {
 			backButtonStyle = 'back';
 	}
 
+	drawerClass = drawerClass + ' ' + props.className;
+	drawerOpenClass = drawerOpenClass + ' ' + props.className;
+
 	// console.log('Drawer rendering..')
 
 	const closeDrawer = () =>
@@ -32,7 +35,7 @@ const Drawer = (props) => {
 	return (
 		<div className = {drawerOpen ? drawerOpenClass : drawerClass}>
 			<nav className = 'app-theme-color' style = {{display : 'flex', height : '4em', 
-			paddingLeft : '0.5em'}}>
+			paddingLeft : '0.5em', flex : '0 0 4em'}}>
 			<BackButton 
 				display = 'flex' 
 				look = {backButtonStyle} 

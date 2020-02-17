@@ -9,12 +9,18 @@
 .header{
 	background-color: #9b80ff;
 	border-bottom: 1px solid white;
-	height: 1.8em;
-	line-height: 1.8em;
-	font-size: 1.2em;
+	margin-bottom: 0.2em;
+	margin-top: 0.2em;
+	height: 2.3em;
+	line-height: 2.3em;
+	font-size: 1.05em;
 	font-weight: 460;
 	padding-left: 0.8em;
 	color: white;
+}
+
+.header.no-margin-top{
+	margin-top : 0;
 }
 
 .sticky {
@@ -24,6 +30,22 @@
 
 .contactInfoCard{
 	display: flex;
+	cursor: pointer;
+}
+
+.contactProfilePic{
+
+	background-color : #dfe5e7;
+	height : 2.5em;
+	width : 2.5em;
+	margin : 0.5em 0 0.5em 0.8em; 
+	align-self : flex-start;
+	cursor : pointer;
+	flex : 0 0 auto;
+	flex-direction : column;
+	overflow : hidden;
+	position : relative;
+		
 }
 
 .contactDetailContainer{
@@ -39,5 +61,5 @@
 }
 
 .contactDisplayIdentifier{
-	font-size: 1.1em;
+	font-size: 1em;
 }
