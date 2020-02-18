@@ -1,5 +1,4 @@
-
-input[type="text"].usernameInput
+input[type="text"].contactnameInput
 {
 	font-size : 1em; 
 	font-weight : 380;
@@ -16,6 +15,6 @@ input[type="text"].usernameInput
     margin-right: 0.2em;
 }
 
-input[type=text].usernameInput:focus {
+input[type=text].contactnameInput:focus {
 	border-bottom: 0.13em solid #754fff;
 }

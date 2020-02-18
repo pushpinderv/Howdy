@@ -1,11 +1,66 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState} from 'react';
 import {ProfileDrawerContext} from 'Store';
 import Drawer from 'components/Common/Drawer/Drawer';
 import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ProfileDrawer.css';
 
 const ProfileDrawer = (props) => {
+
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
+	const [enableNameEdit, setEnableNameEdit] = useState(false); 
+
+	const onEditClick = () => {
+		setEnableNameEdit(true);
+	}
+	const onDoneClick = () => {
+		setEnableNameEdit(false);
+	}
+
+	const UsernameDiv = () => {
+		return(<div style = {{
+					fontSize : '1em', 
+					fontWeight : '380',
+					color : 'black',
+					height : '1.5em',
+					lineHeight : '1.5em',
+					flex : '1'
+				}}>Username</div>);
+	}
+
+	const UsernameInput = () => {
+		return(<input defaultValue = 'Username' type = 'text' className = 'usernameInput' autoFocus/>);
+	}
+
+	const PencilIcon = () => {
+		return(
+			<div onClick = {onEditClick} style = {{width : '1.5em', height : '1.2em'}}>
+			<svg className = 'svg-default' xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>Click to edit</title><polygon fill = '#92989b' points='103 464 48 464 48 409 358.14 98.09 413.91 153.87 103 464'/><path d='M425.72,142,370,86.28l31.66-30.66C406.55,50.7,414.05,48,421,48a25.91,25.91,0,0,1,18.42,7.62l17,17A25.87,25.87,0,0,1,464,91c0,7-2.71,14.45-7.62,19.36ZM418.2,71.17h0Z' fill = '#92989b'/></svg>
+			</div>
+			);
+	}
+
+	const DoneIcon = () => {
+		return(
+			<div onClick = {onDoneClick} style = {{width : '1.5em', height : '1.5em'}}>
+				<svg className = 'svg-default' xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>Update Name</title><polyline points='416 128 192 384 96 288' style={{
+					fill :'none',
+					stroke : '#92989b',
+					strokeLinecap : 'square',
+					strokeMiterlimit : '10' ,
+					strokeWidth : '44px'}}/>
+				</svg>
+			</div>
+			);
+	}
+
+	const NameAndEditHandlingDiv = () => {
+		if(enableNameEdit) {
+			return (<><UsernameInput /><DoneIcon /></>);
+		}
+		else{
+			return (<><UsernameDiv /><PencilIcon /></>);
+		}
+	}
 
 	return (
 		<Drawer heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
@@ -22,10 +77,11 @@ const ProfileDrawer = (props) => {
 				}}>Your Name</div>
 				<div style = {{
 					margin : '1em 2rem', 
-					fontSize : '1em', 
-					fontWeight : '380',
-					color : 'black'
-				}}>Username</div>
+					display : 'flex',
+					alignItems : 'center'
+				}}>
+				<NameAndEditHandlingDiv />
+				</div>
 			</div>
 			</div>
 		</Drawer>
