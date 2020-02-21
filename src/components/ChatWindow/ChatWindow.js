@@ -25,7 +25,7 @@ const ChatWindow = (props) => {
 		console.log('Oiiii my classname is '+ className);
 	}	
 	return (
-		<nav className = {className} style = {
+		<div className = {className} style = {
 			{display : 'flex', backgroundColor : 'red', flex : flexWidth, 
 			flexDirection : 'column', maxWidth : flexWidth, overflow : 'hidden'}
 		}>
@@ -35,7 +35,7 @@ const ChatWindow = (props) => {
 		<ContactConversationList />
 		<SendMessageBar />
 		</ContactProfileDrawerContext.Provider>
-		</nav>
+		</div>
 	);
 }
 

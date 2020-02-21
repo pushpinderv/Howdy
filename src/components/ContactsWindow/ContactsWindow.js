@@ -10,13 +10,14 @@ import {ProfileDrawerContext} from 'Store';
 import {NewChatDrawerContext} from 'Store';
 import {MenuDrawerContext} from 'Store';
 import ChatWindow from '../ChatWindow/ChatWindow';
+import './ContactsWindow.css';
 
 const ContactsWindow = (props) => {
 
 	const isMaxed = useMediaPredicate('(min-width: 900px)');
 	var flexWidth = isMaxed ? '35%' : '40%';
+	
 	let chatWindow;
-
 	if(props.mode === 'Mobile')
 	{
 		console.log('ContactsWindow: Stretch to 100%!')
@@ -29,12 +30,7 @@ const ContactsWindow = (props) => {
 	const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
 	return (
-		<nav style = {
-			{display : 'flex' , backgroundColor : 'green', flex : flexWidth, 
-			flexDirection : 'column', maxWidth : flexWidth, position : 'relative', overflow : 'hidden'}
-	    }
-		>
-		{chatWindow}
+		<div style = {{flex : flexWidth, maxWidth : flexWidth}} className = 'contactsWindow'>
 		<ProfileDrawerContext.Provider value = {[profileDrawerOpen, setProfileDrawerOpen]}>
 		<ProfileDrawer />
 
@@ -49,7 +45,8 @@ const ContactsWindow = (props) => {
 		<ChatSearch />
 		<ChatsList />
 		</ProfileDrawerContext.Provider>
-		</nav>
+		{chatWindow}
+		</div>
 	);
 }
 

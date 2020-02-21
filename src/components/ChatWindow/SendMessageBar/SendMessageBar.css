@@ -1,0 +1,9 @@
+.sendMessageBar{
+	display : flex; 
+	padding : 0.7em 0.4em 0.7em 0.7em; 
+	flex : 0 0 auto; 
+	height : 4.25em;
+	overflow : hidden;
+	z-index : 0;
+	box-shadow: 0px -2px 0.3em rgba(0, 0, 0, 0.15)
+}

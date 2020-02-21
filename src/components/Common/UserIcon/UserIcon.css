@@ -1,5 +1,11 @@
 .userIcon{
 	border-radius: 0.5em;
+	background-color : #dfe5e7; 
+	cursor : pointer;
+	flex : 0 0 auto;
+	flex-direction : column;
+	overflow : hidden;
+	position : relative;
 }
 
 .userHead {

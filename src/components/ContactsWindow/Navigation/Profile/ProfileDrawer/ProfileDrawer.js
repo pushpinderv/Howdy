@@ -3,11 +3,22 @@ import {ProfileDrawerContext} from 'Store';
 import Drawer from 'components/Common/Drawer/Drawer';
 import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ProfileDrawer.css';
+import Menu from 'components/Common/Menu/Menu';
+import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 
 const ProfileDrawer = (props) => {
 
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
-	const [enableNameEdit, setEnableNameEdit] = useState(false); 
+	const [enableNameEdit, setEnableNameEdit] = useState(false);
+	const [pictureSelectMenuOpen, setPictureSelectMenuOpen] = useState(false);
+
+	const onUserIconClick = () =>{
+		setPictureSelectMenuOpen(true);
+	}
+
+	const hidePictureMenu = () =>{
+		setPictureSelectMenuOpen(false);
+	}
 
 	const onEditClick = () => {
 		setEnableNameEdit(true);
@@ -17,14 +28,7 @@ const ProfileDrawer = (props) => {
 	}
 
 	const UsernameDiv = () => {
-		return(<div style = {{
-					fontSize : '1em', 
-					fontWeight : '380',
-					color : 'black',
-					height : '1.5em',
-					lineHeight : '1.5em',
-					flex : '1'
-				}}>Username</div>);
+		return(<div className = 'username'>Username</div>);
 	}
 
 	const UsernameInput = () => {
@@ -63,26 +67,35 @@ const ProfileDrawer = (props) => {
 	}
 
 	return (
-		<Drawer heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
-			<div style = {{width : 'auto', backgroundColor : '#f7f7f7', display: 'flex', flex : '1', flexDirection : 'column', overflowY : 'auto'}}>
-			<UserIcon margin = '2em auto' height = '10em' width = '10em'/>
-			<div style = {{
-				backgroundColor: 'white',
-				boxShadow: '0 -1px 0.1em rgba(0, 0, 0, 0.03), 0 2px 0.2em rgba(0, 0, 0, 0.08)'}}>
-				<div style = {{
-					margin : '1em 2rem', 
-					fontSize : '0.88em', 
-					fontWeight : '450',
-					color : '#754fff'
-				}}>Your Name</div>
-				<div style = {{
-					margin : '1em 2rem', 
-					display : 'flex',
-					alignItems : 'center'
-				}}>
-				<NameAndEditHandlingDiv />
+		<Drawer className = 'profileDrawer' heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
+			<div className = 'pdContainer'>
+				<div className = 'picAndMenuContainer'>
+					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
+					<Menu anchor = 'center' width = '140px' open = {pictureSelectMenuOpen} hideMenu = {hidePictureMenu}>
+		      			<MenuItem>View</MenuItem>
+		      			<MenuItem>Take</MenuItem>
+		      			<MenuItem>Upload</MenuItem>
+		      			<MenuItem>Remove</MenuItem>
+      				</Menu>
 				</div>
-			</div>
+				
+				<div style = {{
+					backgroundColor: 'white',
+					boxShadow: '0 -1px 0.1em rgba(0, 0, 0, 0.03), 0 2px 0.2em rgba(0, 0, 0, 0.08)'}}>
+					<div style = {{
+						margin : '1em 2rem', 
+						fontSize : '0.88em', 
+						fontWeight : '450',
+						color : '#754fff'
+					}}>Your Name</div>
+					<div style = {{
+						margin : '1em 2rem', 
+						display : 'flex',
+						alignItems : 'center'
+					}}>
+					<NameAndEditHandlingDiv />
+					</div>
+				</div>
 			</div>
 		</Drawer>
 	);

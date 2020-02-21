@@ -1,3 +1,31 @@
+.profileDrawer{
+}
+
+.pdContainer{
+	width : auto; 
+	background-color : #f7f7f7; 
+	display: flex; 
+	flex : 1; 
+	flex-direction : column; 
+	overflow-y : auto;
+}
+
+.picAndMenuContainer{
+	position : relative;	 
+	width : fit-content; 
+	height : fit-content; 
+	align-self : center; 
+	margin : 2em 0em;
+}
+
+.username{
+	font-size : '1em'; 
+	font-weight : '380';
+	color : 'black';
+	height : '1.5em';
+	line-height : '1.5em';
+	flex : '1';
+}
 
 input[type="text"].usernameInput
 {

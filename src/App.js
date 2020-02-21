@@ -6,7 +6,6 @@ import {useMediaPredicate} from 'react-media-hook';
 import {ModeContext} from './Store';
 import Div100vh from 'react-div-100vh';
 import useScrollLock from 'react-use-scroll-lock';
-import GlobalOverlay from 'components/GlobalOverlay/GlobalOverlay';
 import Login from 'components/Login/Login';
 import {LogInContext} from 'Store';
 
@@ -47,7 +46,6 @@ function App() {
 	return (
 	    <Div100vh className="App" 
 	    onClick = {()=>console.log('App.js: Consuming touch to prevent zooming')}>
-			<GlobalOverlay />
 			<ContactsWindow mode = {mode}/>
 			{chatWindow}		
 	    </Div100vh>

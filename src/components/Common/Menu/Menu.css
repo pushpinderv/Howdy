@@ -2,12 +2,30 @@
 	display: flex;
 	background-color: white;
 	position: absolute;
-	right: 0.5em;
-	top: 90%;
 	z-index: 100;
-	width: 230px;
 	overflow: hidden;
 	transform-origin: top right;
+	flex-direction: column;
+}
+
+.menu.right{
+	right: 0.5em;
+}
+
+.menu.top{
+	top: 90%;
+}
+
+.menu.bottom{
+	bottom: 90%;
+}
+
+.menu.left{
+	bottom: 0.5em;
+}
+
+.menu.center{
+	top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .card {

@@ -1,0 +1,7 @@
+.navigation{
+	display : flex; 
+	justify-content: space-between; 
+	flex : 0 0 auto; 
+	height : 4em;
+	overflow : visible;
+}

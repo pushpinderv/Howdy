@@ -1,8 +1,8 @@
 /* The Drawer opens from the left by default. Use the directional classes for another opening direction  */
 .ChatWindow {
-position: relative;
-box-shadow: 2px 0px 0.15em rgba(0, 0, 0, 1);
-z-index: 3;
+  position: relative;
+  box-shadow: 2px 0px 0.15em rgba(0, 0, 0, 1);
+  z-index: 0;
 }
 
 .ChatWindow.drawer {
@@ -14,7 +14,7 @@ z-index: 3;
   left: 100%;
   right: 0;
   bottom: 0;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
   transform: translateX(0);
   transition: transform 0.2s ease-out;
  }

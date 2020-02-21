@@ -1,13 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState} from 'react';
 import './GlobalOverlay.css';
-import {GlobalOverlayContext} from 'Store';
 
-const GlobalOverlay = () => {
-	const [overlayOpen ,setOverlayOpen] = useContext(GlobalOverlayContext);
-	let className = overlayOpen ? 'overlay open' : 'overlay close';
+const GlobalOverlay = (props) => {
+	let className = props.open ? 'overlay open' : 'overlay close';
 	return(
-		<div className = {className} onClick = {()=>{setOverlayOpen(false)}}>
-		</div>
+		<div className = {className} onClick = {props.onClick} />
 		);
 }
 

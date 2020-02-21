@@ -5,6 +5,7 @@ import NewChatButton from './NewChat/NewChatButton';
 import {ProfileDrawerContext} from 'Store';
 import {NewChatDrawerContext} from 'Store';
 import {MenuDrawerContext} from 'Store';
+import './Navigation.css';
 
 const Navigation = () => {
 	const [,setProfileDrawerOpen] = useContext(ProfileDrawerContext);
@@ -12,14 +13,7 @@ const Navigation = () => {
 	const [,setMenuDrawerOpen] = useContext(MenuDrawerContext);
 
 	return (
-		<nav style = {{ 
-			display : 'flex', 
-			justifyContent: 'space-between', 
-			// backgroundColor : 'orange', 
-			flex : '0 0 auto', 
-			height : '4em',
-			overflow : 'visible'
-		}} className = 'app-theme-color'>
+		<nav className = 'navigation app-theme-color'>
 		<ProfileButton onClick = {()=>setProfileDrawerOpen(true)} />	
 		<div style = {{ display : 'flex'}}>
 		<NewChatButton onClick = {()=>setNewChatDrawerOpen(true)} />

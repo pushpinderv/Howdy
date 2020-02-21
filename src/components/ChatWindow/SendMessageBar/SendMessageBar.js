@@ -1,20 +1,10 @@
 import React from 'react';
-// import sendButtonImage from './_ionicons_svg_md-send.svg';
+import './SendMessageBar.css';
 
 const SendMessageBar = () => {
 	return (
 
-		<nav className = 'app-theme-color' style = {{
-			display : 'flex', 
-			padding : '0.7em 0.4em 0.7em 0.7em', 
-			// backgroundColor : 'purple', 
-			flex : '0 0 auto', 
-			height : '4.25em',
-			overflow : 'hidden',
-			zIndex : 3,
-			boxShadow: '0px -2px 0.3em rgba(0, 0, 0, 0.15)'
-		}}>
-
+		<div className = 'app-theme-color sendMessageBar'>
 		<input placeholder = 'Type a message' className = 'br-pill bn ph3' 
 		style = {{
 			flex : '1 1 auto', 
@@ -43,7 +33,7 @@ const SendMessageBar = () => {
 		<path className = 'svg-path-default' d="M48 448l416-192L48 64v149.333L346 256 48 298.667z"/></svg>
 		</button>
 
-		</nav>
+		</div>
 	);
 }
 

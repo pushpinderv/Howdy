@@ -47,6 +47,10 @@ const NewChatDrawer = (props) => {
 
 	return (
 		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
+			<SearchContactsBar />
+			<StickyHeaderList>
+				<NewContactDiv setOpen = {setNewContactOpen}/>
+			</StickyHeaderList>
 			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>
 				<div style = {{ padding : '1em 1.5em', flex : '1',
 				 display : 'flex', flexDirection : 'column', overflowY : 'auto'
@@ -63,13 +67,9 @@ const NewChatDrawer = (props) => {
 						height : '2em', width : '2.5em', flex : '0 0 2.5em', textAlign : 'right'}}>Email</div>
 						<input className = 'textInput' type = 'text' />
 					</div>
-					<div className = 'br2 createButton'>Create Contact</div>
+					<div onClick = {()=>{console.log('NewChatDrawer: Create contact clicked!')}} className = 'br2 createButton'>Create Contact</div>
 				</div>
 			</Drawer>
-			<SearchContactsBar />
-			<StickyHeaderList>
-				<NewContactDiv setOpen = {setNewContactOpen}/>
-			</StickyHeaderList>
 		</Drawer>
 	);
 }
