@@ -8,6 +8,7 @@ import Div100vh from 'react-div-100vh';
 import useScrollLock from 'react-use-scroll-lock';
 import Login from 'components/Login/Login';
 import {LogInContext} from 'Store';
+import GlobalOverlay from './components/GlobalOverlay/GlobalOverlay';
 
 function App() {
 
@@ -47,7 +48,8 @@ function App() {
 	    <Div100vh className="App" 
 	    onClick = {()=>console.log('App.js: Consuming touch to prevent zooming')}>
 			<ContactsWindow mode = {mode}/>
-			{chatWindow}		
+			{chatWindow}
+			<GlobalOverlay />	
 	    </Div100vh>
 			);
 

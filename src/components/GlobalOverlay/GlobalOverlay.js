@@ -1,10 +1,25 @@
-import React, {useContext,useState} from 'react';
+import React from 'react';
 import './GlobalOverlay.css';
+import {useSelector} from 'react-redux';
+import useAction from 'Redux/actions/useAction';
 
-const GlobalOverlay = (props) => {
-	let className = props.open ? 'overlay open' : 'overlay close';
+const GlobalOverlay = () => {
+
+	let modalView = useSelector(state => state.modalView);
+
+	let className = modalView ? 'overlay open' : 'overlay close';
+
+	const {showModal} = useAction();
+
+	const handleClick = () => {
+		console.log('I was touched!');
+		showModal(null);
+	}
+
 	return(
-		<div className = {className} onClick = {props.onClick} />
+		<div className = {className} onClick = {handleClick}>
+		{modalView}
+		</div>
 		);
 }
 

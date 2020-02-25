@@ -5,26 +5,17 @@ import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ProfileDrawer.css';
 import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
+import useAction from 'Redux/actions/useAction';
 
 const ProfileDrawer = (props) => {
 
-	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
-	const [enableNameEdit, setEnableNameEdit] = useState(false);
-	const [pictureSelectMenuOpen, setPictureSelectMenuOpen] = useState(false);
-
-	const onUserIconClick = () =>{
-		setPictureSelectMenuOpen(true);
-	}
-
-	const hidePictureMenu = () =>{
-		setPictureSelectMenuOpen(false);
-	}
-
-	const onEditClick = () => {
-		setEnableNameEdit(true);
-	}
-	const onDoneClick = () => {
-		setEnableNameEdit(false);
+	const MenuModal = (props) => {
+		return(<Menu anchor = 'center' width = '140px' open = {props.open}>
+		      			<MenuItem>View</MenuItem>
+		      			<MenuItem>Take</MenuItem>
+		      			<MenuItem>Upload</MenuItem>
+		      			<MenuItem>Remove</MenuItem>
+	  				</Menu>);
 	}
 
 	const UsernameDiv = () => {
@@ -66,17 +57,32 @@ const ProfileDrawer = (props) => {
 		}
 	}
 
+	// const hidePictureMenu = () =>{
+	// 	setPictureSelectMenuOpen(false);
+	// }
+
+	const onEditClick = () => {
+		setEnableNameEdit(true);
+	}
+	const onDoneClick = () => {
+		setEnableNameEdit(false);
+	}
+
+    const {showModal} = useAction();
+
+	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
+	const [enableNameEdit, setEnableNameEdit] = useState(false);
+
+	const onUserIconClick = () =>
+	{
+		showModal(<MenuModal open = {true}/>);
+	}
+
 	return (
 		<Drawer className = 'profileDrawer' heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
 			<div className = 'pdContainer'>
 				<div className = 'picAndMenuContainer'>
 					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
-					<Menu anchor = 'center' width = '140px' open = {pictureSelectMenuOpen} hideMenu = {hidePictureMenu}>
-		      			<MenuItem>View</MenuItem>
-		      			<MenuItem>Take</MenuItem>
-		      			<MenuItem>Upload</MenuItem>
-		      			<MenuItem>Remove</MenuItem>
-      				</Menu>
 				</div>
 				
 				<div style = {{

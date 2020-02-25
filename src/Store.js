@@ -23,7 +23,7 @@ const Store = ({children}) => {
 		<LogInContext.Provider value = {[login, setLogin]}>
 			{children}
 		</LogInContext.Provider>	
-		</ChatDrawerContext.Provider>	
+		</ChatDrawerContext.Provider>
 		</ModeContext.Provider>
 		);
 

@@ -1,27 +1,34 @@
-import React, {useState} from 'react';
+import React from 'react';
 // import menuButtonImage from './_ionicons_svg_md-menu.svg';
 import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 import logOutIcon from 'components/Common/Icons/_ionicons_svg_ios-log-out.svg';
 import {LogInContext} from 'Store';
+import useAction from 'Redux/actions/useAction';
 
 const MenuButton = (props) => {
 
-	const [menuOpen, setMenuOpen] = useState(false);
 	const [,setLogIn] = React.useContext(LogInContext);
+	const {showModal} = useAction();
+
+	const MenuModal = (props) =>{ return(<Menu
+				open = {props.open} hideMenu = {props.hideMenu}
+	        >
+		      <MenuItem onClick={handleLogOut} icon = {logOutIcon}>Log out</MenuItem>
+	      	</Menu>)};
 
 	const handleClick = event => {
-    	setMenuOpen(true);
+    	showModal(<MenuModal open = 'true' />);
   	};
 
-  	const hideMenu = () => {
-  		setMenuOpen(false);
-  	}
+  	// const hideMenu = () => {
+  	// 	// setMenuOpen(false);
+  	// }
 
 	const handleLogOut = () => {
 	console.log('MenuButton: Close Me!');
 	setLogIn(false);
-    setMenuOpen(false);
+    // setMenuOpen(false);
 	};
 
 	return (
@@ -47,11 +54,7 @@ const MenuButton = (props) => {
 		strokeWidth = '2px'/>
 		</svg>
 		</button>
-			<Menu
-				open = {menuOpen} hideMenu = {hideMenu}
-	        >
-		      <MenuItem onClick={handleLogOut} icon = {logOutIcon}>Log out</MenuItem>
-	      	</Menu>
+			
 		</div>
 	);
 }
