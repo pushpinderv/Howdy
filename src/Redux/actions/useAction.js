@@ -1,4 +1,4 @@
-import {SET_MODAL} from '../constants';
+import * as constants from '../constants';
 import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -6,8 +6,14 @@ const useAction = () => {
   const dispatch = useDispatch()
 
   const actions = useMemo(() => ({
-    showModal(modalView) {
-      dispatch({type : SET_MODAL, value : modalView})
+    setModalView(view) {
+		dispatch({type : constants.SET_MODAL_VIEW, value : view})
+    },
+    setModalOpen(open) {
+    	dispatch({type : constants.SET_MODAL_OPEN, value : open})
+    },
+    setModalId(id) {
+    	dispatch({type : constants.SET_MODAL_ID, value : id})
     }
   }), [dispatch])
 

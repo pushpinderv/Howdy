@@ -3,20 +3,44 @@ import {ProfileDrawerContext} from 'Store';
 import Drawer from 'components/Common/Drawer/Drawer';
 import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ProfileDrawer.css';
-import Menu from 'components/Common/Menu/Menu';
-import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 import useAction from 'Redux/actions/useAction';
+import ProfilePicMenu from '../ProfilePicMenu';
+import {useBoundingBox} from 'hooks/useBoundingBox';
+import {useSelector} from 'react-redux';
 
 const ProfileDrawer = (props) => {
 
-	const MenuModal = (props) => {
-		return(<Menu anchor = 'center' width = '140px' open = {props.open}>
-		      			<MenuItem>View</MenuItem>
-		      			<MenuItem>Take</MenuItem>
-		      			<MenuItem>Upload</MenuItem>
-		      			<MenuItem>Remove</MenuItem>
-	  				</Menu>);
+	const myModalId = 'profile';
+
+	const [boundingBox, anchorRef] = useBoundingBox();
+	const {setModalView,setModalOpen,setModalId} = useAction();
+    const currentModalId = useSelector(state => state.modalId);
+
+
+	const onUserIconClick = () =>
+	{
+		setModalId(myModalId);
+		setModalOpen(true);
 	}
+
+	const MenuContainerDiv = <div ref = {anchorRef} className = 'picAndMenuContainer'>
+					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
+				</div>;
+
+
+	console.log('ProfileDrawer.js : Bounding box is now', boundingBox);
+	const MenuModal = <ProfilePicMenu anchorBox = {boundingBox} anchor = 'center' width = '140px'/>
+
+	if(currentModalId === myModalId)
+	{
+		setModalView(MenuModal);
+	}
+
+
+
+	
+
+	
 
 	const UsernameDiv = () => {
 		return(<div className = 'username'>Username</div>);
@@ -68,23 +92,13 @@ const ProfileDrawer = (props) => {
 		setEnableNameEdit(false);
 	}
 
-    const {showModal} = useAction();
-
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
 	const [enableNameEdit, setEnableNameEdit] = useState(false);
-
-	const onUserIconClick = () =>
-	{
-		showModal(<MenuModal open = {true}/>);
-	}
 
 	return (
 		<Drawer className = 'profileDrawer' heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
 			<div className = 'pdContainer'>
-				<div className = 'picAndMenuContainer'>
-					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
-				</div>
-				
+				{MenuContainerDiv}
 				<div style = {{
 					backgroundColor: 'white',
 					boxShadow: '0 -1px 0.1em rgba(0, 0, 0, 0.03), 0 2px 0.2em rgba(0, 0, 0, 0.08)'}}>

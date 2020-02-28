@@ -21,7 +21,7 @@
 }
 
 .menu.left{
-	bottom: 0.5em;
+	left: 0.5em;
 }
 
 /*.menu.center{
@@ -29,7 +29,6 @@
 }*/
 
 .menu.center{
-	position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
