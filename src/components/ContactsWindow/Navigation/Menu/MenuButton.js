@@ -5,10 +5,12 @@ import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 import logOutIcon from 'components/Common/Icons/_ionicons_svg_ios-log-out.svg';
 import {LogInContext} from 'Store';
 import useAction from 'Redux/actions/useAction';
-import {useBoundingBox} from 'hooks/useBoundingBox';
 import {useSelector} from 'react-redux';
+import {useBoundingBox} from 'hooks/useBoundingBox';
 
 const MenuButton = (props) => {
+
+	const [boundingRect, ref] = useBoundingBox();
 
 	const myModalId = 'logout';
 
@@ -16,9 +18,6 @@ const MenuButton = (props) => {
 
 	const {setModalView,setModalOpen,setModalId} = useAction();
 	const currentModalId = useSelector(state => state.modalId);
-
-	const [boundingBox, ref] = useBoundingBox();
-	console.log('MenuButton.js: Bounding box is', boundingBox);
 
 	const handleLogOut = () => {
 		console.log('MenuButton: Close Me!');
@@ -52,9 +51,23 @@ const MenuButton = (props) => {
 		</svg>
 		</button>;
 
-	const MenuModal = <Menu anchorBox={boundingBox}>
+	const PhantomContainer = (props) => {
+		return(
+			<div style = {{
+				top : props.boundingRect.top,
+				left : props.boundingRect.left,
+				width : props.boundingRect.width,
+				height : props.boundingRect.height,
+				position : 'absolute'
+			}}>
+				{props.children}
+			</div>
+			);
+	}		
+
+	const MenuModal = <PhantomContainer boundingRect = {boundingRect}><Menu anchor = 'top right' width = '180px'>
 		      <MenuItem onClick={handleLogOut} icon = {logOutIcon}>Log out</MenuItem>
-	      	</Menu>;
+	      	</Menu></PhantomContainer>;
 
 	if(currentModalId === myModalId)
 	{

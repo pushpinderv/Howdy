@@ -6,6 +6,9 @@ const useAction = () => {
   const dispatch = useDispatch()
 
   const actions = useMemo(() => ({
+  	setModalContainer(view) {
+		dispatch({type : constants.SET_MODAL_CONTAINER, value : view})
+    },
     setModalView(view) {
 		dispatch({type : constants.SET_MODAL_VIEW, value : view})
     },

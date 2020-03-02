@@ -2,6 +2,7 @@ import * as constants from '../constants';
 
 const initialState = {
 	modalView : null,
+	modalContainer : null,
 	modalOpen : false,
 	modalId : ''
 }
@@ -18,6 +19,9 @@ const rootReducer = (state = initialState, action) =>{
 		case constants.SET_MODAL_ID:
 			newState.modalId = action.value;
 			return newState;	
+		case constants.SET_MODAL_CONTAINER:
+			newState.modalContainer = action.value;
+			return newState;			
 		default:
 			return state;
 	}	

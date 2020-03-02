@@ -5,15 +5,17 @@ import useAction from 'Redux/actions/useAction';
 
 const GlobalOverlay = () => {
 
+	let modalContainer = useSelector(state => state.modalContainer);
+	
 	let modalView = useSelector(state => state.modalView);
+
 	let open = useSelector(state => state.modalOpen);
 
 	let className = open ? 'overlay open' : 'overlay';
 
-	const {setModalOpen,setModalId,setModalView} = useAction();
+	const {setModalOpen,setModalId} = useAction();
 
 	const handleClick = () => {
-		console.log('I was touched!');
 		setModalOpen(false);
 		setModalId('');
 	}

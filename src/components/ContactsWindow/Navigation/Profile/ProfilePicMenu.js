@@ -3,7 +3,7 @@ import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 
 const ProfilePicMenu = (props) => {
-	return(<Menu anchorBox={props.anchorBox} anchor = {props.anchor} width = {props.width}>
+	return(<Menu width = '140px'>
 	      			<MenuItem>View</MenuItem>
 	      			<MenuItem>Take</MenuItem>
 	      			<MenuItem>Upload</MenuItem>

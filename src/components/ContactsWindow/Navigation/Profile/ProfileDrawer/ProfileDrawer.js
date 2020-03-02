@@ -5,17 +5,17 @@ import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ProfileDrawer.css';
 import useAction from 'Redux/actions/useAction';
 import ProfilePicMenu from '../ProfilePicMenu';
-import {useBoundingBox} from 'hooks/useBoundingBox';
 import {useSelector} from 'react-redux';
+import {useBoundingBox} from 'hooks/useBoundingBox';
 
 const ProfileDrawer = (props) => {
 
+	const [boundingRect, ref] = useBoundingBox();
+
 	const myModalId = 'profile';
 
-	const [boundingBox, anchorRef] = useBoundingBox();
-	const {setModalView,setModalOpen,setModalId} = useAction();
+	const {setModalView,setModalOpen,setModalId,setModalContainer} = useAction();
     const currentModalId = useSelector(state => state.modalId);
-
 
 	const onUserIconClick = () =>
 	{
@@ -23,24 +23,31 @@ const ProfileDrawer = (props) => {
 		setModalOpen(true);
 	}
 
-	const MenuContainerDiv = <div ref = {anchorRef} className = 'picAndMenuContainer'>
+	const MenuContainerDiv = <div ref = {ref} className = 'picAndMenuContainer'>
 					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
 				</div>;
 
+	const PhantomContainer = (props) => {
+		return(
+			<div style = {{
+				top : props.boundingRect.top,
+				left : props.boundingRect.left,
+				width : props.boundingRect.width,
+				height : props.boundingRect.height,
+				position : 'absolute'
+			}}>
+				{props.children}
+			</div>
+			);
+	}			
 
-	console.log('ProfileDrawer.js : Bounding box is now', boundingBox);
-	const MenuModal = <ProfilePicMenu anchorBox = {boundingBox} anchor = 'center' width = '140px'/>
+	const MenuModal = <PhantomContainer boundingRect = {boundingRect}><ProfilePicMenu /></PhantomContainer>;
 
 	if(currentModalId === myModalId)
-	{
+	{	
+		setModalContainer(MenuContainerDiv);
 		setModalView(MenuModal);
 	}
-
-
-
-	
-
-	
 
 	const UsernameDiv = () => {
 		return(<div className = 'username'>Username</div>);
