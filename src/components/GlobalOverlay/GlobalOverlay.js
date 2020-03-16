@@ -4,8 +4,6 @@ import {useSelector} from 'react-redux';
 import useAction from 'Redux/actions/useAction';
 
 const GlobalOverlay = () => {
-
-	let modalContainer = useSelector(state => state.modalContainer);
 	
 	let modalView = useSelector(state => state.modalView);
 

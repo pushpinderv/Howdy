@@ -5,6 +5,32 @@ import Drawer from 'components/Common/Drawer/Drawer';
 import StickyHeaderList from '../StickyHeaderList/StickyHeaderList';
 import './NewChatDrawer.css';
 
+//Starting dummy time stamp 1581685200 = 02/14/2020 @ 1:00pm (UTC), using 5 min intervals
+	// let contactList = [
+	// 	{name :'Adam', email : 'adam@gmail.com', timeStamp : '1581688000'}, 
+	// 	{name :'Bob', email : 'bob@gmail.com', timeStamp : '1581685500'}, 
+	// 	{name :'Bane', email : 'bane@gmail.com', timeStamp : '1581686400'}, 
+	// 	{name :'Bruce', email : 'bruce@gmail.com', timeStamp : '1581687000'}, 
+	// 	{name :'Clark', email : 'clark@gmail.com', timeStamp : '1581685800'}, 
+	// 	{name :'Cain', email : 'cain@gmail.com', timeStamp : '1581686700'}, 
+	// 	{name :'David', email : 'david@gmail.com', timeStamp : '1581686100'}, 
+	// 	{name :'Dante', email : 'dante@gmail.com', timeStamp : '1581687300'}, 
+	// 	{name :'Earl', email : 'earl@gmail.com', timeStamp : '1581687400'}, 
+	// 	{name :'Eric', email : 'eric@gmail.com', timeStamp : '1581687700'},
+	// 	{name : '', email : 'barry@gmail.com', timeStamp : '1581685200'},
+	// 	{name : '', email : 'thawne@gmail.com', timeStamp : '1581688300'},
+	// 	{name : 'Mar Novu', email : 'monitor@gmail.com', timeStamp : '', photo_url : ''}
+	// ];
+
+		let contactList = [
+		{name :'Bruce', email : 'bruce@gmail.com', timeStamp : '1581687000'},
+		{name : 'Mar Novu', email : 'monitor@gmail.com', timeStamp : '', photo_url : ''},
+		{name : 'Oliver Queen', email : 'arrow@gmail.com', timeStamp : '', photo_url : ''},
+		{name : '', email : 'firestorm@gmail.com', timeStamp : '', photo_url : ''}
+	];
+
+	// let contactList = [];
+
 const NewContactDiv = (props) => {
 	return(
 		<div onClick = {()=>{props.setOpen(true)}} className = 'newContactDiv'>
@@ -48,7 +74,7 @@ const NewChatDrawer = (props) => {
 	return (
 		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
 			<SearchContactsBar />
-			<StickyHeaderList>
+			<StickyHeaderList contactList = {contactList}>
 				<NewContactDiv setOpen = {setNewContactOpen}/>
 			</StickyHeaderList>
 			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>
