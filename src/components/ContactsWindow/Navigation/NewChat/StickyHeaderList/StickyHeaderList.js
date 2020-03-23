@@ -4,8 +4,8 @@ import 'components/Common/UserIcon/UserIcon.css';
 
 const StickyHeaderList = (props) => {
 
-	let recentChats = props.contactList.filter((a) =>a.timeStamp !== '').sort((a, b) => (a.timeStamp) - (b.timeStamp)).slice(0,5);
-	console.log(recentChats);
+	let recentChats = props.contactList.filter((a) => (a.time_stamp !== '' && a.time_stamp !== null)).sort((a, b) => (a.time_stamp) - (b.time_stamp)).slice(0,5);
+	// console.log(recentChats);
 
 	const RecentChatsDiv = () => {
 		return(
@@ -41,7 +41,7 @@ const StickyHeaderList = (props) => {
 	  return acc
 	}, [])
 
-	console.log('StickyHeaderList.js :',sectionedList);
+	// console.log('StickyHeaderList.js :',sectionedList);
 
 	const Header = (props) => {
 		let className = props.marginTop ? 'header' : 'header no-margin-top';

@@ -1,3 +1,65 @@
 .chat-card{
-	border-bottom: 1px solid grey;
+	display : flex; 
+	background-color : white; 
+	flex : 1 ; 
+	height : 5em ; 
+	cursor : pointer;
+	overflow : visible;
+	border-bottom : 1px solid #f2f2f2;
+}
+
+.chat-profile-pic{
+	background-color : #dfe5e7; 
+	height : 3.3em; 
+	width : 3.3em; 
+	margin : auto 0 auto 1.15em;
+	flex : 0 0 auto;
+	flex-direction : column; 
+	align-self : flex-start;
+	overflow : hidden;
+	position : relative;
+}
+
+.chat-userdata-container{
+	display : flex; 
+	flex-direction : column; 
+	padding : 0px 0.9em; 
+	align-content : center; 
+	margin : auto 0px; 
+	cursor : pointer;
+	flex : 1 1 auto; 
+	max-width : 100%; 
+	min-width : 1px;
+}
+
+.chat-name-and-time-container{
+	display : flex; 
+	margin-bottom : 4px;
+	justify-content : space-between;
+	overflow :hidden;
+}
+
+.chat-name{
+	font-size : 1.1em;
+}
+
+.chat-time{
+	font-size : 0.8em; 
+	font-weight : 100;
+	white-space :nowrap;
+	color : #8c8c8c; 
+	margin-left : 8px;
+}
+
+.chat-message-and-count-container{
+	display : flex;
+	padding-top : 4px;
+}
+
+.chat-message{
+	font-size : 0.9em;
+	font-weight : 360;
+	line-height : 1.4em;
+	white-space : nowrap; 
+	color : grey;
 }
