@@ -7,15 +7,17 @@ import {ModeContext} from './Store';
 import Div100vh from 'react-div-100vh';
 import useScrollLock from 'react-use-scroll-lock';
 import Login from 'components/Login/Login';
-import {LogInContext} from 'Store';
 import GlobalOverlay from './components/GlobalOverlay/GlobalOverlay';
+import {useSelector} from 'react-redux';
 
 function App() {
 
 	useScrollLock(true);
 
+	let myID = useSelector(state => state.myID);
+	let login = myID ? true : false;
+ 
 	const [mode, setMode] = useContext(ModeContext);
-	const [login, ] = useContext(LogInContext);
 
 	const isDesktop = useMediaPredicate('(min-width: 600px)');
 	const state = isDesktop ? 'Desktop' : 'Mobile';

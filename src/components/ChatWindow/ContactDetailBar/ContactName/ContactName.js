@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactName = () => {
+const ContactName = (props) => {
 	return (
 		<nav className = 'clipped' style = {{
 			// backgroundColor : 'green' , 
@@ -10,7 +10,7 @@ const ContactName = () => {
 			lineHeight : '1.6em',
 			fontWeight : '340'		
 		}}>
-		John Appleseed
+		{props.name}
 		</nav>
 	);
 }

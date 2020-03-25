@@ -44,6 +44,7 @@ const ContactsWindow = (props) => {
 
 		<ChatSearch />
 		<ChatsList />
+		
 		</ProfileDrawerContext.Provider>
 		{chatWindow}
 		</div>

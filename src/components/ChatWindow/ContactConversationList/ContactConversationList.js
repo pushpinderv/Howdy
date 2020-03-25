@@ -15,6 +15,7 @@ const ContactConversationList = () => {
 		// backgroundColor : 'white', 
 		flex : 1, overflowY : 'scroll', 
 		paddingBottom : '20px'}}>
+		
 		<Bubble design = {left + first} text = "Hello"/>
 		<Bubble design = {left} text = "A!"/>
 		<Bubble design = {left} text = "B!!"/>
@@ -29,6 +30,7 @@ const ContactConversationList = () => {
 		<Bubble design = {right} text = "Yeeeee!!"/>
 		<Bubble design = {right} text = "Yeeeee!!"/>
 		<Bubble design = {right} text = "Yeeeee!!"/>
+		
 		</div>
 	);
 }

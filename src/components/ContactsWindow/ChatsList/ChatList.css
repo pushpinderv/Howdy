@@ -1,0 +1,17 @@
+.no-chats-div{
+	font-size: 0.9em;
+	margin: 1em 1em  0.6em 1em;
+	text-align : center;
+	color: grey;
+}
+
+.chat-list{
+	background-color : white; 
+	flex : 1; 
+	overflow-y : auto; 
+	padding-top : 0.2em;
+}
+
+.no-chats{
+	background-color: #f8f9fa;	
+}

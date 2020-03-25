@@ -6,6 +6,28 @@ const useAction = () => {
   const dispatch = useDispatch()
 
   const actions = useMemo(() => ({
+
+  	//Login Actions
+  	setMyID(id) {
+  		dispatch({type : constants.SET_MY_ID, value : id})
+  	},
+
+  	//Chat selection Action
+  	setChatSelected(selected) {
+  		dispatch({type : constants.SET_CHAT_SELECTED, value : selected})
+  	},
+
+  	//Chat Window action
+  	setChatUser(user) {
+  		dispatch({type : constants.SET_CHAT_USER, value : user})
+  	},
+
+  	//Chat List Actions
+  	setSearchBarVisible(visible) {
+  		dispatch({type : constants.SET_CHAT_SEARCH_VISIBLE, value : visible})
+  	},
+
+  	//Modal Actions
   	setModalContainer(view) {
 		dispatch({type : constants.SET_MODAL_CONTAINER, value : view})
     },

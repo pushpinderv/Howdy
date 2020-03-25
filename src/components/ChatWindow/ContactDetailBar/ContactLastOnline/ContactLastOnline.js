@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactLastOnline = () => {
+const ContactLastOnline = (props) => {
 	return (
 		<nav className = 'clipped' style = {{
 			// backgroundColor : 'yellow',
@@ -10,7 +10,7 @@ const ContactLastOnline = () => {
 			fontWeight : '330',
 			color : 'white'
 		}}>
-		last online at 2 pm
+		{props.lastOnline}
 		</nav>
 	);
 }

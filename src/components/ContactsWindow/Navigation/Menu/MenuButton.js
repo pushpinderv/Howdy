@@ -3,7 +3,6 @@ import React from 'react';
 import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 import logOutIcon from 'components/Common/Icons/_ionicons_svg_ios-log-out.svg';
-import {LogInContext} from 'Store';
 import useAction from 'Redux/actions/useAction';
 import {useSelector} from 'react-redux';
 import {useBoundingBox} from 'hooks/useBoundingBox';
@@ -14,14 +13,12 @@ const MenuButton = (props) => {
 
 	const myModalId = 'logout';
 
-	const [,setLogIn] = React.useContext(LogInContext);
-
-	const {setModalView,setModalOpen,setModalId} = useAction();
+	const {setModalView,setModalOpen,setModalId,setMyID} = useAction();
 	const currentModalId = useSelector(state => state.modalId);
 
 	const handleLogOut = () => {
 		console.log('MenuButton: Close Me!');
-		setLogIn(false);
+		setMyID(null);
 		setModalOpen(false);
 	};
 

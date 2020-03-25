@@ -6,10 +6,12 @@ import ContactVideoCallButton from './ContactVideoCallButton/ContactVideoCallBut
 import BackButton from '../../Common/BackButton/BackButton';
 import {ModeContext} from '../../../Store';
 import {ContactProfileDrawerContext} from 'Store';
-import {ChatDrawerContext} from 'Store';
 import './ContactDetailBar.css';
+import useAction from 'Redux/actions/useAction'; 
 
-const ContactDetailBar = () => {
+const ContactDetailBar = (props) => {
+
+	const {setChatSelected} = useAction();
 
 	const [mode] = useContext(ModeContext);
 	var backButtonDisplay = "none";
@@ -19,15 +21,14 @@ const ContactDetailBar = () => {
 	}
 
 	const [,setContactProfileDrawerOpen] = useContext(ContactProfileDrawerContext);
-	const [,setChatDrawerOpen] = useContext(ChatDrawerContext);
 
 	return (
 		<div className = 'contactDetailBar app-theme-color'>
-		<BackButton display = {backButtonDisplay} onClick = {()=>{setChatDrawerOpen(false)}}/>
-		<ContactProfilePicture onClick = {()=>setContactProfileDrawerOpen(true)}/>
+		<BackButton display = {backButtonDisplay} onClick = {()=>{setChatSelected(false)}}/>
+		<ContactProfilePicture url = {props.photo_url} onClick = {()=>setContactProfileDrawerOpen(true)}/>
 		<div className = 'contactInfo' onClick = {()=>setContactProfileDrawerOpen(true)}>
-		<ContactName />
-		<ContactLastOnline />
+		<ContactName name = {props.name} />
+		<ContactLastOnline lastOnline = {props.lastOnline} />
 		</div>
 		<ContactVideoCallButton />
 		</div>

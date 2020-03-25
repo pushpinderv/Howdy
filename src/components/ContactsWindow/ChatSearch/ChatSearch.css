@@ -1,8 +1,13 @@
 .chatSearch{
 	display : flex; 
 	padding : 0.6em 0.75em; 
-	flex : 0 0 auto; 
-	height : 3.7em;
+	flex : 0 0 auto;
+	visibility: visible;
+	height : 3.7em; 
+}
+
+.chatSearch.hidden{
+	display : none;
 }
 
 input[type = 'text'].searchBar{

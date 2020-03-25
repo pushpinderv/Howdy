@@ -21,11 +21,11 @@ const Register = (props) =>{
 		setPassword(event.target.value);
 	}
 
-	const [confirmPassword, setConfirmPassword] = useState('');
- 	const onConfirmPasswordChange = (event) => 
-	{
-		setConfirmPassword(event.target.value);
-	}
+	// const [confirmPassword, setConfirmPassword] = useState('');
+ // 	const onConfirmPasswordChange = (event) => 
+	// {
+	// 	setConfirmPassword(event.target.value);
+	// }
 
 	const handleRegister = () =>
 	{
@@ -54,7 +54,7 @@ const Register = (props) =>{
 			<input onChange = {onNameChange} className = 'register-text' placeholder = 'Name' />
 		    <input onChange = {onEmailChange} className = 'register-text' placeholder = 'Email' />
 			<input onChange = {onPasswordChange} type = 'password' className = 'register-text' placeholder = 'Password' />
-			<input onChange = {onConfirmPasswordChange} type = 'password' className = 'register-text' placeholder = 'Confirm Password' />
+			<input /*onChange = {onConfirmPasswordChange}*/ type = 'password' className = 'register-text' placeholder = 'Confirm Password' />
 		    <div className = 'register-submit' onClick = {handleRegister} >Sign Up</div>
 		    <div className = 'login-div' onClick = {props.onClick}>Have an account? Click to Log In</div>
 		</div>

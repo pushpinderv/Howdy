@@ -1,8 +1,11 @@
 import React from 'react';
 import './StickyHeaderList.css';
 import 'components/Common/UserIcon/UserIcon.css';
+import useAction from 'Redux/actions/useAction';
 
 const StickyHeaderList = (props) => {
+
+	let closeDrawer = props.onItemClick;
 
 	let recentChats = props.contactList.filter((a) => (a.time_stamp !== '' && a.time_stamp !== null)).sort((a, b) => (a.time_stamp) - (b.time_stamp)).slice(0,5);
 	// console.log(recentChats);
@@ -51,10 +54,26 @@ const StickyHeaderList = (props) => {
 	}
 
 	const ContactInfoCard = (props) => {
+		const {setChatUser, setChatSelected} = useAction();
+
+		let contactClicked = () =>
+		{
+			// console.log(props.name + props.email + props.photo_url + props.last_online);
+			setChatUser({
+				chatUserName : props.name,
+				chatUserEmail : props.email,
+				chatUserLastOnline : props.last_online,
+				chatUserPhotoUrl : props.photo_url
+			});
+
+			setChatSelected(true);
+
+			closeDrawer();
+		}
 		let detailCardClassName = 
 		props.showDivider ? 'contactDetailContainer divider' : 'contactDetailContainer'
 		return(
-			<div className = 'contactInfoCard' >
+			<div onClick = {contactClicked} className = 'contactInfoCard' >
 				<div className = 'br2 contactProfilePic' >
 					<div className = 'userHead' />
 					<div className = 'userBody' />
@@ -91,8 +110,9 @@ const StickyHeaderList = (props) => {
 				        // not last one
 				        showDivider = true;
 				    }
+				    // console.log(u);
 					return(
-						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} 
+						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp}
 						showDivider = {showDivider} />
 					);	
 			}));

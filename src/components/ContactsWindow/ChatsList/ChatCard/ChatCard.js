@@ -1,18 +1,19 @@
-import React, {useContext} from 'react';
-import {ChatDrawerContext} from 'Store';
+import React from 'react';
 import 'components/Common/UserIcon/UserIcon.css';
 import './ChatCard.css';
 import moment from 'moment';
+import useAction from 'Redux/actions/useAction';
 
 const processTimeStamp = (timeStamp) => {
 	return moment(timeStamp).format('DD/MM/YYYY');
 }
 
 const ChatCard = (props) => {
-	const [,setChatDrawerOpen] = useContext(ChatDrawerContext);
+
+    const {setChatSelected} = useAction();
 
 	return(
-		<div onClick = {()=>setChatDrawerOpen(true)} className = 'chat-card'>
+		<div onClick = {()=>setChatSelected(true)} className = 'chat-card'>
 
 				<div className = 'chat-profile-pic br2'>
 					<div className = 'userHead' />

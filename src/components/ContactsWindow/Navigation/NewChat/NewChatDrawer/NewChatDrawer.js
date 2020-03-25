@@ -5,6 +5,9 @@ import Drawer from 'components/Common/Drawer/Drawer';
 import StickyHeaderList from '../StickyHeaderList/StickyHeaderList';
 import './NewChatDrawer.css';
 
+import {useSelector} from 'react-redux';
+
+
 //Starting dummy time stamp 1581685200 = 02/14/2020 @ 1:00pm (UTC), using 5 min intervals
 	// let contactList = [
 	// 	{name :'Adam', email : 'adam@gmail.com', time_stamp : '1581688000'}, 
@@ -69,6 +72,8 @@ const SearchContactsBar = () => {
 
 const NewChatDrawer = (props) => {
 
+	let myID = useSelector(state => state.myID);
+
 	const [contactList, setContactList] = useState([]);	 
 	
 	const [drawerOpen, setDrawerOpen] = useContext(NewChatDrawerContext);
@@ -76,21 +81,15 @@ const NewChatDrawer = (props) => {
 
 	useEffect(()=>{
 			//Consider Axios as well
-		fetch('http://localhost:3001/contacts/', {
-				method : 'post',
-				headers : {'Content-Type': 'application/json'},
-				body : JSON.stringify({
-					userID: 12
-				})
-				})
+		fetch(`http://localhost:3001/contacts/${myID}`)
 		.then(response => response.json())
 		.then(response => {setContactList(response); console.log(response)})
-	},[]);
+	},[myID]);
 
 	return (
 		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
 			<SearchContactsBar />
-			<StickyHeaderList contactList = {contactList}>
+			<StickyHeaderList contactList = {contactList} onItemClick = {()=>{setDrawerOpen(false)}}>
 				<NewContactDiv setOpen = {setNewContactOpen}/>
 			</StickyHeaderList>
 			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>

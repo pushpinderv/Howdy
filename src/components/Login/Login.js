@@ -1,30 +1,31 @@
-import React , {useContext, useState} from 'react';
+import React , {useState} from 'react';
 import './Login.css';
 // import './Cloud/Cloud.css';
-import {LogInContext} from 'Store';
 import Register from './Register/Register';
+import useAction from 'Redux/actions/useAction';
 
 const Login = () =>
 {
+	const {setMyID} = useAction();
 
-	const [email, setEmail] = useState('');
+	const [email, setEmail] = useState('jane@gmail.com');
  	const onEmailChange = (event) => 
 	{
 		setEmail(event.target.value);
 	}
 
-	const [password, setPassword] = useState('');
+	const [password, setPassword] = useState('fruits');
  	const onPasswordChange = (event) => 
 	{
 		setPassword(event.target.value);
 	}
 
 	const [state, setState] = useState('login'); 
-	const [, setLogin] = useContext(LogInContext);
+
 	const handleLogin = () =>
 	{
 		console.log('Login.js : '+email + ' ' + password);
-		fetch('http://localhost:3001/signin', {
+		fetch('http://192.168.0.49:3001/signin', {
 			method : 'post',
 			headers : {'Content-Type': 'application/json'},
 			body : JSON.stringify({
@@ -35,7 +36,7 @@ const Login = () =>
 			.then(res => res.json())
 			.then(user => {
 				if(user.id){
-					setLogin(true);
+					setMyID(user.id);
 				}
 			})
 		
@@ -53,9 +54,9 @@ const Login = () =>
 		let className = (state === 'login') ? 'login-form show' : 'login-form';
 		return(
 			  <div className = {className} >
-			    <input className = 'login-text' 
+			    <input className = 'login-text' value = 'jane@gmail.com' 
 			    placeholder = 'Enter your email' onChange = {onEmailChange} />
-			    <input type = 'password' className = 'login-text' placeholder = 'Password' onChange = {onPasswordChange} />
+			    <input type = 'password' value = 'fruits' className = 'login-text' placeholder = 'Password' onChange = {onPasswordChange} />
 			    <div className = 'login-submit disable-select' onClick = {handleLogin} >Log In</div>
 			    <div className = 'register-div disable-select' onClick = {toggleForm} >New to Howdy? Create an account</div>
 			  </div>
