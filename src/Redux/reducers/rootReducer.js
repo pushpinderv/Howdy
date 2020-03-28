@@ -14,6 +14,7 @@ const initialState = {
 	chatUserLastOnline : '',
 	chatUserPhotoUrl : '',
 	chatUserEmail : '',
+	chatID : '',
 
 	//Modal State
 	modalView : null,
@@ -37,6 +38,7 @@ const rootReducer = (state = initialState, action) =>{
 			newState.chatUserLastOnline = action.value.chatUserLastOnline;
 			newState.chatUserPhotoUrl = action.value.chatUserPhotoUrl;	
 			newState.chatUserEmail = action.value.chatUserEmail;
+			newState.chatID = action.value.chatID;
 			return newState;
 
 		//Login Actions

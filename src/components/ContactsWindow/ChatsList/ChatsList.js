@@ -31,7 +31,7 @@ const ChatList = () => {
 	let chatCards = chats.map(c => {
 		let name = c.name;
 		if(name === '') name = c.email;
-		return <ChatCard key = {c.email} name = {name} message = {c.message} timeStamp = {c.time_stamp} />
+		return <ChatCard key = {c.email} name = {name} message = {c.message} timeStamp = {c.time_stamp} chatID = {c.chat_id} />
 	});
 
 	let NoChatsMessage = () => {

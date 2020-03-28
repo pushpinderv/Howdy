@@ -10,10 +10,23 @@ const processTimeStamp = (timeStamp) => {
 
 const ChatCard = (props) => {
 
-    const {setChatSelected} = useAction();
+    const {setChatSelected, setChatUser} = useAction();
+
+    const chatClicked = () => {
+    	console.log(props);
+    		setChatUser({
+				chatUserName : props.name,
+				chatUserEmail : props.email,
+				chatUserLastOnline : props.timeStamp,
+				chatUserPhotoUrl : props.photo_url,
+				chatID : props.chatID
+			});
+
+			setChatSelected(true);
+    }
 
 	return(
-		<div onClick = {()=>setChatSelected(true)} className = 'chat-card'>
+		<div onClick = {chatClicked} className = 'chat-card'>
 
 				<div className = 'chat-profile-pic br2'>
 					<div className = 'userHead' />

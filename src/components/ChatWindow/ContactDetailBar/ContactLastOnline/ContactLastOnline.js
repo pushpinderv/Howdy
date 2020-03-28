@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const ContactLastOnline = (props) => {
 	return (
@@ -10,7 +11,7 @@ const ContactLastOnline = (props) => {
 			fontWeight : '330',
 			color : 'white'
 		}}>
-		{props.lastOnline}
+		{moment(props.lastOnline).format('DD/MM/YYYY')}
 		</nav>
 	);
 }

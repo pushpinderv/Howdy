@@ -63,7 +63,8 @@ const StickyHeaderList = (props) => {
 				chatUserName : props.name,
 				chatUserEmail : props.email,
 				chatUserLastOnline : props.last_online,
-				chatUserPhotoUrl : props.photo_url
+				chatUserPhotoUrl : props.photo_url,
+				chatID : props.chatID
 			});
 
 			setChatSelected(true);
@@ -112,7 +113,7 @@ const StickyHeaderList = (props) => {
 				    }
 				    // console.log(u);
 					return(
-						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp}
+						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp} chatID = {u.chat_id}
 						showDivider = {showDivider} />
 					);	
 			}));
