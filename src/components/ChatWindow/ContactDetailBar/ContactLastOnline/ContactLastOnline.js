@@ -1,6 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
+const formattedTime = (timestamp) => {
+	if(timestamp !== null)
+	return moment(timestamp).format('DD/MM/YYYY');
+	return null;
+}
+
 const ContactLastOnline = (props) => {
 	return (
 		<nav className = 'clipped' style = {{
@@ -11,7 +17,7 @@ const ContactLastOnline = (props) => {
 			fontWeight : '330',
 			color : 'white'
 		}}>
-		{moment(props.lastOnline).format('DD/MM/YYYY')}
+		{formattedTime(props.lastOnline)}
 		</nav>
 	);
 }

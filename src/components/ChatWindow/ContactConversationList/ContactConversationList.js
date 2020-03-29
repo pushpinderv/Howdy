@@ -11,11 +11,16 @@ const ContactConversationList = (props) => {
 
 	useEffect(()=>{
 		//Consider Axios as well
+		if(chatID)
+		{
 		fetch(`http://localhost:3001/${myID}/chats/${chatID}/messages`)
 		.then(response => response.json())
 		.then(response => {
 			console.log(response)
 			setMessages(response)})
+		}
+		else setMessages([]);
+
 	},[myID, chatID]);
 
 	// let messages = [
@@ -40,10 +45,10 @@ const ContactConversationList = (props) => {
 	let messageBubbles = [];
 	if(messages !== null)
 	{
-	// messageBubbles.sort((a, b) => (a.time_stamp > b.time_stamp) ? -1 : 1);	
+	messages.reverse();	
 	messageBubbles = messages.map(m => {
 
-		let direction = m.mine ? left : right;
+		let direction = m.mine ? right : left;
 		return <Bubble key = {m.id} design = {direction} text = {m.content} />;
 
 	});
@@ -52,7 +57,7 @@ const ContactConversationList = (props) => {
 	return (
 		<div className = 'app-theme-color-lightest' style = {{display : 'flex', flexDirection : 'column', 
 		// backgroundColor : 'white', 
-		flex : 1, overflowY : 'scroll', 
+		flex : 1, overflowY : 'auto', 
 		paddingBottom : '20px'}}>
 		
 {/*		<Bubble design = {left + first} text = "Hello"/>
