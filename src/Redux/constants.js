@@ -1,3 +1,9 @@
+//Socket setting constant
+export const SET_SOCKET = 'SET_SOCKET';
+
+//API Base URL
+export const BASE_URL = 'http://localhost:3001';
+
 //Login Constants
 export const SET_MY_ID = 'SET_MY_ID';
 

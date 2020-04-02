@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import './App.css';
 import ContactsWindow from './components/ContactsWindow/ContactsWindow';
 import ChatWindow from './components/ChatWindow/ChatWindow';
@@ -9,12 +9,29 @@ import useScrollLock from 'react-use-scroll-lock';
 import Login from 'components/Login/Login';
 import GlobalOverlay from './components/GlobalOverlay/GlobalOverlay';
 import {useSelector} from 'react-redux';
+import io from 'socket.io-client';
+import {BASE_URL} from 'Redux/constants';
+import useAction from 'Redux/actions/useAction';
 
 function App() {
 
+	//Set global socket for communication with server
+	const {setSocket} = useAction();
+
+	//Fetch our user ID
+	let myID = useSelector(state => state.myID);
+
+	useEffect(()=>{
+		if(myID)
+		{
+		const socket = io(BASE_URL);
+		socket.emit('client-joined', myID);
+		setSocket(socket);
+		}
+	},[setSocket, myID]);
+	
 	useScrollLock(true);
 
-	let myID = useSelector(state => state.myID);
 	let login = myID ? true : false;
  
 	const [mode, setMode] = useContext(ModeContext);
@@ -22,10 +39,6 @@ function App() {
 	const isDesktop = useMediaPredicate('(min-width: 600px)');
 	const state = isDesktop ? 'Desktop' : 'Mobile';
 	console.log('App.js rendering..');
-
-	// fetch('http://localhost:3001/')
-	// .then(response => response.json())
-	// .then(console.log)
 
 	if(!(mode===state))
 	{

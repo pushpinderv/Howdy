@@ -7,6 +7,11 @@ const useAction = () => {
 
   const actions = useMemo(() => ({
 
+  	//Socket Action
+  	setSocket(socket) {
+  		dispatch({type : constants.SET_SOCKET, value : socket})
+  	},
+
   	//Login Actions
   	setMyID(id) {
   		dispatch({type : constants.SET_MY_ID, value : id})

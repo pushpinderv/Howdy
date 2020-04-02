@@ -2,6 +2,9 @@ import * as constants from '../constants';
 
 const initialState = {
 
+	//Socket to communicate with server
+	socket : null,
+
 	//Login State
 	myID : null,
 
@@ -26,6 +29,11 @@ const initialState = {
 const rootReducer = (state = initialState, action) =>{
 	const newState = {...state};
 	switch(action.type){
+		
+		//Socket init Action
+		case constants.SET_SOCKET:
+			newState.socket = action.value;
+			return newState;
 		
 		//Chat Selection Action
 		case constants.SET_CHAT_SELECTED:

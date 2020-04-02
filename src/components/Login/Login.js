@@ -25,7 +25,7 @@ const Login = () =>
 	const handleLogin = () =>
 	{
 		console.log('Login.js : '+email + ' ' + password);
-		fetch('http://192.168.0.49:3001/signin', {
+		fetch('http://localhost:3001/signin', {
 			method : 'post',
 			headers : {'Content-Type': 'application/json'},
 			body : JSON.stringify({
@@ -54,9 +54,9 @@ const Login = () =>
 		let className = (state === 'login') ? 'login-form show' : 'login-form';
 		return(
 			  <div className = {className} >
-			    <input className = 'login-text' value = 'jane@gmail.com' 
+			    <input className = 'login-text' value = {email} 
 			    placeholder = 'Enter your email' onChange = {onEmailChange} />
-			    <input type = 'password' value = 'fruits' className = 'login-text' placeholder = 'Password' onChange = {onPasswordChange} />
+			    <input type = 'password' value = {password} className = 'login-text' placeholder = 'Password' onChange = {onPasswordChange} />
 			    <div className = 'login-submit disable-select' onClick = {handleLogin} >Log In</div>
 			    <div className = 'register-div disable-select' onClick = {toggleForm} >New to Howdy? Create an account</div>
 			  </div>

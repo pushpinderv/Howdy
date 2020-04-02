@@ -2,16 +2,26 @@ import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import ChatCard from './ChatCard/ChatCard';
 import './ChatList.css';
+import {BASE_URL} from 'Redux/constants';
 
 const ChatList = () => {
 
 	let myID = useSelector(state => state.myID);
 
+	// let socket = useSelector(state => state.socket);
+
+	// useEffect(()=>{
+	// if(socket)
+	// socket.on('chat-message', (content) => {
+	// 	console.log(`Message : ${content}`)
+	// });
+	// },[socket]);
+
 	const [chats, setChats] = useState([]);
 
 	useEffect(()=>{
 		//Consider Axios as well
-		fetch(`http://localhost:3001/${myID}/chats`)
+		fetch(`${BASE_URL}/${myID}/chats`)
 		.then(response => response.json())
 		.then(response => {setChats(response)})
 	},[myID]);
