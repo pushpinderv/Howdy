@@ -1,3 +1,6 @@
+//Setting initial state constant
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
+
 //Socket setting constant
 export const SET_SOCKET = 'SET_SOCKET';
 
@@ -6,6 +9,9 @@ export const BASE_URL = 'http://localhost:3001';
 
 //Login Constants
 export const SET_MY_ID = 'SET_MY_ID';
+
+//Chat ID Setting constant
+export const SET_CHAT_ID = 'SET_CHAT_ID';
 
 //Chat selection Constant
 export const SET_CHAT_SELECTED = 'SET_CHAT_SELECTED';

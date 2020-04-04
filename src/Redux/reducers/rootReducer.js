@@ -17,6 +17,7 @@ const initialState = {
 	chatUserLastOnline : '',
 	chatUserPhotoUrl : '',
 	chatUserEmail : '',
+	chatUserID : '',
 	chatID : '',
 
 	//Modal State
@@ -29,6 +30,9 @@ const initialState = {
 const rootReducer = (state = initialState, action) =>{
 	const newState = {...state};
 	switch(action.type){
+		//Revert to initial state
+		case constants.SET_INITIAL_STATE:
+			return initialState;
 		
 		//Socket init Action
 		case constants.SET_SOCKET:
@@ -40,6 +44,11 @@ const rootReducer = (state = initialState, action) =>{
 			newState.chatSelected = action.value;
 			return newState;
 
+		//Chat ID setting action
+		case constants.SET_CHAT_ID:
+			newState.chatID = action.value.chatID;
+			return newState;	
+
 		//Chat User Setting Action	
 		case constants.SET_CHAT_USER:
 			newState.chatUserName = action.value.chatUserName;
@@ -47,6 +56,7 @@ const rootReducer = (state = initialState, action) =>{
 			newState.chatUserPhotoUrl = action.value.chatUserPhotoUrl;	
 			newState.chatUserEmail = action.value.chatUserEmail;
 			newState.chatID = action.value.chatID;
+			newState.chatUserID = action.value.chatUserID;
 			return newState;
 
 		//Login Actions

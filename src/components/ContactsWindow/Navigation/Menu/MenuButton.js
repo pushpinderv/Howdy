@@ -13,13 +13,12 @@ const MenuButton = (props) => {
 
 	const myModalId = 'logout';
 
-	const {setModalView,setModalOpen,setModalId,setMyID} = useAction();
+	const {setModalView,setModalOpen,setModalId,initialize} = useAction();
 	const currentModalId = useSelector(state => state.modalId);
 
 	const handleLogOut = () => {
 		console.log('MenuButton: Close Me!');
-		setMyID(null);
-		setModalOpen(false);
+		initialize();
 	};
 
 	const handleClick = event => {

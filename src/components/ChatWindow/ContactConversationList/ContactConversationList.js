@@ -1,26 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Bubble from './ContactConversationBubble/Bubble';
 import {useSelector} from 'react-redux';
 import {BASE_URL} from 'Redux/constants';
-
-let firstTime = true;
-
-const scrollToBottom = (messageListRef) => {
-	if(messageListRef && messageListRef.current)
-	{
-	if (firstTime) {
-	  console.log('one time')	
-	  messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
-	  firstTime = false;
-	} else if (messageListRef.current.scrollTop + messageListRef.current.clientHeight >= messageListRef.current.scrollHeight) {
-	  messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
-	}
-	}
-}
+import ScrollableFeed from 'react-scrollable-feed';
+import './ContactConversationList.css';
 
 const ContactConversationList = (props) => {
-
-	const messageListRef = useRef(null);
 
 	let myID = useSelector(state => state.myID);
 	let chatID = useSelector(state => state.chatID);
@@ -35,32 +20,32 @@ const ContactConversationList = (props) => {
 			// console.log(`Message : ${content}`)
 			let updatedMessages = [...messages];
 			updatedMessages.push(message);
-			updatedMessages.reverse();
 			console.log(updatedMessages);
 			setMessages(updatedMessages);
-			scrollToBottom(messageListRef)
 		});
 		},[socket, messages]);
 
 	useEffect(()=>{
 		//Consider Axios as well
+		console.log('Chat id is :',chatID);
 		if(chatID)
 		{
 		fetch(`${BASE_URL}/${myID}/chats/${chatID}/messages`)
 		.then(response => response.json())
 		.then(response => {
 			console.log(response)
+			response.reverse();
 			setMessages(response)
-			scrollToBottom(messageListRef)
 		})
 		}
 		else 
 		{
 			setMessages([]);
-
 		}
 
 	},[myID, chatID]);
+
+
 
 	// let messages = [
 	// 	{
@@ -84,7 +69,6 @@ const ContactConversationList = (props) => {
 	let messageBubbles = [];
 	if(messages !== null)
 	{
-	messages.reverse();	
 	messageBubbles = messages.map(m => {
 
 		let direction = m.mine ? right : left;
@@ -94,11 +78,19 @@ const ContactConversationList = (props) => {
 	}
 
 	return (
-		<div ref = {messageListRef} className = 'app-theme-color-lightest' style = {{display : 'flex', flexDirection : 'column', 
-		// backgroundColor : 'white', 
+
+		<div className = 'app-theme-color-lightest' style = {{display : 'flex', flexDirection : 'column', 
 		flex : 1, overflowY : 'auto', 
 		paddingBottom : '20px'}}>
-		
+
+		<ScrollableFeed className = 'scrollable-feed' animateScroll = {(element, offset) => {
+			if (element.scrollBy) {
+			  element.scrollBy({ top: offset, behavior: 'smooth' });
+			}
+			else {
+			  element.scrollTop = offset;
+			}
+		}}>
 {/*		<Bubble design = {left + first} text = "Hello"/>
 		<Bubble design = {left} text = "A!"/>
 		<Bubble design = {left} text = "B!!"/>
@@ -115,8 +107,11 @@ const ContactConversationList = (props) => {
 		<Bubble design = {right} text = "Yeeeee!!"/>*/}
 
 		{messageBubbles}
+	    </ScrollableFeed>
 
 		</div>
+
+		
 	);
 }
 

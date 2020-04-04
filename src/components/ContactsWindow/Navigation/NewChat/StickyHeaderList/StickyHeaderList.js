@@ -64,7 +64,8 @@ const StickyHeaderList = (props) => {
 				chatUserEmail : props.email,
 				chatUserLastOnline : props.last_online,
 				chatUserPhotoUrl : props.photo_url,
-				chatID : props.chatID
+				chatID : props.chatID,
+				chatUserID : props.chatUserID
 			});
 
 			setChatSelected(true);
@@ -111,9 +112,9 @@ const StickyHeaderList = (props) => {
 				        // not last one
 				        showDivider = true;
 				    }
-				    // console.log(u);
+				    console.log(u);
 					return(
-						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp} chatID = {u.chat_id}
+						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp} chatID = {u.chat_id} chatUserID = {u.user_id}
 						showDivider = {showDivider} />
 					);	
 			}));

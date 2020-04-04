@@ -6,6 +6,15 @@ const useAction = () => {
   const dispatch = useDispatch()
 
   const actions = useMemo(() => ({
+  	//Set chat ID Action
+  	setChatID(chatID) {
+  		dispatch({type : constants.SET_CHAT_ID, value : chatID})
+  	},
+
+  	//Initialize App Action
+  	initialize() {
+  		dispatch({type : constants.SET_INITIAL_STATE})
+  	},
 
   	//Socket Action
   	setSocket(socket) {

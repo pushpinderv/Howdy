@@ -2,11 +2,15 @@ import React, {useState} from 'react';
 import './SendMessageBar.css';
 import {useSelector} from 'react-redux';
 import {BASE_URL} from 'Redux/constants';
+import useAction from 'Redux/actions/useAction';
 
 const SendMessageBar = (props) => {
 
 	let myID = useSelector(state => state.myID);
 	let chatID = useSelector(state => state.chatID);
+	let chatUserID = useSelector(state => state.chatUserID);
+
+	const {setChatID} = useAction();
 
 	const [message, setMessage] = useState('');
 
@@ -15,14 +19,24 @@ const SendMessageBar = (props) => {
 	}
 
 	const handleSendClicked = (event) => {
-	console.log(myID);
+	console.log('chat id is:',chatID);
 
+	if(chatID)
+	{	
 	sendMessage(myID, chatID, message);
+	}
+	else
+	{
+	console.log('creating chat..');
+	console.log('chat user id is:',chatUserID);	
+	createChatAndSendMessage(chatUserID , myID, message);
+	}
+
 	event.target.value = '';
 	setMessage('');
 	}
 
-	const createChat = (otherParticipantID, requestorID) => {
+	const createChatAndSendMessage = (otherParticipantID, requestorID, message) => {
 		const options = {
 	        method: 'POST',
 	        headers: { 'Content-Type': 'application/json' },
@@ -35,7 +49,9 @@ const SendMessageBar = (props) => {
 	    fetch(`${BASE_URL}/chats`, options)
 	        .then(response => response.json())
 	        .then(response => {
-	        	chatID = response.chatID;
+	        	console.log('Response is: ',response);
+	        	setChatID(response.chat_id);
+	        	sendMessage(requestorID, response.chat_id, message);
 	        });
 	}
 
