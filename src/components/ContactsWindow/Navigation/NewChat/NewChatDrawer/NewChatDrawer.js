@@ -4,35 +4,9 @@ import {NewChatDrawerContext} from 'Store';
 import Drawer from 'components/Common/Drawer/Drawer';
 import StickyHeaderList from '../StickyHeaderList/StickyHeaderList';
 import './NewChatDrawer.css';
+import {BASE_URL} from 'Redux/constants';
 
 import {useSelector} from 'react-redux';
-
-
-//Starting dummy time stamp 1581685200 = 02/14/2020 @ 1:00pm (UTC), using 5 min intervals
-	// let contactList = [
-	// 	{name :'Adam', email : 'adam@gmail.com', time_stamp : '1581688000'}, 
-	// 	{name :'Bob', email : 'bob@gmail.com', time_stamp : '1581685500'}, 
-	// 	{name :'Bane', email : 'bane@gmail.com', time_stamp : '1581686400'}, 
-	// 	{name :'Bruce', email : 'bruce@gmail.com', time_stamp : '1581687000'}, 
-	// 	{name :'Clark', email : 'clark@gmail.com', time_stamp : '1581685800'}, 
-	// 	{name :'Cain', email : 'cain@gmail.com', time_stamp : '1581686700'}, 
-	// 	{name :'David', email : 'david@gmail.com', time_stamp : '1581686100'}, 
-	// 	{name :'Dante', email : 'dante@gmail.com', time_stamp : '1581687300'}, 
-	// 	{name :'Earl', email : 'earl@gmail.com', time_stamp : '1581687400'}, 
-	// 	{name :'Eric', email : 'eric@gmail.com', time_stamp : '1581687700'},
-	// 	{name : '', email : 'barry@gmail.com', time_stamp : '1581685200'},
-	// 	{name : '', email : 'thawne@gmail.com', time_stamp : '1581688300'},
-	// 	{name : 'Mar Novu', email : 'monitor@gmail.com', time_stamp : '', photo_url : ''}
-	// ];
-
-	// 	let contactList = [
-	// 	{name :'Bruce', email : 'bruce@gmail.com', time_stamp : '1581687000'},
-	// 	{name : 'Mar Novu', email : 'monitor@gmail.com', time_stamp : '', photo_url : ''},
-	// 	{name : 'Oliver Queen', email : 'arrow@gmail.com', time_stamp : '', photo_url : ''},
-	// 	{name : '', email : 'firestorm@gmail.com', time_stamp : '', photo_url : ''}
-	// ];
-
-
 
 const NewContactDiv = (props) => {
 	return(
@@ -79,11 +53,46 @@ const NewChatDrawer = (props) => {
 	const [drawerOpen, setDrawerOpen] = useContext(NewChatDrawerContext);
 	const [newContactOpen, setNewContactOpen] = useState(false);
 
+	const [contactName, setContactName] = useState('');
+	const onContactNameChange = (event) => 
+	{
+		setContactName(event.target.value);
+	}
+
+	const [contactEmail, setContactEmail] = useState('');
+	const onContactEmailChange = (event) => 
+	{
+		setContactEmail(event.target.value);
+	}
+
+	const createContactClicked = () => {
+		const options = {
+	        method: 'PUT',
+	        headers: { 'Content-Type': 'application/json' },
+	        body: JSON.stringify
+	        ({
+	        	"contactName" : contactName, 
+	        	"contactEmail" : contactEmail
+	        })
+	    };
+	    fetch(`${BASE_URL}/contacts/${myID}`, options)
+	        .then(response => response.json())
+	        .then(response => {
+	        	setContactList(response);
+	        	setNewContactOpen(false); 
+	        });
+	}
+
+
 	useEffect(()=>{
-			//Consider Axios as well
+		
+		//Consider Axios as well
 		fetch(`http://localhost:3001/contacts/${myID}`)
 		.then(response => response.json())
-		.then(response => {setContactList(response); console.log(response)})
+		.then(response => {
+			setContactList(response); 
+		// console.log(response)
+		})
 	},[myID]);
 
 	return (
@@ -100,15 +109,15 @@ const NewChatDrawer = (props) => {
 					justifyContent : 'space-around'}}>
 						<div style = {{fontSize : '1em', lineHeight : '2em', fontWeight : '480', 
 						height : '2em', width : '2.5em', flex : '0 0 2.5em', textAlign : 'right', marginTop : '0.8em'}}>Name</div>
-						<input className = 'textInput' type = 'text' />
+						<input onChange = {onContactNameChange} className = 'textInput' type = 'text' />
 					</div>
 					<div style = {{display : 'flex',
 					justifyContent : 'space-around', marginTop : '1.2em'}}>
 						<div style = {{fontSize : '1em', lineHeight : '2em', fontWeight : '480',
 						height : '2em', width : '2.5em', flex : '0 0 2.5em', textAlign : 'right'}}>Email</div>
-						<input className = 'textInput' type = 'text' />
+						<input onChange = {onContactEmailChange} className = 'textInput' type = 'text' />
 					</div>
-					<div onClick = {()=>{console.log('NewChatDrawer: Create contact clicked!')}} className = 'br2 createButton'>Create Contact</div>
+					<div onClick = {createContactClicked} className = 'br2 createButton'>Create Contact</div>
 				</div>
 			</Drawer>
 		</Drawer>
