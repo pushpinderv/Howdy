@@ -7,6 +7,9 @@ export const useSubscribeToMessages = (myID, chatID, socket) => {
 
 	useEffect(()=>{
 
+		//Logging
+		console.log('Use effect:', myID , chatID);
+
 		//Consider Axios as well
 		if(chatID && socket && myID)
 		{

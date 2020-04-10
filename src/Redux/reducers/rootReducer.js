@@ -18,7 +18,7 @@ const initialState = {
 	chatUserPhotoUrl : '',
 	chatUserEmail : '',
 	chatUserID : '',
-	chatID : '',
+	chatID : null,
 
 	//Modal State
 	modalView : null,
@@ -46,7 +46,7 @@ const rootReducer = (state = initialState, action) =>{
 
 		//Chat ID setting action
 		case constants.SET_CHAT_ID:
-			newState.chatID = action.value.chatID;
+			newState.chatID = action.value;
 			return newState;	
 
 		//Chat User Setting Action	

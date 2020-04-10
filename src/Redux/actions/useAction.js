@@ -8,6 +8,7 @@ const useAction = () => {
   const actions = useMemo(() => ({
   	//Set chat ID Action
   	setChatID(chatID) {
+  		console.log('useAction: Chat id is being set to ', chatID);
   		dispatch({type : constants.SET_CHAT_ID, value : chatID})
   	},
 

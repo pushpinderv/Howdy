@@ -1,71 +1,26 @@
 import React, {useState} from 'react';
 import './SendMessageBar.css';
 import {useSelector} from 'react-redux';
-import {BASE_URL} from 'Redux/constants';
-import useAction from 'Redux/actions/useAction';
+import {useSendMessage} from 'hooks/useSendMessage';
 
 const SendMessageBar = (props) => {
 
-	let myID = useSelector(state => state.myID);
+	let requestorID = useSelector(state => state.myID);
 	let chatID = useSelector(state => state.chatID);
-	let chatUserID = useSelector(state => state.chatUserID);
-
-	const {setChatID} = useAction();
+	let otherParticipantID = useSelector(state => state.chatUserID);
 
 	const [message, setMessage] = useState('');
+
+	const [send] = useSendMessage();
 
 	const messageChanged = (event) => {
 		setMessage(event.target.value);
 	}
 
 	const handleSendClicked = (event) => {
-	console.log('chat id is:',chatID);
-
-	if(chatID)
-	{	
-	sendMessage(myID, chatID, message);
-	}
-	else
-	{
-	console.log('creating chat..');
-	console.log('chat user id is:',chatUserID);	
-	createChatAndSendMessage(chatUserID , myID, message);
-	}
-
+	send(otherParticipantID, requestorID, message, chatID);
 	event.target.value = '';
 	setMessage('');
-	}
-
-	const createChatAndSendMessage = (otherParticipantID, requestorID, message) => {
-		const options = {
-	        method: 'POST',
-	        headers: { 'Content-Type': 'application/json' },
-	        body: JSON.stringify
-	        ({
-	        	"otherParticipantID" : otherParticipantID, 
-	        	"requestorID" : requestorID
-	        })
-	    };
-	    fetch(`${BASE_URL}/chats`, options)
-	        .then(response => response.json())
-	        .then(response => {
-	        	console.log('Response is: ',response);
-	        	setChatID(response.chat_id);
-	        	sendMessage(requestorID, response.chat_id, message);
-	        });
-	}
-
-	const sendMessage = (myID, chatID, message) => {
-
-		const options = {
-	        method: 'POST',
-	        headers: { 'Content-Type': 'application/json' },
-	        body: JSON.stringify({ userID: myID, content: message })
-	    };
-	    fetch(`${BASE_URL}/chats/${chatID}/messages`, options)
-	        .then(response => response.json())
-	        .then(console.log);
-
 	}
 
 	return (

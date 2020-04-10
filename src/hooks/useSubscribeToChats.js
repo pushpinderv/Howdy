@@ -25,6 +25,26 @@ function compareValues(key, order = 'asc') {
   };
 }
 
+function pushToArray(arr, message) {
+    const index = arr.findIndex((e) => Number(e.chat_id) === Number(message.chat_id));
+
+    if (index === -1) {
+
+    	let chat = {
+    		email : "dummy@gmail.com",
+    		message : message.content,
+    		time_stamp : message.time_stamp,
+    		name : "",
+    		chat_id : message.chat_id
+    	};
+        arr.push(chat);
+    } else {
+        arr[index] = {...arr[index], time_stamp: message.created_at, message : message.content};
+    }
+
+    return arr;
+}
+
 export const useSubscribeToChats = (myID, socket) => {
 
 	const [chats, setChats] = useState([]);
@@ -43,9 +63,15 @@ export const useSubscribeToChats = (myID, socket) => {
 
 			//Listen for realtime messages
 			socket.on('chat-message', (message) => {
+				console.log('useSubscribeToChats :', message);
 				setChats(chats => {
-					let updatedChats = [...chats].map(el => Number(el.chat_id) === Number(message.chat_id) ? {...el, time_stamp: message.created_at, message : message.content} : el);
+					
+					// let updatedChats = [...chats].map(el => Number(el.chat_id) === Number(message.chat_id) ? {...el, time_stamp: message.created_at, message : message.content} : el);
+
+					let updatedChats = pushToArray([...chats], message);
+
 					updatedChats.sort(compareValues('time_stamp', 'desc'));
+
 					return updatedChats;
 				})
 			});

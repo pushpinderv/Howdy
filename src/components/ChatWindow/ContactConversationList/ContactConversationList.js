@@ -1,15 +1,17 @@
 import React from 'react';
 import Bubble from './ContactConversationBubble/Bubble';
-import {useSelector} from 'react-redux';
 import ScrollableFeed from 'react-scrollable-feed';
 import './ContactConversationList.css';
 import {useSubscribeToMessages} from 'hooks/useSubscribeToMessages';
+import {useSelector} from 'react-redux';
 
-const ContactConversationList = (props) => {
+const ContactConversationList = () => {
 
 	let myID = useSelector(state => state.myID);
 	let chatID = useSelector(state => state.chatID);
 	let socket = useSelector(state => state.socket);
+
+	console.log('Chat ID now changed to :', chatID);
 
 	const [messages] = useSubscribeToMessages(myID, chatID, socket);
 
@@ -44,7 +46,7 @@ const ContactConversationList = (props) => {
 			  element.scrollTop = offset;
 			}
 		}}>
-		
+
 {/*		<Bubble design = {left + first} text = "Hello"/>
 		<Bubble design = {left} text = "A!"/>
 		<Bubble design = {left} text = "B!!"/>

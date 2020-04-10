@@ -78,6 +78,7 @@ const NewChatDrawer = (props) => {
 	    fetch(`${BASE_URL}/contacts/${myID}`, options)
 	        .then(response => response.json())
 	        .then(response => {
+	        	console.log('Contacts now:', response);
 	        	setContactList(response);
 	        	setNewContactOpen(false); 
 	        });
