@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Register.css';
+import {BASE_URL} from 'Redux/constants';
 
 const Register = (props) =>{
 
@@ -30,7 +31,7 @@ const Register = (props) =>{
 	const handleRegister = () =>
 	{
 		console.log('Register.js : '+email + ' ' + password);
-		fetch('http://localhost:3001/register', {
+		fetch(`${BASE_URL}/register`, {
 			method : 'post',
 			headers : {'Content-Type': 'application/json'},
 			body : JSON.stringify({

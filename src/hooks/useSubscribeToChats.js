@@ -1,5 +1,6 @@
 import {BASE_URL} from 'Redux/constants';
 import { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 
 function compareValues(key, order = 'asc') {
   return function innerSort(a, b) {
@@ -28,32 +29,60 @@ function compareValues(key, order = 'asc') {
 function pushToArray(arr, message) {
     const index = arr.findIndex((e) => Number(e.chat_id) === Number(message.chat_id));
 
-    if (index === -1) {
+    if (index === -1) 
+    {
 
     	let chat = {
-    		email : "dummy@gmail.com",
+    		email : message.email,
     		message : message.content,
-    		time_stamp : message.time_stamp,
-    		name : "",
+    		time_stamp : message.created_at,
+    		name : message.name,
     		chat_id : message.chat_id
     	};
         arr.push(chat);
-    } else {
+    } 
+    else 
+    {
         arr[index] = {...arr[index], time_stamp: message.created_at, message : message.content};
     }
+
+    arr.sort(compareValues('time_stamp', 'desc'));
 
     return arr;
 }
 
-export const useSubscribeToChats = (myID, socket) => {
+export const useSubscribeToChats = () => {
 
 	const [chats, setChats] = useState([]);
+
+  let myID = useSelector(state => state.myID);
+
+  let socket = useSelector(state => state.socket);
+
+  const handleMessage = (message) => {
+        console.log('useSubscribeToChats :', message);
+        setChats(chats => {
+          
+          // let updatedChats = [...chats].map(el => Number(el.chat_id) === Number(message.chat_id) ? {...el, time_stamp: message.created_at, message : message.content} : el);
+
+          let updatedChats = pushToArray([...chats], message);
+
+          return updatedChats;
+        })
+      };
 
 	//Fetch Chats
 	useEffect(()=>{
 
 		if(myID && socket)
 		{	
+
+    //Socket Cleanup
+    socket.off('chat-message', handleMessage); 
+
+    console.log('useSubscribeToChats', 'Stopped listening for chats ...');
+
+    
 		//Consider Axios as well
 		fetch(`${BASE_URL}/${myID}/chats`)
 		.then(response => response.json())
@@ -62,19 +91,9 @@ export const useSubscribeToChats = (myID, socket) => {
 			setChats(response)
 
 			//Listen for realtime messages
-			socket.on('chat-message', (message) => {
-				console.log('useSubscribeToChats :', message);
-				setChats(chats => {
-					
-					// let updatedChats = [...chats].map(el => Number(el.chat_id) === Number(message.chat_id) ? {...el, time_stamp: message.created_at, message : message.content} : el);
+			socket.on('chat-message', handleMessage);
 
-					let updatedChats = pushToArray([...chats], message);
-
-					updatedChats.sort(compareValues('time_stamp', 'desc'));
-
-					return updatedChats;
-				})
-			});
+      console.log('useSubscribeToChats', 'Listening for chats ...');
 
 		})
 		}

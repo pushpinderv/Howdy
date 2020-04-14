@@ -3,6 +3,7 @@ import './Login.css';
 // import './Cloud/Cloud.css';
 import Register from './Register/Register';
 import useAction from 'Redux/actions/useAction';
+import {BASE_URL} from 'Redux/constants';
 
 const Login = () =>
 {
@@ -25,7 +26,7 @@ const Login = () =>
 	const handleLogin = () =>
 	{
 		console.log('Login.js : '+email + ' ' + password);
-		fetch('http://localhost:3001/signin', {
+		fetch(`${BASE_URL}/signin`, {
 			method : 'post',
 			headers : {'Content-Type': 'application/json'},
 			body : JSON.stringify({

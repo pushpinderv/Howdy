@@ -1,5 +1,5 @@
 import React from 'react';
-import 'components/Common/UserIcon/UserIcon.css';
+import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ChatCard.css';
 import moment from 'moment';
 import useAction from 'Redux/actions/useAction';
@@ -28,11 +28,9 @@ const ChatCard = (props) => {
 	return(
 		<div onClick = {chatClicked} className = 'chat-card'>
 
-				<div className = 'chat-profile-pic br2'>
-					<div className = 'userHead' />
-					<div className = 'userBody' />
-					<div className = 'bottomLine' />
-				</div>
+				<UserIcon 
+					height = '3.2em' width = '3.2em' 
+					margin = 'auto 0 auto 1.15em'/>
 
 				<div className = 'chat-userdata-container' >
 					

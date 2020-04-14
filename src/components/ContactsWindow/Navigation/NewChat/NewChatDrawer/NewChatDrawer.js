@@ -88,7 +88,7 @@ const NewChatDrawer = (props) => {
 	useEffect(()=>{
 		
 		//Consider Axios as well
-		fetch(`http://localhost:3001/contacts/${myID}`)
+		fetch(`${BASE_URL}/contacts/${myID}`)
 		.then(response => response.json())
 		.then(response => {
 			setContactList(response); 

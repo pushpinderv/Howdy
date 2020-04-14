@@ -3,7 +3,8 @@ import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
 
 const ProfilePicMenu = (props) => {
-	const fileSelectedHandler = (event) =>{
+	const fileSelectedHandler = (event) =>
+	{
 		console.log(event.target.files[0]);
 	}
 	return(<Menu width = '140px'>

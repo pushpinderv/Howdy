@@ -15,7 +15,7 @@ export const useSendMessage = () => {
 	        	"requestorID" : requestorID
 	        })
 	    };
-	    return fetch(`${BASE_URL}/chats`, options)
+	    fetch(`${BASE_URL}/chats`, options)
 	        .then(response => response.json())
 	        .then(json => {
 
@@ -45,16 +45,20 @@ export const useSendMessage = () => {
 
 	console.log('chat id is:',chatID);
 	
-	if(chatID)
+	if(message.length)
 	{	
-	sendMessage(requestorID, chatID, message);
+		if(chatID)
+		{	
+		sendMessage(requestorID, chatID, message);
+		}
+		else
+		{
+		console.log('creating chat..');
+		console.log('chat user id is:',otherParticipantID);	
+		createChatAndSendMessage(otherParticipantID , requestorID, message);
+		}
 	}
-	else
-	{
-	console.log('creating chat..');
-	console.log('chat user id is:',otherParticipantID);	
-	createChatAndSendMessage(otherParticipantID , requestorID, message);
-	}
+
 	}
 
 	return [send];
