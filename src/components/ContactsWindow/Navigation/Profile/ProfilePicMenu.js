@@ -1,11 +1,24 @@
 import React from 'react';
 import Menu from 'components/Common/Menu/Menu';
 import MenuItem from 'components/Common/Menu/MenuItem/MenuItem';
+import uploadProfilePhoto from 'api/uploadProfilePhoto';
+import {useSelector} from 'react-redux';
+import useAction from 'Redux/actions/useAction';
 
 const ProfilePicMenu = (props) => {
+
+	let myID = useSelector(state => state.myID);
+
+	const {setModalOpen, setProfilePhotoUrl} = useAction();
+
 	const fileSelectedHandler = (event) =>
 	{
-		console.log(event.target.files[0]);
+		let file = event.target.files[0];
+		console.log(file);
+		uploadProfilePhoto(myID, file)
+			.then(setModalOpen(false))
+			.then(setProfilePhotoUrl);
+
 	}
 	return(<Menu width = '140px'>
 	      			<MenuItem>View</MenuItem>

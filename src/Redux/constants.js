@@ -10,6 +10,9 @@ export const BASE_URL = 'http://howdy.ddns.net:3001';
 //Login Constants
 export const SET_MY_ID = 'SET_MY_ID';
 
+//Profile Constants
+export const SET_PROFILE_PHOTO_URL = 'SET_PROFILE_PHOTO_URL';
+
 //Chat ID Setting constant
 export const SET_CHAT_ID = 'SET_CHAT_ID';
 

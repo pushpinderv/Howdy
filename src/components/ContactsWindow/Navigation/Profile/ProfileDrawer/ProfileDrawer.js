@@ -17,6 +17,10 @@ const ProfileDrawer = (props) => {
 	const {setModalView,setModalOpen,setModalId,setModalContainer} = useAction();
     const currentModalId = useSelector(state => state.modalId);
 
+    const profilePhotoUrl = useSelector(state => state.myPhotoUrl);
+
+    console.log('ProfileDrawer : Photo Url', profilePhotoUrl);
+
 	const onUserIconClick = () =>
 	{
 		setModalId(myModalId);
@@ -24,7 +28,7 @@ const ProfileDrawer = (props) => {
 	}
 
 	const MenuContainerDiv = <div ref = {ref} className = 'picAndMenuContainer'>
-					<UserIcon onClick = {onUserIconClick} height = '10em' width = '10em' />
+					<UserIcon url = {profilePhotoUrl} onClick = {onUserIconClick} height = '10em' width = '10em' />
 				</div>;
 
 	const PhantomContainer = (props) => {
@@ -87,10 +91,6 @@ const ProfileDrawer = (props) => {
 			return (<><UsernameDiv /><PencilIcon /></>);
 		}
 	}
-
-	// const hidePictureMenu = () =>{
-	// 	setPictureSelectMenuOpen(false);
-	// }
 
 	const onEditClick = () => {
 		setEnableNameEdit(true);

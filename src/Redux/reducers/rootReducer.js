@@ -8,6 +8,9 @@ const initialState = {
 	//Login State
 	myID : null,
 
+	//Profile State
+	myPhotoUrl : '',
+
 	//Chat List State
 	chatSearchBarVisible : false,
 
@@ -33,6 +36,11 @@ const rootReducer = (state = initialState, action) =>{
 		//Revert to initial state
 		case constants.SET_INITIAL_STATE:
 			return initialState;
+
+		//Profile Photo Url Setting Action
+		case constants.SET_PROFILE_PHOTO_URL:
+			newState.myPhotoUrl = action.value;
+			return newState;	
 		
 		//Socket init Action
 		case constants.SET_SOCKET:

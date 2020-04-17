@@ -6,6 +6,12 @@ const useAction = () => {
   const dispatch = useDispatch()
 
   const actions = useMemo(() => ({
+
+    //Set my Profile photo url
+    setProfilePhotoUrl(myPhotoUrl) {
+      dispatch({type : constants.SET_PROFILE_PHOTO_URL, value : myPhotoUrl})
+    },
+
   	//Set chat ID Action
   	setChatID(chatID) {
   		console.log('useAction: Chat id is being set to ', chatID);
