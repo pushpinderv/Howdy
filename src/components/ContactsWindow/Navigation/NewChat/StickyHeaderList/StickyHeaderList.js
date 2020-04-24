@@ -2,6 +2,7 @@ import React from 'react';
 import './StickyHeaderList.css';
 import 'components/Common/UserIcon/UserIcon.css';
 import useAction from 'Redux/actions/useAction';
+import UserIcon from 'components/Common/UserIcon/UserIcon';
 
 const StickyHeaderList = (props) => {
 
@@ -76,11 +77,7 @@ const StickyHeaderList = (props) => {
 		props.showDivider ? 'contactDetailContainer divider' : 'contactDetailContainer'
 		return(
 			<div onClick = {contactClicked} className = 'contactInfoCard' >
-				<div className = 'br2 contactProfilePic' >
-					<div className = 'userHead' />
-					<div className = 'userBody' />
-					<div className = 'bottomLine' />
-				</div>
+				<UserIcon width = '3em' height = '3em' margin = '0.5em 0 0.5em 0.8em' url = {props.photo_url}/>
 			<div className = {detailCardClassName}>
 				<div className = 'contactDisplayIdentifier'>{props.displayIdentifier}</div>
 			</div>	

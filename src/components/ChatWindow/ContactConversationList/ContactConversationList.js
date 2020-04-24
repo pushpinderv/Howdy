@@ -8,19 +8,36 @@ const ContactConversationList = () => {
 
 	const [messages] = useSubscribeToMessages();
 
-	var left = "talk-bubble round left-top left";
-	var right = "talk-bubble round right-top right";
+	let left = "talk-bubble round left-top left";
+	let right = "talk-bubble round right-top right";
 
-	// var info = "talk-bubble round center info";
-	// var first = " tri-right first";
+	let info = "talk-bubble round center info";
+	let first = " tri-right first";
 
 	let messageBubbles = [];
 	if(messages !== null)
 	{
-	messageBubbles = messages.map(m => {
+	messageBubbles = messages.map((m, index, arr) => {
 
+		if(m.info)
+		{
+			return <Bubble key = {m.id} design = {info} text = {m.content} />;
+		}
+
+		else {
 		let direction = m.mine ? right : left;
-		return <Bubble key = {m.id} design = {direction} text = {m.content} />;
+
+		if(index === 1)
+			direction = direction + first;
+
+		if((index-1) && messages[index - 1])
+		{
+			if(messages[index - 1].mine !== m.mine)
+				direction = direction + first;
+		}
+
+			return <Bubble key = {m.id} design = {direction} text = {m.content} time_stamp = {m.created_at}/>;
+		}
 
 	});
 	}

@@ -7,6 +7,21 @@ const useAction = () => {
 
   const actions = useMemo(() => ({
 
+    //Set Chats
+    setChats(chats) {
+      dispatch({type : constants.SET_CHATS, value : chats})
+    },
+
+    //Set Contacts
+    setContacts(contacts) {
+      dispatch({type : constants.SET_CONTACTS, value : contacts})
+    },
+
+    //Set my Profile user name
+    setProfileUserName(myUserName) {
+      dispatch({type : constants.SET_PROFILE_USERNAME, value : myUserName})
+    },    
+
     //Set my Profile photo url
     setProfilePhotoUrl(myPhotoUrl) {
       dispatch({type : constants.SET_PROFILE_PHOTO_URL, value : myPhotoUrl})
@@ -38,10 +53,14 @@ const useAction = () => {
   		dispatch({type : constants.SET_CHAT_SELECTED, value : selected})
   	},
 
-  	//Chat Window action
+  	//Chat Window actions
   	setChatUser(user) {
   		dispatch({type : constants.SET_CHAT_USER, value : user})
   	},
+
+    setChatUserName(name) {
+      dispatch({type : constants.SET_CHAT_USERNAME, value : name})
+    },
 
   	//Chat List Actions
   	setSearchBarVisible(visible) {

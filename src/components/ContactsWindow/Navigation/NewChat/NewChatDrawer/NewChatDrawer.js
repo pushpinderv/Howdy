@@ -1,12 +1,15 @@
-import React, {useContext,useState,useEffect} from 'react';
+import React, {useContext,useState} from 'react';
 
 import {NewChatDrawerContext} from 'Store';
 import Drawer from 'components/Common/Drawer/Drawer';
 import StickyHeaderList from '../StickyHeaderList/StickyHeaderList';
 import './NewChatDrawer.css';
-import {BASE_URL} from 'Redux/constants';
 
 import {useSelector} from 'react-redux';
+
+import createContact from 'api/contacts/createContact';
+
+import {useSubscribeToContacts} from 'hooks/useSubscribeToContacts';
 
 const NewContactDiv = (props) => {
 	return(
@@ -48,7 +51,7 @@ const NewChatDrawer = (props) => {
 
 	let myID = useSelector(state => state.myID);
 
-	const [contactList, setContactList] = useState([]);	 
+	const [contacts] = useSubscribeToContacts();	 
 	
 	const [drawerOpen, setDrawerOpen] = useContext(NewChatDrawerContext);
 	const [newContactOpen, setNewContactOpen] = useState(false);
@@ -66,40 +69,23 @@ const NewChatDrawer = (props) => {
 	}
 
 	const createContactClicked = () => {
-		const options = {
-	        method: 'PUT',
-	        headers: { 'Content-Type': 'application/json' },
-	        body: JSON.stringify
-	        ({
-	        	"contactName" : contactName, 
-	        	"contactEmail" : contactEmail
-	        })
-	    };
-	    fetch(`${BASE_URL}/contacts/${myID}`, options)
-	        .then(response => response.json())
+		
+		createContact(myID, contactName, contactEmail)
 	        .then(response => {
 	        	console.log('Contacts now:', response);
-	        	setContactList(response);
+	        	
+	        	//Commented to handle later
+	        	//setContactList(response);
+
 	        	setNewContactOpen(false); 
 	        });
+
 	}
-
-
-	useEffect(()=>{
-		
-		//Consider Axios as well
-		fetch(`${BASE_URL}/contacts/${myID}`)
-		.then(response => response.json())
-		.then(response => {
-			setContactList(response); 
-		// console.log(response)
-		})
-	},[myID]);
 
 	return (
 		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
 			<SearchContactsBar />
-			<StickyHeaderList contactList = {contactList} onItemClick = {()=>{setDrawerOpen(false)}}>
+			<StickyHeaderList contactList = {contacts} onItemClick = {()=>{setDrawerOpen(false)}}>
 				<NewContactDiv setOpen = {setNewContactOpen}/>
 			</StickyHeaderList>
 			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>

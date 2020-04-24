@@ -30,7 +30,7 @@ const ChatWindow = (props) => {
 	let windowContents;
 
 		windowContents = <ContactProfileDrawerContext.Provider value = {[contactProfileDrawerOpen, setContactProfileDrawerOpen]}>
-			<ContactProfileDrawer />
+			<ContactProfileDrawer lastOnline = {useSelector(state => state.chatUserLastOnline)} photo_url = {useSelector(state => state.chatUserPhotoUrl)} />
 			<ContactDetailBar name = {useSelector(state => state.chatUserName)} lastOnline = {useSelector(state => state.chatUserLastOnline)} photo_url = {useSelector(state => state.chatUserPhotoUrl)}/>
 			<ContactConversationList />
 			<SendMessageBar />

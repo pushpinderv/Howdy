@@ -1,3 +1,8 @@
+//Pub Sub Constants
+export const CONTACT_UPDATED_TOPIC = 'CONTACT_UPDATED_TOPIC';
+
+export const CONTACT_CREATED_TOPIC = 'CONTACT_CREATED_TOPIC';
+
 //Setting initial state constant
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
 
@@ -10,8 +15,14 @@ export const BASE_URL = 'http://howdy.ddns.net:3001';
 //Login Constants
 export const SET_MY_ID = 'SET_MY_ID';
 
+//API result holding Constants
+export const SET_CHATS = 'SET_CHATS';
+
+export const SET_CONTACTS = 'SET_CONTACTS';
+
 //Profile Constants
 export const SET_PROFILE_PHOTO_URL = 'SET_PROFILE_PHOTO_URL';
+export const SET_PROFILE_USERNAME = 'SET_PROFILE_USERNAME';
 
 //Chat ID Setting constant
 export const SET_CHAT_ID = 'SET_CHAT_ID';
@@ -21,6 +32,9 @@ export const SET_CHAT_SELECTED = 'SET_CHAT_SELECTED';
 
 //Chat user setting constant
 export const SET_CHAT_USER = 'SET_CHAT_USER';
+
+//Chat username state constant
+export const SET_CHAT_USERNAME = 'SET_CHAT_USERNAME';
 
 //Chat list Constants
 export const SET_CHAT_SEARCH_VISIBLE = 'SET_CHAT_SEARCH_VISIBLE';

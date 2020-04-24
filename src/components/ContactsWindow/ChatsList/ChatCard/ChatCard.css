@@ -8,6 +8,10 @@
 	border-bottom : 1px solid #f2f2f2;
 }
 
+.chat-card.selected{
+	background-color: #e6e6e6;
+}
+
 .chat-profile-pic{
 	background-color : #dfe5e7; 
 	height : 3.3em; 

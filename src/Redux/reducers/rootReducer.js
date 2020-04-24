@@ -2,6 +2,12 @@ import * as constants from '../constants';
 
 const initialState = {
 
+	//Chats List
+	chatsList : [],
+
+	//Contact List
+	contactList : [],
+
 	//Socket to communicate with server
 	socket : null,
 
@@ -9,6 +15,7 @@ const initialState = {
 	myID : null,
 
 	//Profile State
+	myUserName : '',
 	myPhotoUrl : '',
 
 	//Chat List State
@@ -33,9 +40,25 @@ const initialState = {
 const rootReducer = (state = initialState, action) =>{
 	const newState = {...state};
 	switch(action.type){
+
 		//Revert to initial state
 		case constants.SET_INITIAL_STATE:
 			return initialState;
+
+		//Chats setting Action
+		case constants.SET_CHATS:
+			newState.chats = action.value;
+			return newState;
+
+		//Contacts setting Action
+		case constants.SET_CONTACTS:
+			newState.contacts = action.value;
+			return newState;		
+
+		//Profile User Name Setting Action
+		case constants.SET_PROFILE_USERNAME:
+			newState.myUserName = action.value;
+			return newState;	
 
 		//Profile Photo Url Setting Action
 		case constants.SET_PROFILE_PHOTO_URL:
@@ -66,6 +89,11 @@ const rootReducer = (state = initialState, action) =>{
 			newState.chatID = action.value.chatID;
 			newState.chatUserID = action.value.chatUserID;
 			return newState;
+
+		//Chat User Name Setting Action
+		case constants.SET_CHAT_USERNAME:
+			newState.chatUserName = action.value;
+			return newState;	
 
 		//Login Actions
 		case constants.SET_MY_ID:

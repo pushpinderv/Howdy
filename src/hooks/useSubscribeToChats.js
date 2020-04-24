@@ -1,6 +1,7 @@
-import {BASE_URL} from 'Redux/constants';
+import {BASE_URL, CONTACT_UPDATED_TOPIC} from 'Redux/constants';
 import { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
+import PubSub from 'pubsub-js';
 
 function compareValues(key, order = 'asc') {
   return function innerSort(a, b) {
@@ -53,11 +54,40 @@ function pushToArray(arr, message) {
 
 export const useSubscribeToChats = () => {
 
+  const mySubscriber = (msg, data) => {
+
+    switch (msg) {
+
+        case CONTACT_UPDATED_TOPIC:
+            updateChats(data);
+            break;
+
+        default:
+            break;
+    }
+
+  };
+
+
 	const [chats, setChats] = useState([]);
 
   let myID = useSelector(state => state.myID);
 
   let socket = useSelector(state => state.socket);
+
+  const updateChats = (data) => {
+
+    let arr = [...chats];
+
+    const index = arr.findIndex((e) => e.email === data.email);
+
+    //Contact in chat list
+    if (index !== -1) 
+ 
+      arr[index] = {...arr[index], name: data.name};
+      setChats(arr);
+
+  }
 
   const handleMessage = (message) => {
         console.log('useSubscribeToChats :', message);
@@ -103,6 +133,15 @@ export const useSubscribeToChats = () => {
 		}
 
 	},[myID, socket]);
+
+  //Subscribe to contact changes
+  useEffect(() => {
+      PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
+
+      // return function cleanup() {
+      //   PubSub.clearAllSubscriptions();
+      // }
+  });
 
 	return [chats];
 

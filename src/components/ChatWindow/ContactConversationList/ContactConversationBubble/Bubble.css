@@ -305,3 +305,15 @@
 	margin-top: 15px;
 }
 
+.timestamp{
+	font-size: 0.75em;
+	margin-right: 0.5em;
+	margin-bottom: 0.3em;
+	align-self: flex-end;
+	color: #8c8c8c;
+}
+
+.timestamp.right{
+	color: white;
+}
+

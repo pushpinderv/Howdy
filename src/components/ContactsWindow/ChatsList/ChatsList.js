@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import ChatCard from './ChatCard/ChatCard';
 import './ChatList.css';
 import {useSubscribeToChats} from 'hooks/useSubscribeToChats';
@@ -6,17 +6,19 @@ import {useSubscribeToChats} from 'hooks/useSubscribeToChats';
 const ChatList = () => {
 
 	const [chats] = useSubscribeToChats();
+	const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
 	let chatCards = [];
 	if(chats)
 	chatCards = chats.map(c => {
 		let name = c.name;
 		if(name === ''|| name === null) name = c.email;
-		return <ChatCard key = {c.email} name = {name} message = {c.message} timeStamp = {c.time_stamp} chatID = {c.chat_id} />
+		return <ChatCard onClick = {() => {setSelectedItemIndex(c.email)}} key = {c.email} name = {name} message = {c.message} timeStamp = {c.time_stamp} chatID = {c.chat_id} photo_url = {c.photo_url} email = {c.email} 
+			selected = {selectedItemIndex === c.email} />
 	});
 
 	let NoChatsMessage = () => {
-		if(chats.length === 0) 
+		if((chats && chats.length === 0) || !chats)
 			return <div className = 'no-chats-div'>Click the "+" icon above to start chatting!</div>;
 		return null;
 	}
