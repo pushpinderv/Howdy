@@ -13,9 +13,19 @@ const ChatList = () => {
 	chatCards = chats.map(c => {
 		let name = c.name;
 		if(name === ''|| name === null) name = c.email;
-		return <ChatCard onClick = {() => {setSelectedItemIndex(c.email)}} key = {c.email} name = {name} message = {c.message} timeStamp = {c.time_stamp} chatID = {c.chat_id} photo_url = {c.photo_url} email = {c.email} 
-			selected = {selectedItemIndex === c.email} />
-	});
+		return <ChatCard onClick = {
+			() => {setSelectedItemIndex(c.email)}} 
+			key = {c.email} 
+			name = {name} 
+			message = {c.message} 
+			timeStamp = {c.time_stamp} 
+			chatID = {c.chat_id} 
+			photo_url = {c.photo_url} 
+			email = {c.email} 
+			selected = { selectedItemIndex === c.email ? true : false}
+			other_participant_id = {c.other_participant_id}
+			last_online = {c.last_online} />
+		});
 
 	let NoChatsMessage = () => {
 		if((chats && chats.length === 0) || !chats)

@@ -1,0 +1,36 @@
+import axios from 'axios';
+import {BASE_URL} from 'Redux/constants';
+import {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+
+const useSubscribeToProfilePhoto = (userID) => 
+{
+	const [url, setUrl] = useState('');
+
+	let socket = useSelector(state => state.socket);
+
+	useEffect(() => {
+
+		const handleMessage = (message) => {
+					setUrl(message);
+				}
+
+		if(userID && socket)
+		{
+			axios.get(`${BASE_URL}/${userID}/profile/photo`).then(response => {setUrl(response.data)});
+			socket.emit("subscribe", { room: userID });
+			socket.on('profile-photo-updated', handleMessage);
+				
+				return function cleanup() {
+		      		//Socket Listen Cleanup
+		      		socket.emit("unsubscribe", { room: chatUserID });
+					socket.off('profile-photo-updated', handleMessage);
+    			};
+		}
+
+	}, [userID, socket]);
+
+	return [url];
+}
+
+export default useSubscribeToProfilePhoto;

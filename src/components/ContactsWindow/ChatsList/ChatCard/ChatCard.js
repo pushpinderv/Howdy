@@ -36,9 +36,10 @@ const ChatCard = (props) => {
     		setChatUser({
 				chatUserName : props.name,
 				chatUserEmail : props.email,
-				chatUserLastOnline : props.timeStamp,
+				chatUserLastOnline : props.last_online,
 				chatUserPhotoUrl : props.photo_url,
-				chatID : props.chatID
+				chatID : props.chatID,
+				chatUserID : props.other_participant_id
 			});
 
 			setChatSelected(true);

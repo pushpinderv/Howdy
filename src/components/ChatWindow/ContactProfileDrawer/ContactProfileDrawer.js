@@ -6,6 +6,27 @@ import './ContactProfileDrawer.css';
 import updateContactName from 'api/contacts/updateContactName';
 import {useSelector} from 'react-redux';
 import useAction from 'Redux/actions/useAction';
+import moment from 'moment';
+
+const processTimeStamp = (timestamp) => {
+
+	if(timestamp)
+	{	
+		const date = moment(timestamp).format('x');
+		const startOfToday = moment().startOf('day');
+		const startOfYesterday = moment().startOf('day').subtract(1, 'days');
+		const startOfWeek = moment().startOf('week');
+		const startOfYear = moment().startOf('year');
+
+		if(date > startOfToday) return 'Last online today at ' + moment(timestamp).format('h:mm a');
+		else if((date < startOfToday) && (date > startOfYesterday)) return 'Last online yesterday at ' + moment(timestamp).format('hh:mm a');
+		else if((date < startOfYesterday) && (date > startOfWeek)) return 'Last online on ' + moment(timestamp).format('dddd');
+		else if((date < startOfWeek) && (date > startOfYear)) return 'Last online on ' + moment(timestamp).format('ddd, MMM DD');
+		else return 'Last online on ' + moment(timestamp).format('MMM DD, YYYY');	
+	}
+	else
+	return 'online';
+}
 
 const ContactProfileDrawer = (props) => {
 
@@ -111,7 +132,7 @@ const ContactProfileDrawer = (props) => {
 					fontSize : '0.85em',
 					fontWeight : '350',
 					color : '#8c8c8c'
-				}}>{props.lastOnline}</div>
+				}}>{processTimeStamp(props.lastOnline)}</div>
 				</div>
 			</div>
 

@@ -111,7 +111,7 @@ const StickyHeaderList = (props) => {
 				    }
 				    // console.log(u);
 					return(
-						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.time_stamp} chatID = {u.chat_id} chatUserID = {u.user_id}
+						<ContactInfoCard key = {u.email} displayIdentifier = {identifier} name = {u.name} email = {u.email} photo_url = {u.photo_url} last_online = {u.last_online} chatID = {u.chat_id} chatUserID = {u.user_id}
 						showDivider = {showDivider} />
 					);	
 			}));
