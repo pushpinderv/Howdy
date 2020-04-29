@@ -2,6 +2,9 @@ import * as constants from '../constants';
 
 const initialState = {
 
+	//Chat Search Field
+	chatSearchField : '',
+
 	//Chats List
 	chatsList : [],
 
@@ -44,6 +47,11 @@ const rootReducer = (state = initialState, action) =>{
 		//Revert to initial state
 		case constants.SET_INITIAL_STATE:
 			return initialState;
+
+		//Chat searchField setting action
+		case constants.SET_CHAT_SEARCHFIELD:
+			newState.chatSearchField = action.value;
+			return newState;	
 
 		//Chats setting Action
 		case constants.SET_CHATS:

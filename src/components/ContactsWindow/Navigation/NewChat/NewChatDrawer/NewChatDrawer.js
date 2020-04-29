@@ -26,7 +26,7 @@ const NewContactDiv = (props) => {
 		);
 }
 
-const SearchContactsBar = () => {
+const SearchContactsBar = (props) => {
 	return(
 		<div className = 'app-theme-color-light shadow-below' style = {{
 				display : 'flex', 
@@ -35,7 +35,7 @@ const SearchContactsBar = () => {
 				flex : '0 0 auto', 
 				height : '3.7em'
 		}}>
-			<input placeholder = 'Search contacts' className = 'br-pill bn ph3' 
+			<input onChange = {props.onChange} value = {props.value} placeholder = 'Search contacts' className = 'br-pill bn ph3' 
 			style = {{
 				flex : '1 1 auto', 
 				minWidth : '100%', 
@@ -51,7 +51,13 @@ const NewChatDrawer = (props) => {
 
 	let myID = useSelector(state => state.myID);
 
-	const [contacts] = useSubscribeToContacts();	 
+	const [contacts] = useSubscribeToContacts();
+
+	const [contactSearchField, setContactSearchField] = useState('');
+	const onContactSearchChange = (event) => {
+		setContactSearchField(event.target.value);
+		console.log(event.target.value);
+	}	 
 	
 	const [drawerOpen, setDrawerOpen] = useContext(NewChatDrawerContext);
 	const [newContactOpen, setNewContactOpen] = useState(false);
@@ -84,8 +90,8 @@ const NewChatDrawer = (props) => {
 
 	return (
 		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
-			<SearchContactsBar />
-			<StickyHeaderList contactList = {contacts} onItemClick = {()=>{setDrawerOpen(false)}}>
+			<SearchContactsBar value = {contactSearchField} onChange = {onContactSearchChange}/>
+			<StickyHeaderList contactList = {contacts.filter(c => c.name.toLowerCase().includes(contactSearchField.toLowerCase()))} onItemClick = {()=>{setDrawerOpen(false)}}>
 				<NewContactDiv setOpen = {setNewContactOpen}/>
 			</StickyHeaderList>
 			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>

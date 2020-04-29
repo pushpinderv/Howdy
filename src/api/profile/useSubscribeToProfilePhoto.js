@@ -12,8 +12,15 @@ const useSubscribeToProfilePhoto = (userID) =>
 	useEffect(() => {
 
 		const handleMessage = (message) => {
-					setUrl(message);
-				}
+
+			if(Number(message.room) === Number(userID))
+			{
+				console.log(`DP Updated for ${userID}`);
+				console.log(message.url);
+				//Update url
+				setUrl(message.url);
+			}		
+		}
 
 		if(userID && socket)
 		{
@@ -23,7 +30,7 @@ const useSubscribeToProfilePhoto = (userID) =>
 				
 				return function cleanup() {
 		      		//Socket Listen Cleanup
-		      		socket.emit("unsubscribe", { room: chatUserID });
+		      		socket.emit("unsubscribe", { room: userID });
 					socket.off('profile-photo-updated', handleMessage);
     			};
 		}

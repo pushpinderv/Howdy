@@ -6,31 +6,14 @@ import './ContactProfileDrawer.css';
 import updateContactName from 'api/contacts/updateContactName';
 import {useSelector} from 'react-redux';
 import useAction from 'Redux/actions/useAction';
-import moment from 'moment';
-
-const processTimeStamp = (timestamp) => {
-
-	if(timestamp)
-	{	
-		const date = moment(timestamp).format('x');
-		const startOfToday = moment().startOf('day');
-		const startOfYesterday = moment().startOf('day').subtract(1, 'days');
-		const startOfWeek = moment().startOf('week');
-		const startOfYear = moment().startOf('year');
-
-		if(date > startOfToday) return 'Last online today at ' + moment(timestamp).format('h:mm a');
-		else if((date < startOfToday) && (date > startOfYesterday)) return 'Last online yesterday at ' + moment(timestamp).format('hh:mm a');
-		else if((date < startOfYesterday) && (date > startOfWeek)) return 'Last online on ' + moment(timestamp).format('dddd');
-		else if((date < startOfWeek) && (date > startOfYear)) return 'Last online on ' + moment(timestamp).format('ddd, MMM DD');
-		else return 'Last online on ' + moment(timestamp).format('MMM DD, YYYY');	
-	}
-	else
-	return 'online';
-}
+import useSubscribeToProfilePhoto from 'api/profile/useSubscribeToProfilePhoto';
+import {useSubscribeToLastOnline} from 'api/presence/useSubscribeToLastOnline';
 
 const ContactProfileDrawer = (props) => {
 
 	const [drawerOpen, setDrawerOpen] = useContext(ContactProfileDrawerContext);
+
+	const [photoUrl] = useSubscribeToProfilePhoto(props.user_id);
 
 	const myID = useSelector(state => state.myID); 
 	const email = useSelector(state => state.chatUserEmail);
@@ -116,7 +99,7 @@ const ContactProfileDrawer = (props) => {
 				<div style = {{backgroundColor : 'white',
 					boxShadow: '0 2px 0.2em rgba(0, 0, 0, 0.08)'
 			}}>
-					<UserIcon url = {props.photo_url} margin = '2em auto' height = '10em' width = '10em'/>
+					<UserIcon url = {photoUrl} margin = '2em auto' height = '10em' width = '10em'/>
 					<div style = {{
 					marginLeft : '1.5rem',
 					marginRight : '1.5rem', 
@@ -132,7 +115,7 @@ const ContactProfileDrawer = (props) => {
 					fontSize : '0.85em',
 					fontWeight : '350',
 					color : '#8c8c8c'
-				}}>{processTimeStamp(props.lastOnline)}</div>
+				}}>{useSubscribeToLastOnline()}</div>
 				</div>
 			</div>
 

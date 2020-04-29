@@ -39,6 +39,8 @@ export const SET_CHAT_USERNAME = 'SET_CHAT_USERNAME';
 //Chat list Constants
 export const SET_CHAT_SEARCH_VISIBLE = 'SET_CHAT_SEARCH_VISIBLE';
 
+export const SET_CHAT_SEARCHFIELD = 'SET_CHAT_SEARCHFIELD';
+
 //Modal Constants
 export const SET_MODAL_CONTAINER = 'SET_MODAL_CONTAINER';
 export const SET_MODAL_VIEW = 'SET_MODAL_VIEW';

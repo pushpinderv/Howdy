@@ -46,6 +46,7 @@ export const useSubscribeToLastOnline = () =>{
 
 		//Subscribe to realtime presence via socket
 		const handleMessage = (message) => {
+					console.log(`Last online updated for ${chatUserID}`);
 					if(message.status) setStatus('online');
 					else setStatus(getProcessedTimeStamp(message.last_online));
 				}

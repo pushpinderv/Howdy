@@ -7,6 +7,16 @@ const useAction = () => {
 
   const actions = useMemo(() => ({
 
+    //Set chat search field
+    setChatSearchField(value) {
+      dispatch({type : constants.SET_CHAT_SEARCHFIELD, value : value})
+    },
+
+    //Set chat search bar visible
+    setSearchChatsVisible(visible) {
+      dispatch({type : constants.SET_CHAT_SEARCH_VISIBLE, value : visible})
+    },
+
     //Set Chats
     setChats(chats) {
       dispatch({type : constants.SET_CHATS, value : chats})

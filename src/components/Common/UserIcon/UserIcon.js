@@ -3,7 +3,7 @@ import './UserIcon.css';
 
 const UserIcon = (props) =>{
 	let url = props.url ? props.url : '';
-	let className = url.length ? 'image' : 'image hidden';
+	let className = (url.length > 0) ? 'image' : 'image hidden';
 
 	return(		
 		<div onClick = {props.onClick} className = 'userIcon' 

@@ -3,6 +3,7 @@ import UserIcon from 'components/Common/UserIcon/UserIcon';
 import './ChatCard.css';
 import moment from 'moment';
 import useAction from 'Redux/actions/useAction';
+import useSubscribeToProfilePhoto from 'api/profile/useSubscribeToProfilePhoto';
 
 const processTimeStamp = (timeStamp) => {
 
@@ -30,6 +31,8 @@ const ChatCard = (props) => {
     let className = props.selected ? 'chat-card selected' : 'chat-card';
     console.log(className);
 
+    const [photoUrl] = useSubscribeToProfilePhoto(props.other_participant_id);
+
     const chatClicked = () => {
     	props.onClick();
     	console.log(props);
@@ -37,7 +40,7 @@ const ChatCard = (props) => {
 				chatUserName : props.name,
 				chatUserEmail : props.email,
 				chatUserLastOnline : props.last_online,
-				chatUserPhotoUrl : props.photo_url,
+				chatUserPhotoUrl : photoUrl,
 				chatID : props.chatID,
 				chatUserID : props.other_participant_id
 			});
@@ -49,7 +52,7 @@ const ChatCard = (props) => {
 		<div onClick = {chatClicked} className = {className}>
 
 				<UserIcon 
-					url = {props.photo_url}
+					url = {photoUrl}
 					height = '3.2em' width = '3.2em' 
 					margin = 'auto 0 auto 1.15em'/>
 

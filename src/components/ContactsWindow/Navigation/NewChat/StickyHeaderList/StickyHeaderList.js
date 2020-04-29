@@ -3,6 +3,7 @@ import './StickyHeaderList.css';
 import 'components/Common/UserIcon/UserIcon.css';
 import useAction from 'Redux/actions/useAction';
 import UserIcon from 'components/Common/UserIcon/UserIcon';
+import useSubscribeToProfilePhoto from 'api/profile/useSubscribeToProfilePhoto';
 
 const StickyHeaderList = (props) => {
 
@@ -57,6 +58,8 @@ const StickyHeaderList = (props) => {
 	const ContactInfoCard = (props) => {
 		const {setChatUser, setChatSelected} = useAction();
 
+		let photoUrl = useSubscribeToProfilePhoto(props.chatUserID);
+
 		let contactClicked = () =>
 		{
 			// console.log(props.name + props.email + props.photo_url + props.last_online);
@@ -64,7 +67,7 @@ const StickyHeaderList = (props) => {
 				chatUserName : props.name,
 				chatUserEmail : props.email,
 				chatUserLastOnline : props.last_online,
-				chatUserPhotoUrl : props.photo_url,
+				chatUserPhotoUrl : photoUrl,
 				chatID : props.chatID,
 				chatUserID : props.chatUserID
 			});
