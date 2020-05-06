@@ -11,6 +11,9 @@ import rootReducer from './Redux/reducers/rootReducer';
 
 const store = createStore(rootReducer);
 
+// document.cookie = "AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Secure";
+// alert( document.cookie );
+
 document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
 });
