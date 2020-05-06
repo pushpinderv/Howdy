@@ -38,7 +38,8 @@ function pushToArray(arr, message) {
     		message : message.content,
     		time_stamp : message.created_at,
     		name : message.name,
-    		chat_id : message.chat_id
+    		chat_id : message.chat_id,
+        other_participant_id : message.other_participant_id
     	};
         arr.push(chat);
     } 

@@ -1,0 +1,10 @@
+.error{
+	color: darkred;
+	font-size: 0.8em;
+	align-self: center;
+	display: none;
+}
+
+.error.visible{
+	display: block;
+}

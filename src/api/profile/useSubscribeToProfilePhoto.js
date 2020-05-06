@@ -27,13 +27,16 @@ const useSubscribeToProfilePhoto = (userID) =>
 			axios.get(`${BASE_URL}/${userID}/profile/photo`).then(response => {setUrl(response.data)});
 			socket.emit("subscribe", { room: userID });
 			socket.on('profile-photo-updated', handleMessage);
-				
-				return function cleanup() {
-		      		//Socket Listen Cleanup
-		      		socket.emit("unsubscribe", { room: userID });
-					socket.off('profile-photo-updated', handleMessage);
-    			};
 		}
+
+		return function cleanup() {
+			if(socket)
+			{
+	      		//Socket Listen Cleanup
+	      		socket.emit("unsubscribe", { room: userID });
+				socket.off('profile-photo-updated', handleMessage);
+			}
+			};
 
 	}, [userID, socket]);
 

@@ -86,7 +86,8 @@ export const useSubscribeToMessages = () => {
 		return function cleanup() {
       		//Socket Listen Cleanup
 			socket.off('chat-message', handleMessage);
-			console.log('useSubscribeToMessages', 'Message socket off...')
+			console.log('useSubscribeToMessages', 'Message socket off...');
+			setMessages([]);
     	};
     	
 		}

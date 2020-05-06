@@ -37,10 +37,11 @@ const ChatWindow = (props) => {
 			</ContactProfileDrawerContext.Provider>;
 
 	if(props.mode === 'Desktop' && !selected)		
-		
+		{
+		let welcomeMessage = <div className = 'welcome-message'>Welcome to Howdy! Click on a chat and say Hi to your friends.</div>;	
 		windowContents = <div className = 'ChatWindow app-theme-color' style = {
-	 		{flex : '1', maxWidth : '100%'}
-			} />;
+	 		{flex : '1', maxWidth : '100%', justifyContent : 'center'}}>{welcomeMessage}</div>;
+	 	}
 
 
 	return (
@@ -52,9 +53,7 @@ const ChatWindow = (props) => {
 	);
 
 
-	// return (<div className = 'ChatWindow unselected' style = {
-	// 		{flex : flexWidth, maxWidth : flexWidth}
-	// 	} >Welp</div>);
+
 }
 
 export default ChatWindow;

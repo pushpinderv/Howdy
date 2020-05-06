@@ -31,3 +31,12 @@
 .ChatWindow.unselected{
   background-color: #f8f9fa;
 }
+
+.welcome-message{
+  color: white;
+  font-size: 2em;
+  line-height: 1.3em;
+  margin : 2em;
+  text-align: center;
+  flex: 0;
+}

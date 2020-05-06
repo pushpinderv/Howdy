@@ -21,8 +21,8 @@ const ProfilePicMenu = (props) => {
 
 	}
 	return(<Menu width = '140px'>
-	      			<MenuItem>View</MenuItem>
-	      			<MenuItem>Take</MenuItem>
+	      			{/*<MenuItem>View</MenuItem>
+	      			<MenuItem>Take</MenuItem>*/}
 	      			<MenuItem>Upload<input type = 'file' 
 	      			onChange = {fileSelectedHandler}
 	      			style = {{
@@ -33,7 +33,7 @@ const ProfilePicMenu = (props) => {
 	      				right : 0,
 	      				opacity : 0
 	      				}}/></MenuItem>
-	      			<MenuItem>Remove</MenuItem>
+	      			{/*<MenuItem>Remove</MenuItem>*/}
   				</Menu>);
 }
 

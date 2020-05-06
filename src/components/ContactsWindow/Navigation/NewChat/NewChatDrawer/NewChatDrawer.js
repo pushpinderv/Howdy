@@ -62,40 +62,47 @@ const NewChatDrawer = (props) => {
 	const [drawerOpen, setDrawerOpen] = useContext(NewChatDrawerContext);
 	const [newContactOpen, setNewContactOpen] = useState(false);
 
-	const [contactName, setContactName] = useState('');
-	const onContactNameChange = (event) => 
-	{
-		setContactName(event.target.value);
-	}
+	const AddContactForm = () => {
 
-	const [contactEmail, setContactEmail] = useState('');
-	const onContactEmailChange = (event) => 
-	{
-		setContactEmail(event.target.value);
-	}
+		const [contactName, setContactName] = useState('');
+		const onContactNameChange = (event) => 
+		{
+			setContactName(event.target.value);
+		}
 
-	const createContactClicked = () => {
-		
-		createContact(myID, contactName, contactEmail)
-	        .then(response => {
-	        	console.log('Contacts now:', response);
-	        	
-	        	//Commented to handle later
-	        	//setContactList(response);
+		const [contactEmail, setContactEmail] = useState('');
+		const onContactEmailChange = (event) => 
+		{
+			setContactEmail(event.target.value);
+		}
 
-	        	setNewContactOpen(false); 
-	        });
+		const [error, setError] = useState('An error occured');
+		const [showError, setShowError] = useState(false);
 
-	}
+		const createContactClicked = () => {
 
-	return (
-		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
-			<SearchContactsBar value = {contactSearchField} onChange = {onContactSearchChange}/>
-			<StickyHeaderList contactList = {contacts.filter(c => c.name.toLowerCase().includes(contactSearchField.toLowerCase()))} onItemClick = {()=>{setDrawerOpen(false)}}>
-				<NewContactDiv setOpen = {setNewContactOpen}/>
-			</StickyHeaderList>
-			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>
-				<div style = {{ padding : '1em 1.5em', flex : '1',
+			setShowError(false);
+			
+			createContact(myID, contactName, contactEmail)
+		        .then(response => {
+
+		        	if(response.status === 400)
+		        	{
+		        		setError("Cannot create contact. Please check the entered information");
+		        		setShowError(true);
+		        	}
+
+		        	else
+		        	{
+		        		console.log('Contacts now:', response);
+						setNewContactOpen(false);
+					}	
+
+		        });
+
+		}
+
+		return (<div style = {{ padding : '1em 1.5em', flex : '1',
 				 display : 'flex', flexDirection : 'column', overflowY : 'auto'
 				}}>
 					<div style = {{display : 'flex', 
@@ -111,7 +118,18 @@ const NewChatDrawer = (props) => {
 						<input onChange = {onContactEmailChange} className = 'textInput' type = 'text' />
 					</div>
 					<div onClick = {createContactClicked} className = 'br2 createButton'>Create Contact</div>
-				</div>
+					{showError ? (<div className = 'errorMessage shake'>{error}</div>) : null}
+				</div>);
+	}
+
+	return (
+		<Drawer heading = 'New chat' state = {[drawerOpen, setDrawerOpen]} openFrom = 'left'>
+			<SearchContactsBar value = {contactSearchField} onChange = {onContactSearchChange}/>
+			<StickyHeaderList contactList = {contacts.filter(c => c.name.toLowerCase().includes(contactSearchField.toLowerCase()))} onItemClick = {()=>{setDrawerOpen(false)}}>
+				<NewContactDiv setOpen = {setNewContactOpen}/>
+			</StickyHeaderList>
+			<Drawer heading = 'Add Contact' state = {[newContactOpen, setNewContactOpen]} openFrom = 'right'>
+				<AddContactForm />
 			</Drawer>
 		</Drawer>
 	);

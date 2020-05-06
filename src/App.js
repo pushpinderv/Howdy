@@ -15,6 +15,9 @@ import useAction from 'Redux/actions/useAction';
 
 function App() {
 
+	console.log(process.env.NODE_ENV);
+	console.log = () => {};
+
 	//Set global socket for communication with server
 	const {setSocket} = useAction();
 

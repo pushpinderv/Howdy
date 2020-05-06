@@ -85,3 +85,29 @@
 	z-index: 2;
 	/*box-shadow: 2px 0px 0.3em rgba(0, 0, 0, 1);*/
 }
+
+@keyframes kf_shake_relative {
+  0% { transform: translate(-45%); }
+  20% { transform: translate(-55%); }
+  40% { transform: translate(-47%); }
+  60% { transform: translate(-53%); }
+  80% { transform: translate(-47%); }
+  100% { transform: translate(-50%); }
+}
+
+.shake-relative {
+  animation: kf_shake_relative 0.4s 1 linear;
+}
+
+@keyframes kf_shake {
+  0% { transform: translate(30px); }
+  20% { transform: translate(-30px); }
+  40% { transform: translate(15px); }
+  60% { transform: translate(-15px); }
+  80% { transform: translate(8px); }
+  100% { transform: translate(0px); }
+}
+
+.shake {
+  animation: kf_shake 0.4s 1 linear;
+}

@@ -72,10 +72,6 @@ export const useSubscribeToContacts = () => {
 	useEffect(() => {
     	PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
     	PubSub.subscribe(CONTACT_CREATED_TOPIC, mySubscriber);
-
-    	// return function cleanup() {
-    	// 	PubSub.clearAllSubscriptions();
-    	// }
 	});
 
 	return [contacts];

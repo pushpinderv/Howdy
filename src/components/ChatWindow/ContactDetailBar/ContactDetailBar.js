@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import ContactProfilePicture from './ContactProfilePicture/ContactProfilePicture';
 import ContactName from './ContactName/ContactName';
 import ContactLastOnline from './ContactLastOnline/ContactLastOnline';
-import ContactVideoCallButton from './ContactVideoCallButton/ContactVideoCallButton';
+// import ContactVideoCallButton from './ContactVideoCallButton/ContactVideoCallButton';
 import BackButton from '../../Common/BackButton/BackButton';
 import {ModeContext} from '../../../Store';
 import {ContactProfileDrawerContext} from 'Store';
@@ -33,7 +33,7 @@ const ContactDetailBar = (props) => {
 		<ContactName name = {props.name} />
 		<ContactLastOnline lastOnline = {props.lastOnline} />
 		</div>
-		<ContactVideoCallButton />
+		{/*<ContactVideoCallButton />*/}
 		</div>
 	);
 }

@@ -14,10 +14,21 @@ const createContact = (userID, contactName, contactEmail) => {
 	        	"contactEmail" : contactEmail
 	        })
 			.then(response => 
-				{
-					pushToTopic(response.data);
-					return response.data;
-				});
+				{	
+					if(response.status === 400)
+					{
+						return response;
+					}
+					else{	
+						pushToTopic(response.data);
+						return response.data;
+					}
+
+			})
+			.catch(err => {
+				return {status : 400}
+			})
+			;
 
 }
 

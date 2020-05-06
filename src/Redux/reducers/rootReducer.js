@@ -46,6 +46,8 @@ const rootReducer = (state = initialState, action) =>{
 
 		//Revert to initial state
 		case constants.SET_INITIAL_STATE:
+			//Kill the socket connection
+			state.socket.close(); 
 			return initialState;
 
 		//Chat searchField setting action
