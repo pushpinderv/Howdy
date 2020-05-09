@@ -13,6 +13,10 @@ const ProfileDrawer = (props) => {
 
 	const [boundingRect, ref] = useBoundingBox();
 
+	const [showUploadError, setShowUploadError] = useState(false);
+	const [uploadError, setUploadError] = useState('Could not upload image');
+	const [enableNameEdit, setEnableNameEdit] = useState(false);
+
 	const myModalId = 'profile';
 
 	const {setModalView,setModalOpen,setModalId,setModalContainer,setProfileUserName} = useAction();
@@ -24,6 +28,7 @@ const ProfileDrawer = (props) => {
 
 	const onUserIconClick = () =>
 	{
+		setShowUploadError(false);
 		setModalId(myModalId);
 		setModalOpen(true);
 	}
@@ -46,7 +51,7 @@ const ProfileDrawer = (props) => {
 			);
 	}			
 
-	const MenuModal = <PhantomContainer boundingRect = {boundingRect}><ProfilePicMenu /></PhantomContainer>;
+	const MenuModal = <PhantomContainer boundingRect = {boundingRect}><ProfilePicMenu setUploadError = {setUploadError} setShowUploadError = {setShowUploadError} url = {profilePhotoUrl}/></PhantomContainer>;
 
 	if(currentModalId === myModalId)
 	{	
@@ -58,8 +63,6 @@ const ProfileDrawer = (props) => {
 
 	const NameAndEditHandlingDiv = (props) => {
 
-		const [enableNameEdit, setEnableNameEdit] = useState(false);
-
     	let initialInputText = props.initialValue;
 
     	const [inputText, setInputText] = useState(initialInputText);
@@ -68,11 +71,13 @@ const ProfileDrawer = (props) => {
 
     	console.log('ProfileDrawer : username input is', inputText);
 
-		const onEditClick = () => {
+		const onEditClick = (event) => {
+			event.stopPropagation();
 			setEnableNameEdit(true);
 		}
 
-		const onDoneClick = () => {
+		const onDoneClick = (event) => {
+			event.stopPropagation();
 			setEnableNameEdit(false);
 			updateProfileName(myID, inputText)
 				.then(name => {
@@ -128,9 +133,14 @@ const ProfileDrawer = (props) => {
 	const [profileDrawerOpen, setProfileDrawerOpen] = useContext(ProfileDrawerContext);
 
 	return (
-		<Drawer className = 'profileDrawer' heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
+		<Drawer onClick = {() => {
+			console.log('ProfileDrawer clicked!');
+			setEnableNameEdit(false)}
+		} 
+			className = 'profileDrawer' heading = 'Profile' state = {[profileDrawerOpen, setProfileDrawerOpen]} openFrom = 'left'>
 			<div className = 'pdContainer'>
 				{MenuContainerDiv}
+				{showUploadError ? (<div className = 'upload-error'>{uploadError}</div>) : null}
 				<div style = {{
 					backgroundColor: 'white',
 					boxShadow: '0 -1px 0.1em rgba(0, 0, 0, 0.03), 0 2px 0.2em rgba(0, 0, 0, 0.08)'}}>

@@ -2,6 +2,10 @@ import * as constants from '../constants';
 
 const initialState = {
 
+	//Image Display
+	imageDisplayUrl : '',
+	imageDisplayVisible : false,
+
 	//Chat Search Field
 	chatSearchField : '',
 
@@ -49,6 +53,16 @@ const rootReducer = (state = initialState, action) =>{
 			//Kill the socket connection
 			state.socket.close(); 
 			return initialState;
+
+		//Image Display Url setting action
+		case constants.SET_IMAGE_DISPLAY_URL:
+			newState.imageDisplayUrl = action.value;
+			return newState;
+
+		//Image Display visible action
+		case constants.SET_IMAGE_DISPLAY_VISIBLE:
+			newState.imageDisplayVisible = action.value;
+			return newState;	
 
 		//Chat searchField setting action
 		case constants.SET_CHAT_SEARCHFIELD:

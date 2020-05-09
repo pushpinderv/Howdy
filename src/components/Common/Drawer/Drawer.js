@@ -33,7 +33,7 @@ const Drawer = (props) => {
 	}
 	
 	return (
-		<div className = {drawerOpen ? drawerOpenClass : drawerClass}>
+		<div onClick = {props.onClick} className = {drawerOpen ? drawerOpenClass : drawerClass}>
 			<nav className = 'drawerNav app-theme-color'>
 			<BackButton 
 				display = 'flex' 

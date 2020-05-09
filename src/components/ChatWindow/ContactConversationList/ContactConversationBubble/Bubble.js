@@ -8,17 +8,18 @@ const processTimestamp = (timestamp) => {
 }
 
 const Bubble = (props) => {
+	let bubbleClassName = props.last ? (props.design + ' last') : props.design;
 	let className = props.design.includes('left') ? 'talktext' : 'talktext right';
 	let timestampClassName = props.design.includes('left') ? 'timestamp' : 'timestamp right';
 	if(props.design.includes('info'))  className = 'talktext';
 	return (
-		<div className = {props.design} >
+		<div className = {bubbleClassName} >
 		  <div className = {className} >
 		    {props.text}
 		  </div>
 		  {
 		  (props.time_stamp) ? <div className = {timestampClassName}>{processTimestamp(props.time_stamp)}</div> : null
-		  }
+		  } 
 		</div>
 	);
 }

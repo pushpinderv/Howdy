@@ -8,21 +8,37 @@ import useAction from 'Redux/actions/useAction';
 const ProfilePicMenu = (props) => {
 
 	let myID = useSelector(state => state.myID);
+	let oldUrl = props.url;
 
-	const {setModalOpen, setProfilePhotoUrl} = useAction();
+	const {setModalOpen, setProfilePhotoUrl, setImageDisplayVisible, setImageDisplayUrl} = useAction();
 
 	const fileSelectedHandler = (event) =>
 	{
 		let file = event.target.files[0];
 		console.log(file);
-		uploadProfilePhoto(myID, file)
+		uploadProfilePhoto(oldUrl ,myID , file)
 			.then(setModalOpen(false))
-			.then(setProfilePhotoUrl);
+			.then(data => {
+				setProfilePhotoUrl(data.url);
+				if(data.error)
+				{
+					props.setShowUploadError(true);
+					props.setUploadError(data.error);
+				}
+			});
 
 	}
+
+	const viewClicked = () => {
+		console.log('View me');
+		setModalOpen(false);
+		setImageDisplayVisible(true);
+		setImageDisplayUrl(props.url);
+	}
+
 	return(<Menu width = '140px'>
-	      			{/*<MenuItem>View</MenuItem>
-	      			<MenuItem>Take</MenuItem>*/}
+	      			<MenuItem onClick = {viewClicked}>View</MenuItem>
+	      			{/*<MenuItem>Take</MenuItem>*/}
 	      			<MenuItem>Upload<input type = 'file' 
 	      			onChange = {fileSelectedHandler}
 	      			style = {{

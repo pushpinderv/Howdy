@@ -2,15 +2,13 @@ import axios from 'axios';
 import {BASE_URL} from 'Redux/constants';
 import imageCompression from 'browser-image-compression';
 
-const uploadProfilePhoto = (userID, file) => {
+const uploadProfilePhoto = (oldUrl, userID, file) => {
 
 	const fd = new FormData();
   	console.log(`originalFile size ${file.size / 1024 / 1024} MB`);
  
 	var options = {
-	maxSizeMB: 1,
-	maxWidthOrHeight: 512,
-	useWebWorker: true
+	maxSizeMB: 1
 	}
 
 	return imageCompression(file, options)
@@ -22,12 +20,12 @@ const uploadProfilePhoto = (userID, file) => {
 		return axios.post(`${BASE_URL}/${userID}/profile/photo`, fd)
 				.then(response => {
 					let url = response.data.url;
-					return url;
+					return {success : true, url :url};
 				});
 	})
 	.catch((error) => {
 		console.log(error.message);
-		return '';
+		return {success : false, url :oldUrl, error : error.message};
 	});
 
 	

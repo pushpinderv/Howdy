@@ -1,6 +1,7 @@
 import React from 'react';
 // import backButtonImage from './_ionicons_svg_md-arrow-back.svg';
 // import cancelButtonImage from './_ionicons_svg_md-close.svg';
+import './BackButton.css';
 
 const BackButton = (props) => {
 
@@ -20,19 +21,12 @@ const BackButton = (props) => {
 		405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>);
 	}
 
+	let className = props.className ? 'back-button ' + props.className : 'back-button';
+
 	return (
 		<button onClick = {props.onClick} style = {{
-			display: props.display, 
-			background : 'none', 
-			// backgroundColor : 'yellow', 
-			border : 'none', 
-			outline : 'none', 
-			width : '2.7em', 
-			height : 'auto',
-			padding : '0.3em', 
-			cursor : 'pointer', 
-			flex : '0 0 auto'
-		}}>
+			display: props.display
+		}} className = {className}>
 		{image()}
 		</button>
 	);

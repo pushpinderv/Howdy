@@ -7,6 +7,16 @@ const useAction = () => {
 
   const actions = useMemo(() => ({
 
+    //Set Image Display Visible
+    setImageDisplayVisible(visible) {
+      dispatch({type : constants.SET_IMAGE_DISPLAY_VISIBLE, value : visible})
+    },
+
+    //Set Image Display Url
+    setImageDisplayUrl(url) {
+      dispatch({type : constants.SET_IMAGE_DISPLAY_URL, value : url})
+    },
+
     //Set chat search field
     setChatSearchField(value) {
       dispatch({type : constants.SET_CHAT_SEARCHFIELD, value : value})

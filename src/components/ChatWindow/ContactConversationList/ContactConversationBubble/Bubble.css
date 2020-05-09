@@ -317,3 +317,7 @@
 	color: white;
 }
 
+.talk-bubble.last{
+	margin-bottom: 20px;
+}
+

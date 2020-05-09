@@ -32,13 +32,13 @@ const addTimeSectionsToMessages = (messages) => {
 
 	const groupedData = lodash.groupBy(messages, header);
 
-	const result = Object.keys(groupedData).map(data => {
-		return [{id : lodash.uniqueId('info_'), info : true, content : data}].concat(groupedData[data]);
-	}).flat();
+	// const result = Object.keys(groupedData).map(data => {
+	// 	return [{id : lodash.uniqueId('info_'), info : true, content : data}].concat(groupedData[data]);
+	// }).flat();
 
-	console.log(result);
+	// console.log(result);
 
-	return result;
+	return groupedData;
 
 }
 
@@ -54,8 +54,18 @@ export const useSubscribeToMessages = () => {
 
 	const handleMessage = (message) => {	
 				setMessages(messages => {
-					let updatedMessages = [...messages];
-					updatedMessages.push(message)
+
+					//Check if messages do not contain today tag, and message in that header. Else make a new today header
+					let updatedMessages = {...messages};
+					
+					if('Today' in updatedMessages) 
+						{
+							updatedMessages['Today'] = updatedMessages['Today'].concat(message);
+						}
+					else
+						{
+							updatedMessages['Today'] = [message];
+						}
 					return updatedMessages;
 				})
 			};
@@ -74,8 +84,8 @@ export const useSubscribeToMessages = () => {
 		.then(response => {
 			
 			response.reverse();
-			let messages = addTimeSectionsToMessages(response);
-			setMessages(messages);
+			let groupedMessages = addTimeSectionsToMessages(response);
+			setMessages(groupedMessages);
 
 			//Listen for realtime messages
 			socket.on('chat-message', handleMessage);

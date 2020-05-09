@@ -3,10 +3,11 @@ import Bubble from './ContactConversationBubble/Bubble';
 import ScrollableFeed from 'react-scrollable-feed';
 import './ContactConversationList.css';
 import {useSubscribeToMessages} from 'hooks/useSubscribeToMessages';
+import lodash from 'lodash';
 
 const ContactConversationList = () => {
 
-	const [messages] = useSubscribeToMessages();
+	const [groupedMessages] = useSubscribeToMessages();
 
 	let left = "talk-bubble round left-top left";
 	let right = "talk-bubble round right-top right";
@@ -15,8 +16,14 @@ const ContactConversationList = () => {
 	let first = " tri-right first";
 
 	let messageBubbles = [];
-	if(messages !== null)
+	if(groupedMessages !== null)
 	{
+
+	//Convert to flat array for info messages
+	const messages = Object.keys(groupedMessages).map(data => {
+		return [{id : lodash.uniqueId('info_'), info : true, content : data}].concat(groupedMessages[data]);
+	}).flat();
+
 	messageBubbles = messages.map((m, index, arr) => {
 
 		if(m.info)
@@ -26,6 +33,7 @@ const ContactConversationList = () => {
 
 		else {
 		let direction = m.mine ? right : left;
+		let last = false;
 
 		if(index === 1)
 			direction = direction + first;
@@ -36,17 +44,20 @@ const ContactConversationList = () => {
 				direction = direction + first;
 		}
 
-			return <Bubble key = {m.id} design = {direction} text = {m.content} time_stamp = {m.created_at}/>;
+		if(index === (messages.length - 1))
+			last = true;
+
+			return <Bubble key = {m.id} design = {direction} text = {m.content} time_stamp = {m.created_at} last = {last}/>;
 		}
 
 	});
+
 	}
 
 	return (
 
 		<div className = 'app-theme-color-lightest' style = {{display : 'flex', flexDirection : 'column', 
-		flex : 1, overflowY : 'auto', 
-		paddingBottom : '20px'}}>
+		flex : 1, overflowY : 'auto'}}>
 
 		<ScrollableFeed className = 'scrollable-feed' animateScroll = {(element, offset) => {
 			if (element.scrollBy) {
@@ -73,6 +84,7 @@ const ContactConversationList = () => {
 		<Bubble design = {right} text = "Yeeeee!!"/>*/}
 
 		{messageBubbles}
+
 	    </ScrollableFeed>
 
 		</div>

@@ -3,6 +3,11 @@ export const CONTACT_UPDATED_TOPIC = 'CONTACT_UPDATED_TOPIC';
 
 export const CONTACT_CREATED_TOPIC = 'CONTACT_CREATED_TOPIC';
 
+//Image Display Constants
+export const SET_IMAGE_DISPLAY_URL = 'SET_IMAGE_DISPLAY_URL';
+
+export const SET_IMAGE_DISPLAY_VISIBLE = 'SET_IMAGE_DISPLAY_VISIBLE';
+
 //Setting initial state constant
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
 

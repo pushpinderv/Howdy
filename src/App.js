@@ -12,10 +12,11 @@ import {useSelector} from 'react-redux';
 import io from 'socket.io-client';
 import {BASE_URL} from 'Redux/constants';
 import useAction from 'Redux/actions/useAction';
+import ImageDisplay from './components/ImageDisplay/ImageDisplay';
 
 function App() {
 
-	console.log = () => {};
+	// console.log = () => {};
 
 	//Set global socket for communication with server
 	const {setSocket} = useAction();
@@ -66,6 +67,7 @@ function App() {
 	    onClick = {()=>console.log('App.js: Consuming touch to prevent zooming')}>
 			<ContactsWindow mode = {mode}/>
 			{chatWindow}
+			<ImageDisplay />
 			<GlobalOverlay />	
 	    </Div100vh>
 			);

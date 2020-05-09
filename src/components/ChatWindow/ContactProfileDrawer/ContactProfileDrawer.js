@@ -13,21 +13,21 @@ const ContactProfileDrawer = (props) => {
 
 	const [drawerOpen, setDrawerOpen] = useContext(ContactProfileDrawerContext);
 
+	const [enableNameEdit, setEnableNameEdit] = useState(false);
+
 	const [photoUrl] = useSubscribeToProfilePhoto(props.user_id);
 
 	const myID = useSelector(state => state.myID); 
 	const email = useSelector(state => state.chatUserEmail);
 	const name = useSelector(state => state.chatUserName);
 
-	const {setChatUserName} = useAction();
+	const {setChatUserName, setImageDisplayVisible, setImageDisplayUrl} = useAction();
 
 	console.log('ContactProfileDrawer : email is ', email);
     console.log('ContactProfileDrawer : name is ', name);
 
 
 	const NameAndEditHandlingDiv = (props) => {
-
-		const [enableNameEdit, setEnableNameEdit] = useState(false);
 
 		const [name, setName] = useState(props.initialName);
 
@@ -53,10 +53,12 @@ const ContactProfileDrawer = (props) => {
 				);
 		}
 
-		const onEditClick = () => {
+		const onEditClick = (event) => {
+			event.stopPropagation();
 			setEnableNameEdit(true);
 		}
-		const onDoneClick = () => {
+		const onDoneClick = (event) => {
+			event.stopPropagation();
 			setEnableNameEdit(false);
 			updateContactName(myID, name, email)
 				.then(updatedContact => {
@@ -94,12 +96,18 @@ const ContactProfileDrawer = (props) => {
 	}
 
 	return (
-		<Drawer heading = 'Contact info' state = {[drawerOpen, setDrawerOpen]} openFrom = 'right'>
+		<Drawer onClick = {() => {
+			console.log('ContactProfileDrawer clicked!');
+			setEnableNameEdit(false)}
+		} heading = 'Contact info' state = {[drawerOpen, setDrawerOpen]} openFrom = 'right'>
 			<div style = {{width : 'auto', backgroundColor : '#f7f7f7', display: 'flex', flex : '1', flexDirection : 'column', overflowY : 'auto'}}>
 				<div style = {{backgroundColor : 'white',
 					boxShadow: '0 2px 0.2em rgba(0, 0, 0, 0.08)'
 			}}>
-					<UserIcon url = {photoUrl} margin = '2em auto' height = '10em' width = '10em'/>
+					<UserIcon onClick = {() => {
+						setImageDisplayVisible(true);
+						setImageDisplayUrl(photoUrl);
+					}} url = {photoUrl} margin = '2em auto' height = '10em' width = '10em'/>
 					<div style = {{
 					marginLeft : '1.5rem',
 					marginRight : '1.5rem', 

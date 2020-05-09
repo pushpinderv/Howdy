@@ -17,6 +17,7 @@ const ChatList = () => {
 	let chatCards = [];
 	if(chats)
 	{
+				
 	let filteredChats = chats.filter(c => {
 		let name = c.name;
 		if(name === ''|| name === null) name = c.email;
