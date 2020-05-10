@@ -19,13 +19,13 @@ const Login = () =>
 
 	const {setMyID} = useAction();
 
-	const [email, setEmail] = useState('jane@gmail.com');
+	const [email, setEmail] = useState('');
  	const onEmailChange = (event) => 
 	{
 		setEmail(event.target.value);
 	}
 
-	const [password, setPassword] = useState('fruits');
+	const [password, setPassword] = useState('');
  	const onPasswordChange = (event) => 
 	{
 		setPassword(event.target.value);
