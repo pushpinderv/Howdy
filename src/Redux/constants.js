@@ -1,7 +1,7 @@
 //Pub Sub Constants
 export const CONTACT_UPDATED_TOPIC = 'CONTACT_UPDATED_TOPIC';
-
 export const CONTACT_CREATED_TOPIC = 'CONTACT_CREATED_TOPIC';
+export const HAS_UNREAD_MESSAGES_TOPIC = 'HAS_UNREAD_MESSAGES_TOPIC';
 
 //Image Display Constants
 export const SET_IMAGE_DISPLAY_URL = 'SET_IMAGE_DISPLAY_URL';
@@ -15,8 +15,8 @@ export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
 export const SET_SOCKET = 'SET_SOCKET';
 
 //API Base URL
-// export const BASE_URL = 'http://howdy.ddns.net:3001';
-export const BASE_URL = 'https://salty-lake-30825.herokuapp.com';
+export const BASE_URL = 'http://howdy.ddns.net:3001';
+// export const BASE_URL = 'https://salty-lake-30825.herokuapp.com';
 
 //Login Constants
 export const SET_MY_ID = 'SET_MY_ID';

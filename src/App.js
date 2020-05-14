@@ -16,7 +16,7 @@ import ImageDisplay from './components/ImageDisplay/ImageDisplay';
 
 function App() {
 
-	console.log = () => {};
+	// console.log = () => {};
 
 	//Set global socket for communication with server
 	const {setSocket} = useAction();

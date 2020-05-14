@@ -70,8 +70,13 @@ export const useSubscribeToContacts = () => {
 
 	//Subscribe to contact changes
 	useEffect(() => {
-    	PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
-    	PubSub.subscribe(CONTACT_CREATED_TOPIC, mySubscriber);
+    	let updateToken = PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
+    	let createToken = PubSub.subscribe(CONTACT_CREATED_TOPIC, mySubscriber);
+
+    	return () => {
+    		PubSub.unsubscribe(updateToken);
+    		PubSub.unsubscribe(createToken);
+    	};
 	});
 
 	return [contacts];

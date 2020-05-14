@@ -3,6 +3,7 @@ import {BASE_URL} from 'Redux/constants';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 import lodash from 'lodash';
+import axios from 'axios';
 
 const addTimeSectionsToMessages = (messages) => {
 
@@ -52,8 +53,19 @@ export const useSubscribeToMessages = () => {
 
 	const [messages, setMessages] = useState([]);
 
-	const handleMessage = (message) => {	
-				setMessages(messages => {
+	useEffect(()=>{
+
+		const handleMessage = (message) => {
+
+			if(Number(message.chat_id) === Number(chatID))
+			{
+
+			console.log(`Updating unread for ${chatID}`);	
+				
+			//Update messages read at on every message received
+			axios.post(`${BASE_URL}/${myID}/chats/${chatID}/read-messages`,{});
+
+			setMessages(messages => {
 
 					//Check if messages do not contain today tag, and message in that header. Else make a new today header
 					let updatedMessages = {...messages};
@@ -68,9 +80,8 @@ export const useSubscribeToMessages = () => {
 						}
 					return updatedMessages;
 				})
-			};
-
-	useEffect(()=>{
+			}
+		};
 
 		//Logging
 		console.log('Use effect:', myID , chatID);

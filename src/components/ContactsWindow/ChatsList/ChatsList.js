@@ -7,12 +7,16 @@ import {useSelector} from 'react-redux';
 
 const ChatList = () => {
 
+	console.log('chatlist rendering...');
+
 	const [chats] = useSubscribeToChats();
 	const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
 	const chatSearchField = useSelector(state => state.chatSearchField);
 
 	const {setSearchChatsVisible} = useAction();
+
+	const selected = useSelector(state => state.chatSelected);
 
 	let chatCards = [];
 	if(chats)
@@ -35,9 +39,11 @@ const ChatList = () => {
 			chatID = {c.chat_id} 
 			photo_url = {c.photo_url} 
 			email = {c.email} 
-			selected = { selectedItemIndex === c.email ? true : false}
+			selected = { (selectedItemIndex === c.email ? true : false) && selected}
 			other_participant_id = {c.other_participant_id}
-			last_online = {c.last_online} />
+			last_online = {c.last_online} 
+			has_unread_messages = {c.has_unread_messages}
+			 />
 		});
 	}
 

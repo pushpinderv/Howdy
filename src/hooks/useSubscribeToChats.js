@@ -1,7 +1,8 @@
-import {BASE_URL, CONTACT_UPDATED_TOPIC} from 'Redux/constants';
-import { useState, useEffect } from 'react';
+import {BASE_URL, CONTACT_UPDATED_TOPIC, HAS_UNREAD_MESSAGES_TOPIC} from 'Redux/constants';
+import { useState, useEffect, useCallback } from 'react';
 import {useSelector} from 'react-redux';
 import PubSub from 'pubsub-js';
+import useAction from 'Redux/actions/useAction';
 
 function compareValues(key, order = 'asc') {
   return function innerSort(a, b) {
@@ -27,7 +28,7 @@ function compareValues(key, order = 'asc') {
   };
 }
 
-function pushToArray(arr, message) {
+const pushToArray = (arr, message, chatID) => {
     const index = arr.findIndex((e) => Number(e.chat_id) === Number(message.chat_id));
 
     if (index === -1) 
@@ -39,9 +40,10 @@ function pushToArray(arr, message) {
     		time_stamp : message.created_at,
     		name : message.name,
     		chat_id : message.chat_id,
-        other_participant_id : message.other_participant_id
-    	};
-        arr.push(chat);
+            other_participant_id : message.other_participant_id	
+      };
+
+      arr.push(chat);
     } 
     else 
     {
@@ -53,96 +55,107 @@ function pushToArray(arr, message) {
     return arr;
 }
 
-export const useSubscribeToChats = () => {
+const reflectContactUpdate = (arr, data, chatUserEmail, setChatUserName) => {
 
-  const mySubscriber = (msg, data) => {
-
-    switch (msg) {
-
-        case CONTACT_UPDATED_TOPIC:
-            updateChats(data);
-            break;
-
-        default:
-            break;
-    }
-
-  };
-
-
-	const [chats, setChats] = useState([]);
-
-  let myID = useSelector(state => state.myID);
-
-  let socket = useSelector(state => state.socket);
-
-  const updateChats = (data) => {
-
-    let arr = [...chats];
+    //Update global state username if useremail is same
+    if(chatUserEmail === data.email)
+        setChatUserName(data.name);
 
     const index = arr.findIndex((e) => e.email === data.email);
 
     //Contact in chat list
     if (index !== -1) 
- 
-      arr[index] = {...arr[index], name: data.name};
-      setChats(arr);
+    {
+        arr[index] = {...arr[index], name: data.name};
+    }
 
-  }
+    return arr;
 
-  const handleMessage = (message) => {
+}
+
+export const useSubscribeToChats = () => {
+
+    const [chats, setChats] = useState([]);
+
+    let myID = useSelector(state => state.myID);
+
+    let socket = useSelector(state => state.socket);
+
+    let chatUserEmail = useSelector(state => state.chatUserEmail);
+
+    let chatID = useSelector(state => state.chatID);
+
+    const {setChatUserName} = useAction();
+
+    const handleMessage = useCallback((message) => {
         console.log('useSubscribeToChats :', message);
-        setChats(chats => {
-          
-          // let updatedChats = [...chats].map(el => Number(el.chat_id) === Number(message.chat_id) ? {...el, time_stamp: message.created_at, message : message.content} : el);
+        setChats(chats => pushToArray([...chats], message))
+        console.log(message.chat_id, chatID);
+        if(Number(message.chat_id) !== Number(chatID)) 
+        {
+            console.log('Pubsubbing!');
+            PubSub.publish(HAS_UNREAD_MESSAGES_TOPIC, {chatID : message.chat_id})
+        }
+    }, [chatID]);
 
-          let updatedChats = pushToArray([...chats], message);
+    const mySubscriber = useCallback((msg, data) => {
 
-          return updatedChats;
-        })
-      };
+        switch (msg) {
+
+            //Handling contact creation as a contact update as well
+            case CONTACT_UPDATED_TOPIC:
+                setChats(chats => reflectContactUpdate([...chats], data, chatUserEmail, setChatUserName));
+                break;
+
+            //Handle unread/read state as well
+
+            default:
+                break;
+        }
+
+    }, [chatUserEmail, setChatUserName]); 
 
 	//Fetch Chats
 	useEffect(()=>{
 
+        let pubsubToken;
+
 		if(myID && socket)
-		{	
+		{
 
-    //Socket Cleanup
-    socket.off('chat-message', handleMessage); 
-
-    console.log('useSubscribeToChats', 'Stopped listening for chats ...');
-
-    
-		//Consider Axios as well
+		//Fetch chats from server
 		fetch(`${BASE_URL}/${myID}/chats`)
-		.then(response => response.json())
-		.then(response => {
-			
-			setChats(response)
+    		.then(response => response.json())
+    		.then(response => {
+    			
+    			setChats(response)
 
-			//Listen for realtime messages
-			socket.on('chat-message', handleMessage);
+    			//Listen for realtime messages
+    			socket.on('chat-message', handleMessage);
+                console.log('useSubscribeToChats', 'Listening for chats ...');
 
-      console.log('useSubscribeToChats', 'Listening for chats ...');
+                //Listen for contact updates    
+                pubsubToken = PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
+    	});
 
-		})
-		}
+        return function cleanup() {
 
-		else {
+            //Socket Cleanup
+            socket.off('chat-message', handleMessage); 
+            console.log('useSubscribeToChats', 'Stopped listening for chats ...');
+
+            //Cancel Pubsub subscription
+            PubSub.unsubscribe(pubsubToken);
+        };
+
+    	}    
+
+		else 
+        {
 			setChats([]);
 		}
 
-	},[myID, socket]);
-
-  //Subscribe to contact changes
-  useEffect(() => {
-      PubSub.subscribe(CONTACT_UPDATED_TOPIC, mySubscriber);
-
-      // return function cleanup() {
-      //   PubSub.clearAllSubscriptions();
-      // }
-  });
+	},[myID, socket, mySubscriber, handleMessage]);
 
 	return [chats];
 

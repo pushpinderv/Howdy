@@ -7,10 +7,19 @@ import {ContactProfileDrawerContext} from 'Store';
 import ContactProfileDrawer from './ContactProfileDrawer/ContactProfileDrawer';
 import './ChatWindow.css';
 import {useSelector} from 'react-redux';
+import useAction from 'Redux/actions/useAction';
 
 const ChatWindow = (props) => {
 
 	const selected = useSelector(state => state.chatSelected);
+
+	const {setChatID} = useAction();
+
+	if(!selected)
+	{
+		setChatID(null);
+	}
+
 
 	const isMaxed = useMediaPredicate('(min-width: 900px)');
 	let flexWidth = isMaxed ? '65%' : '60%';

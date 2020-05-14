@@ -58,8 +58,6 @@ const StickyHeaderList = (props) => {
 	const ContactInfoCard = (props) => {
 		const {setChatUser, setChatSelected} = useAction();
 
-		let photoUrl = useSubscribeToProfilePhoto(props.chatUserID);
-
 		let contactClicked = () =>
 		{
 			// console.log(props.name + props.email + props.photo_url + props.last_online);
@@ -76,8 +74,12 @@ const StickyHeaderList = (props) => {
 
 			closeDrawer();
 		}
+
+		let [photoUrl] = useSubscribeToProfilePhoto(props.chatUserID);
+
 		let detailCardClassName = 
-		props.showDivider ? 'contactDetailContainer divider' : 'contactDetailContainer'
+		props.showDivider ? 'contactDetailContainer divider' : 'contactDetailContainer';
+
 		return(
 			<div onClick = {contactClicked} className = 'contactInfoCard' >
 				<UserIcon width = '3em' height = '3em' margin = '0.5em 0 0.5em 0.8em' url = {props.photo_url}/>
@@ -86,6 +88,7 @@ const StickyHeaderList = (props) => {
 			</div>	
 			</div>
 			); 
+
 	}
 
 	const handleScroll = () => {

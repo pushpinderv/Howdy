@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_URL, CONTACT_CREATED_TOPIC} from 'Redux/constants';
+import {BASE_URL, CONTACT_CREATED_TOPIC, CONTACT_UPDATED_TOPIC} from 'Redux/constants';
 import PubSub from 'pubsub-js';
 
 const pushToTopic = (data) => {
@@ -21,6 +21,7 @@ const createContact = (userID, contactName, contactEmail) => {
 					}
 					else{	
 						pushToTopic(response.data);
+						PubSub.publish(CONTACT_UPDATED_TOPIC, {name : contactName, email : contactEmail});
 						return response.data;
 					}
 
